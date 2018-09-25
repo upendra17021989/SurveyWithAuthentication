@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 22, 2018 at 01:32 PM
+-- Generation Time: Sep 25, 2018 at 05:15 PM
 -- Server version: 10.1.35-MariaDB
 -- PHP Version: 7.2.9
 
@@ -21,6 +21,54 @@ SET time_zone = "+00:00";
 --
 -- Database: `survey`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `company`
+--
+
+CREATE TABLE `company` (
+  `company_id` int(10) NOT NULL,
+  `company_name` varchar(500) NOT NULL,
+  `address` varchar(1000) NOT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `company`
+--
+
+INSERT INTO `company` (`company_id`, `company_name`, `address`, `created_at`, `updated_at`) VALUES
+(1, 'ABCD', 'sdfdsfds', '2018-09-25 15:06:21', '2018-09-25 15:06:21'),
+(2, 'Gaurav Pvt. ltd.', 'checking...', '2018-09-25 15:11:13', '2018-09-25 15:11:13');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `company_survey`
+--
+
+CREATE TABLE `company_survey` (
+  `company_id` int(5) NOT NULL,
+  `survey_id` int(10) NOT NULL,
+  `form_id` int(10) NOT NULL,
+  `start_dt` date NOT NULL,
+  `end_dt` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `forms`
+--
+
+CREATE TABLE `forms` (
+  `form_id` int(10) NOT NULL,
+  `form_type` varchar(50) NOT NULL,
+  `form_description` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -62,6 +110,18 @@ CREATE TABLE `password_resets` (
 
 INSERT INTO `password_resets` (`email`, `token`, `created_at`) VALUES
 ('ups12384@gmail.com', '$2y$10$lOU1.KDeWoFs47wSpK8ZDed9LAjjz1cgZ/i/93BlW5MmNKd25tuGK', '2018-09-22 05:32:44');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `survey`
+--
+
+CREATE TABLE `survey` (
+  `survey_id` int(5) NOT NULL,
+  `survey_type` varchar(50) NOT NULL,
+  `description` varchar(500) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -125,6 +185,7 @@ INSERT INTO `survey_question` (`id`, `description`) VALUES
 CREATE TABLE `users` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_type` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'respondent',
   `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -136,12 +197,19 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Upendra', 'ups12384@gmail.com', '$2y$10$.f1lYp1vIWtL/pyDZ09kkOkPsKykx/6y6nemA.4Bz/YRizebJy1Ru', NULL, '2018-09-22 05:31:18', '2018-09-22 05:31:18');
+INSERT INTO `users` (`id`, `name`, `user_type`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'Upendra', 'admin', 'ups12384@gmail.com', '$2y$10$.f1lYp1vIWtL/pyDZ09kkOkPsKykx/6y6nemA.4Bz/YRizebJy1Ru', NULL, '2018-09-22 05:31:18', '2018-09-22 05:31:18'),
+(2, 'Jayesh Ingle', 'respondent', 'abc@gmail.com', '$2y$10$1V4yOkrQbwAN2bUm6hAInOMYfTApHORNRW135ZE1ldtn9a7eYaUb.', NULL, '2018-09-22 06:12:56', '2018-09-22 06:12:56');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `company`
+--
+ALTER TABLE `company`
+  ADD PRIMARY KEY (`company_id`);
 
 --
 -- Indexes for table `migrations`
@@ -167,6 +235,12 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `company`
+--
+ALTER TABLE `company`
+  MODIFY `company_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
@@ -176,7 +250,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
