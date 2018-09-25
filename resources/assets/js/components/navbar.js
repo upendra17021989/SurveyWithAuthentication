@@ -29,12 +29,28 @@ class Nav extends Component {
   }
   render() {
 
+    if (this.props.link == 'admin') {
+      return (
+        <nav className="navbar navbar-default">
+          <div className="container-fluid">
+              <div className="navbar-header">
+                <a className="navbar-brand" href="#" onClick={this.handleClick.bind(this)}>Home</a>
+              </div>
+              <ul className="nav navbar-nav navbar-right">
+                <li><Link to="/company">Company</Link></li>
+                <li><a className="navbar-brand" href="#" onClick={this.logout.bind(this)}>Logout</a></li>
+              </ul>
+          </div>
+        </nav>
+        )
+    }
+
     if (this.props.link) {
       return (
         <nav className="navbar navbar-default">
           <div className="container-fluid">
               <div className="navbar-header">
-                <a className="navbar-brand" href="#" onClick={this.handleClick.bind(this)}>Basic Authentication</a>
+                <a className="navbar-brand" href="#" onClick={this.handleClick.bind(this)}>Home</a>
               </div>
               <ul className="nav navbar-nav navbar-right">
                  <a className="navbar-brand" href="#" onClick={this.logout.bind(this)}>{this.props.link}</a>  
@@ -47,7 +63,7 @@ class Nav extends Component {
         <nav className="navbar navbar-default">
           <div className="container-fluid">
               <div className="navbar-header">
-                <a className="navbar-brand" href="#" onClick ={this.handleClick.bind(this)}>Basic Authentication</a>
+                <a className="navbar-brand" href="#" onClick ={this.handleClick.bind(this)}>Home</a>
               </div>
               <ul className="nav navbar-nav navbar-right">
                 <li><Link to="/login">Login</Link></li>

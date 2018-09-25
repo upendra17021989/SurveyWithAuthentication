@@ -8,6 +8,8 @@ import Home from './components/home'
 import Forgot from './components/forgot'
 import Reset from './components/reset'
 import DisplaySurvey from './components/DisplaySurvey'
+import AdminHome from './components/AdminHome'
+import Company from './components/Company'
 
 
 ReactDOM.render(
@@ -16,7 +18,9 @@ ReactDOM.render(
 	    <Route exact path='/' component={Index}/>
 	    <Route path='/login' component={Login}/>
 	    <Route path='/register' component={Register}/>
-	    <Route path='/home' component={DisplaySurvey}/>
+	    <Route path='/user-home' component={DisplaySurvey}/>
+	    <Route path='/admin-home' component={AdminHome}/>
+	    <Route path='/company' component={Company}/>
 	    <Route path='/forgotpassword' component={Forgot}/>
 	    <Route path='/password/reset/:token' component={Reset}/>
 	</Switch>

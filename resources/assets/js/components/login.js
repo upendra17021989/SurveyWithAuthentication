@@ -20,12 +20,22 @@ class Login extends Component {
         axios.post('api/login', {
             email, 
             password
-          })
-          .then(response=> {
-            this.setState({err: false});
-            this.props.history.push("home") ;
-            
-          })
+            })
+            .then(response=> {
+                axios.get('/api/user/'+email)
+                .then(response => {
+                    if (response.data.length > 0) {
+                        this.setState({err: false});
+                        if (response.data[0].user_type == 'admin') {
+                            this.props.history.push("admin-home") ;    
+                        } else {
+                            this.props.history.push("user-home") ;
+                        }
+                    }
+                }).catch(error=> {
+                    this.setState({err: true})
+                });
+            })
           .catch(error=> {
             this.refs.email.value="";
             this.refs.password.value="";

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use DB;
 
 class LoginController extends Controller
 {
@@ -35,5 +36,11 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    public function getUser($userId)
+    {
+         $user = DB::table('users')->where('users.email','=', $userId)->select('users.name', 'users.user_type')->get();
+        return $user;
     }
 }

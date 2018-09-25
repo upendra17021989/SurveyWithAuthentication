@@ -19,6 +19,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('logout','Auth\LoginController@logout');
     Route::post('password/email','Auth\ForgotPasswordController@sendResetLinkEmail'); 
     Route::post('password/reset','Auth\ResetPasswordController@reset');
+    Route::get('user/{id}','Auth\LoginController@getUser');
+    Route::post('createcompany','CompanyController@create');  
     Route::resource('survey', 'SurveyController');   
 });
   
