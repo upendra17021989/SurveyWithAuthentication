@@ -3,12 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Foundation\Auth\RegistersUsers;
 use DB;
 
 class CompanyController extends Controller
 {
-    use RegistersUsers;
     /**
      * Display a listing of the resource.
      *
@@ -16,11 +14,8 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        //$surveys = Survey::all();
-        //return response()->json($surveys);
-        $surveyDetails = DB::table('survey_question')->join('survey_option', 
-            'survey_option.question_id', '=', 'survey_question.id')->select('survey_question.id as question_id', 'survey_question.description as desc','survey_option.option_id', 'survey_option.description as desc2')->get();
-        return $surveyDetails;
+        $companyDetails = DB::table('company')->select('company.company_id', 'company.company_name', 'company.address', 'company.created_at', 'company.updated_at')->get();
+        return $companyDetails;
     }
 
     /**
@@ -39,17 +34,6 @@ class CompanyController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
      * Display the specified resource.
      *
      * @param  int  $id
@@ -57,21 +41,8 @@ class CompanyController extends Controller
      */
     public function show($id)
     {
-         $question = DB::table('survey_question')->where('survey_question.id','=', $id)->select('survey_question.id as question_id', 'survey_question.description as question')->get();
-         $options = DB::table('survey_option')->where('survey_option.question_id','=', $id)->select('survey_option.option_id as option_id', 'survey_option.description as option')->get();
-         $surveyDetails = array_merge($question->toArray(), $options->toArray());
-        return $surveyDetails;
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+         $companyDetails = DB::table('company')->where('company.company_id','=',$id)->select('company.company_id', 'company.company_name', 'company.address', 'company.created_at', 'company.updated_at')->get();
+        return $companyDetails;
     }
 
     /**
@@ -81,9 +52,13 @@ class CompanyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        DB::table('company')->where('company_id', $request['id'])->update([
+                'company_name' => $request['name'],
+                'address' => $request['address']
+            ]
+        );
     }
 
     /**
@@ -94,6 +69,6 @@ class CompanyController extends Controller
      */
     public function destroy($id)
     {
-        //
+        DB::table('company')->where('company_id', $id)->delete();
     }
 }

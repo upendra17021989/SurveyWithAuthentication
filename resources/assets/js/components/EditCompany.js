@@ -1,28 +1,53 @@
-import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
-import Nav from './navbar'
-import axios from 'axios'
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import Nav from './navbar';
+import axios from 'axios';
+import MyGlobleSetting from './MyGlobleSetting';
 
-class Company extends Component {
+class EditCompany extends Component {
 
     constructor(props){
         super(props);
         this.state = {
+          id: props.match.params.id,
           name: '',
           address : ''
         }
      }
 
+    componentDidMount(){
+      this.apiCall();
+       
+    }
+
+    apiCall() {
+      axios.get(MyGlobleSetting.url + '/api/showcompany/'+ this.state.id)
+       .then(response => {
+        if (response.data.length > 0) {
+         this.setState({ name: response.data[0].company_name,
+                        address: response.data[0].address,
+                        created_at: response.data[0].created_at,
+                        updated_at: response.data[0].updated_at});
+        }
+
+       })
+       .catch(function (error) {
+         console.log(error);
+       })
+       
+    }
+
     onSubmit(e){
         e.preventDefault();
-        const {name, address} = this.state ;
-        axios.post('api/createcompany', {
+        const {id, name, address} = this.state ;
+        axios.post(MyGlobleSetting.url + '/api/updatecompany', {
+            id,
             name,
             address
           })
           .then(response=> {
            this.setState({err: false});
-           this.props.history.push("create-company") ;
+           this.props.history.push("edit-company") ;
           })
           .catch(error=> {
             this.refs.name.value="";
@@ -38,8 +63,11 @@ class Company extends Component {
 
     render() {
         let error = this.state.err ;
-        let msg = (!error) ? 'Created Successfully' : 'Oops! , Something went wrong.' ;
+        let msg = (!error) ? 'Updated Successfully' : 'Oops! , Something went wrong.' ;
         let name = (!error) ? 'alert alert-success' : 'alert alert-danger' ;
+        if (!error) {
+          return ;
+        }
         return (   
              <div>   
                 <Nav link="admin" />
@@ -47,7 +75,7 @@ class Company extends Component {
                     <div className="row">
                         <div className="col-md-8 col-md-offset-2">
                             <div className="panel panel-default">
-                                <div className="panel-heading">Add Company</div>
+                                <div className="panel-heading">Update Company</div>
                                 <div className="panel-body">
                                     <div className="col-md-offset-2 col-md-8 col-md-offset-2">
                                         {error != undefined && <div className={name} role="alert">{msg}</div>}
@@ -57,7 +85,7 @@ class Company extends Component {
                                             <label for="name" className="col-md-4 control-label">Name</label>
 
                                             <div className="col-md-6">
-                                                <input id="name" type="text" className="form-control" ref="name" name="name" onChange={this.onChange.bind(this)} required autofocus />
+                                                <input id="name"  value={this.state.name} type="text" className="form-control" ref="name" name="name" onChange={this.onChange.bind(this)} required autofocus />
                                             </div>
                                         </div>
 
@@ -65,14 +93,31 @@ class Company extends Component {
                                             <label for="address" className="col-md-4 control-label">Address</label>
 
                                             <div className="col-md-6">
-                                                <input id="address" type="text" className="form-control" ref="address" name="address" onChange={this.onChange.bind(this)} required />
+                                                <input id="address" value={this.state.address} type="text" className="form-control" ref="address" name="address" onChange={this.onChange.bind(this)} required />
+                                            </div>
+                                        </div>
+
+                                        <div className="form-group">
+                                            <label for="created_at" className="col-md-4 control-label">Created Date</label>
+
+                                            <div className="col-md-6">
+                                                <label for="created_at" className="col-md-8">{this.state.created_at}</label>
+                                            </div>
+                                        </div>
+
+
+                                        <div className="form-group">
+                                            <label for="updated_at" className="col-md-4 control-label">Updated Date</label>
+
+                                            <div className="col-md-6">
+                                                <label for="updated_at" className="col-md-8">{this.state.updated_at}</label>
                                             </div>
                                         </div>
 
                                         <div className="form-group">
                                             <div className="col-md-6 col-md-offset-4">
                                                 <button type="submit" className="btn btn-primary">
-                                                    Create
+                                                    Update
                                                 </button>
                                             </div>
                                         </div>
@@ -88,4 +133,4 @@ class Company extends Component {
       }
 }
 
-export default Company
+export default EditCompany

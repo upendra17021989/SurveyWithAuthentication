@@ -10,6 +10,8 @@ import Reset from './components/reset'
 import DisplaySurvey from './components/DisplaySurvey'
 import AdminHome from './components/AdminHome'
 import Company from './components/Company'
+import DisplayCompany from './components/DisplayCompany'
+import EditCompany from './components/EditCompany'
 
 
 ReactDOM.render(
@@ -20,7 +22,9 @@ ReactDOM.render(
 	    <Route path='/register' component={Register}/>
 	    <Route path='/user-home' component={DisplaySurvey}/>
 	    <Route path='/admin-home' component={AdminHome}/>
-	    <Route path='/company' component={Company}/>
+	    <Route path='/create-company' component={Company}/>
+	    <Route path='/company' component={DisplayCompany}/>
+	    <Route path='/edit-company/:id' component={EditCompany}/>
 	    <Route path='/forgotpassword' component={Forgot}/>
 	    <Route path='/password/reset/:token' component={Reset}/>
 	</Switch>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 25, 2018 at 05:15 PM
+-- Generation Time: Sep 26, 2018 at 04:29 PM
 -- Server version: 10.1.35-MariaDB
 -- PHP Version: 7.2.9
 
@@ -32,8 +32,8 @@ CREATE TABLE `company` (
   `company_id` int(10) NOT NULL,
   `company_name` varchar(500) NOT NULL,
   `address` varchar(1000) NOT NULL,
-  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -41,8 +41,11 @@ CREATE TABLE `company` (
 --
 
 INSERT INTO `company` (`company_id`, `company_name`, `address`, `created_at`, `updated_at`) VALUES
-(1, 'ABCD', 'sdfdsfds', '2018-09-25 15:06:21', '2018-09-25 15:06:21'),
-(2, 'Gaurav Pvt. ltd.', 'checking...', '2018-09-25 15:11:13', '2018-09-25 15:11:13');
+(2, 'ddd', 'dddd', '2018-09-25 15:11:13', '2018-09-26 12:02:50'),
+(3, 'ABC Consult', 'Chennai', '2018-09-26 11:56:22', '2018-09-26 12:43:55'),
+(4, 'asdas', 'dasd', '2018-09-26 11:59:36', '2018-09-26 11:59:36'),
+(5, 'Ankit Pvt. Ltd.', 'Gmail', '2018-09-26 10:00:54', '2018-09-26 12:36:21'),
+(6, 'Jayehs Enterprises', 'Mumbai', '2018-09-26 10:01:27', '2018-09-26 10:01:27');
 
 -- --------------------------------------------------------
 
@@ -238,7 +241,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `company`
 --
 ALTER TABLE `company`
-  MODIFY `company_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `company_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `migrations`
