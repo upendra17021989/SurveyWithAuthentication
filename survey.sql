@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 26, 2018 at 04:29 PM
+-- Generation Time: Sep 27, 2018 at 05:14 PM
 -- Server version: 10.1.35-MariaDB
 -- PHP Version: 7.2.9
 
@@ -41,11 +41,8 @@ CREATE TABLE `company` (
 --
 
 INSERT INTO `company` (`company_id`, `company_name`, `address`, `created_at`, `updated_at`) VALUES
-(2, 'ddd', 'dddd', '2018-09-25 15:11:13', '2018-09-26 12:02:50'),
-(3, 'ABC Consult', 'Chennai', '2018-09-26 11:56:22', '2018-09-26 12:43:55'),
-(4, 'asdas', 'dasd', '2018-09-26 11:59:36', '2018-09-26 11:59:36'),
-(5, 'Ankit Pvt. Ltd.', 'Gmail', '2018-09-26 10:00:54', '2018-09-26 12:36:21'),
-(6, 'Jayehs Enterprises', 'Mumbai', '2018-09-26 10:01:27', '2018-09-26 10:01:27');
+(15, 'Jayesh Enterprises', 'Ahmedabad', '2018-09-27 07:14:22', '2018-09-27 11:48:52'),
+(18, 'Gaurav Pvt. ltd.', 'Ahmedabad', '2018-09-27 07:16:45', '2018-09-27 07:16:55');
 
 -- --------------------------------------------------------
 
@@ -69,9 +66,19 @@ CREATE TABLE `company_survey` (
 
 CREATE TABLE `forms` (
   `form_id` int(10) NOT NULL,
-  `form_type` varchar(50) NOT NULL,
-  `form_description` varchar(200) NOT NULL
+  `form_name` varchar(50) NOT NULL,
+  `form_description` varchar(200) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `forms`
+--
+
+INSERT INTO `forms` (`form_id`, `form_name`, `form_description`, `created_at`, `updated_at`) VALUES
+(1, 'form1', 'regionals', '2018-09-27 13:03:46', '2018-09-27 13:38:37'),
+(2, 'form2', 'national', '2018-09-27 13:31:54', '2018-09-27 13:31:54');
 
 -- --------------------------------------------------------
 
@@ -113,6 +120,30 @@ CREATE TABLE `password_resets` (
 
 INSERT INTO `password_resets` (`email`, `token`, `created_at`) VALUES
 ('ups12384@gmail.com', '$2y$10$lOU1.KDeWoFs47wSpK8ZDed9LAjjz1cgZ/i/93BlW5MmNKd25tuGK', '2018-09-22 05:32:44');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `questions`
+--
+
+CREATE TABLE `questions` (
+  `form_id` int(10) NOT NULL,
+  `question_id` int(10) NOT NULL,
+  `question_description` varchar(500) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `questions`
+--
+
+INSERT INTO `questions` (`form_id`, `question_id`, `question_description`, `created_at`, `updated_at`) VALUES
+(1, 1, 'dsfdsfs', '2018-09-27 14:54:55', '2018-09-27 14:54:55'),
+(1, 2, 'sdfds', '2018-09-27 14:59:31', '2018-09-27 14:59:31'),
+(1, 3, 'edfds fsdf sdfsd f', '2018-09-27 15:01:10', '2018-09-27 15:01:10'),
+(1, 4, 'dasda', '2018-09-27 15:11:09', '2018-09-27 15:11:09');
 
 -- --------------------------------------------------------
 
@@ -166,18 +197,20 @@ INSERT INTO `survey_option` (`question_id`, `option_id`, `description`) VALUES
 --
 
 CREATE TABLE `survey_question` (
+  `form_id` int(10) NOT NULL,
   `id` int(5) NOT NULL,
-  `description` varchar(1000) NOT NULL
+  `description` varchar(1000) NOT NULL,
+  `type` varchar(10) NOT NULL DEFAULT 'multiple'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `survey_question`
 --
 
-INSERT INTO `survey_question` (`id`, `description`) VALUES
-(1, '\r\n  \r\n \r\nIn thinking about your most recent experience with [COMPANY], how was the quality of customer service you received?'),
-(2, 'The process for getting your concerns resolved was: '),
-(3, 'Now please think about the features and benefits of the [PRODUCT] itself. How satisfied are you with the [PRODUCT]:');
+INSERT INTO `survey_question` (`form_id`, `id`, `description`, `type`) VALUES
+(0, 1, '\r\n  \r\n \r\nIn thinking about your most recent experience with [COMPANY], how was the quality of customer service you received?', 'multiple'),
+(0, 2, 'The process for getting your concerns resolved was: ', 'multiple'),
+(0, 3, 'Now please think about the features and benefits of the [PRODUCT] itself. How satisfied are you with the [PRODUCT]:', 'multiple');
 
 -- --------------------------------------------------------
 
@@ -215,6 +248,12 @@ ALTER TABLE `company`
   ADD PRIMARY KEY (`company_id`);
 
 --
+-- Indexes for table `forms`
+--
+ALTER TABLE `forms`
+  ADD PRIMARY KEY (`form_id`);
+
+--
 -- Indexes for table `migrations`
 --
 ALTER TABLE `migrations`
@@ -225,6 +264,12 @@ ALTER TABLE `migrations`
 --
 ALTER TABLE `password_resets`
   ADD KEY `password_resets_email_index` (`email`);
+
+--
+-- Indexes for table `questions`
+--
+ALTER TABLE `questions`
+  ADD UNIQUE KEY `question_id` (`question_id`);
 
 --
 -- Indexes for table `users`
@@ -241,13 +286,25 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `company`
 --
 ALTER TABLE `company`
-  MODIFY `company_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `company_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
+-- AUTO_INCREMENT for table `forms`
+--
+ALTER TABLE `forms`
+  MODIFY `form_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `questions`
+--
+ALTER TABLE `questions`
+  MODIFY `question_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `users`
