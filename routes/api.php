@@ -20,11 +20,25 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('password/email','Auth\ForgotPasswordController@sendResetLinkEmail'); 
     Route::post('password/reset','Auth\ResetPasswordController@reset');
     Route::get('user/{id}','Auth\LoginController@getUser');
+    
     Route::post('createcompany','CompanyController@create');
+    Route::post('createform','FormController@create');
+    Route::post('createquestion','QuestionController@create');
+    
     Route::get('company','CompanyController@index');  
+    Route::get('form','FormController@index');
+    Route::get('adminquestion/{id}','QuestionController@index');
+
     Route::get('showcompany/{id}','CompanyController@show');  
+    Route::get('showform/{id}','FormController@show');  
+    
     Route::post('updatecompany','CompanyController@update');  
+    Route::post('updateform','FormController@update');  
+    Route::post('updatequestion','QuestionController@update');  
+    
     Route::get('deletecompany/{id}','CompanyController@destroy');
+    Route::get('deleteform/{id}','FormController@destroy');  
+        
     Route::resource('survey', 'SurveyController');   
 });
   

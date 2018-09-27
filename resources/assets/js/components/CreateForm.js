@@ -3,30 +3,30 @@ import { Link } from 'react-router-dom'
 import Nav from './navbar'
 import axios from 'axios'
 
-class Company extends Component {
+class CreateForm extends Component {
 
     constructor(props){
         super(props);
         this.state = {
           name: '',
-          address : ''
+          description : ''
         }
      }
 
     onSubmit(e){
         e.preventDefault();
-        const {name, address} = this.state ;
-        axios.post('api/createcompany', {
+        const {name, description} = this.state ;
+        axios.post('api/createform', {
             name,
-            address
+            description
           })
           .then(response=> {
            this.setState({err: false});
-           this.props.history.push("create-company") ;
+           this.props.history.push("create-form") ;
           })
           .catch(error=> {
             this.refs.name.value="";
-            this.refs.address.value="";
+            this.refs.description.value="";
             this.setState({err: true});
           });
      }
@@ -47,7 +47,7 @@ class Company extends Component {
                     <div className="row">
                         <div className="col-md-8 col-md-offset-2">
                             <div className="panel panel-default">
-                                <div className="panel-heading">Add Company</div>
+                                <div className="panel-heading">Add Form</div>
                                 <div className="panel-body">
                                     <div className="col-md-offset-2 col-md-8 col-md-offset-2">
                                         {error != undefined && <div className={name} role="alert">{msg}</div>}
@@ -62,10 +62,10 @@ class Company extends Component {
                                         </div>
 
                                         <div className="form-group">
-                                            <label for="address" className="col-md-4 control-label">Address</label>
+                                            <label for="description" className="col-md-4 control-label">Description</label>
 
                                             <div className="col-md-6">
-                                                <input id="address" type="text" className="form-control" ref="address" name="address" onChange={this.onChange.bind(this)} required />
+                                                <input id="description" type="text" className="form-control" ref="description" name="description" onChange={this.onChange.bind(this)} required />
                                             </div>
                                         </div>
 
@@ -77,7 +77,7 @@ class Company extends Component {
                                             </div>
                                         </div>
                                     </form>
-                                    <Link to="/company">View Company</Link>
+                                    <Link to="/form">View Forms</Link>
                                 </div>
                             </div>
                         </div>
@@ -88,4 +88,4 @@ class Company extends Component {
       }
 }
 
-export default Company
+export default CreateForm
