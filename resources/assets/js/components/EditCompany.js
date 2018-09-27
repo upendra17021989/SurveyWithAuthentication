@@ -17,7 +17,6 @@ class EditCompany extends Component {
 
     componentDidMount(){
       this.apiCall();
-       
     }
 
     apiCall() {
@@ -65,9 +64,6 @@ class EditCompany extends Component {
         let error = this.state.err ;
         let msg = (!error) ? 'Updated Successfully' : 'Oops! , Something went wrong.' ;
         let name = (!error) ? 'alert alert-success' : 'alert alert-danger' ;
-        if (!error) {
-          return ;
-        }
         return (   
              <div>   
                 <Nav link="admin" />

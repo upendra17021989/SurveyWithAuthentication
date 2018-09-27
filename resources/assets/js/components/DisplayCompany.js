@@ -3,7 +3,8 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import axios from 'axios';
 import MyGlobleSetting from './MyGlobleSetting';
 import Nav from './navbar';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import CompanyRow from './CompanyRow';
 
 class DisplayCompany extends Component {
   constructor(props) {
@@ -11,6 +12,8 @@ class DisplayCompany extends Component {
     this.state = {
                   isCompleted: false
                 };
+
+    this.handleSubmit = this.handleSubmit.bind(this);
 
   }
 
@@ -23,7 +26,6 @@ class DisplayCompany extends Component {
     apiCall() {
       axios.get(MyGlobleSetting.url + '/api/company')
        .then(response => {
-       console.log('response', response);
         if (response.data.length > 0) {
          this.setState({ companies: response.data });
         }
@@ -37,20 +39,23 @@ class DisplayCompany extends Component {
 
     tabRow() {
       let self = this;
-      if (this.state.isCompleted) {
-        return <SurveyEnd/>;
-      } else if (this.state.surveys instanceof Array) {
-          return this.state.surveys.map(function(object, i){
-            if (i == 0) {
-              return <SurveyQuestion obj={object} />;
-            }
-            return <SurveyOptions obj={object} handleChange = {self.handleChange}/>;
+      if (this.state.companies instanceof Array) {
+          return this.state.companies.map(function(item, key){
+            return <CompanyRow obj={item} handleSubmit={self.handleSubmit} />;
           })
         }
     }
 
+    handleSubmit() {
+      this.apiCall();
+      this.setState({err: false});
+    }
+
      
   render() {
+      let error = this.state.err ;
+      let msg = (!error) ? 'Delete Successfully' : 'Oops! , Something went wrong.' ;
+      let name = (!error) ? 'alert alert-success' : 'alert alert-danger' ;
     return (
       <div>
         <Nav link="admin" />
@@ -60,6 +65,9 @@ class DisplayCompany extends Component {
               <div className="panel panel-default">
                 <div className="panel-heading">Company List</div>
                 <div className="panel-body">   
+                <div className="col-md-offset-2 col-md-8 col-md-offset-2">
+                  {error != undefined && <div className={name} role="alert">{msg}</div>}
+                </div>
                   <table className="table">
                     <thead>
                       <tr>
@@ -72,23 +80,8 @@ class DisplayCompany extends Component {
                       </tr>
                     </thead>
                     <tbody>
-                    {this.state.companies && this.state.companies.map(function(item, key) {
-                         return (
-                            <tr key = {key}>
-                              <td>{item.company_name}</td>
-                              <td>{item.address}</td>
-                              <td>{item.created_at}</td>
-                              <td>{item.updated_at}</td>
-                              <td><Link to={"edit-company/"+item.company_id} className="btn btn-primary">Edit</Link></td>
-                              <td><form onSubmit={this.handleSubmit}>
-                                    <input type="submit" value="Delete" className="btn btn-danger"/>
-                                    <input type="hidden" value={item.company_id} id="companyid"/>
-                                  </form>
-                              </td>
-                            </tr>
-                          )
-                       },this)}
-                      </tbody>
+                      {this.tabRow()}
+                   </tbody>
                   </table>
                   <Link to="/create-company">Create Company</Link>
                 </div>
