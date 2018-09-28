@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 27, 2018 at 05:14 PM
+-- Generation Time: Sep 28, 2018 at 04:56 PM
 -- Server version: 10.1.35-MariaDB
 -- PHP Version: 7.2.9
 
@@ -77,8 +77,7 @@ CREATE TABLE `forms` (
 --
 
 INSERT INTO `forms` (`form_id`, `form_name`, `form_description`, `created_at`, `updated_at`) VALUES
-(1, 'form1', 'regionals', '2018-09-27 13:03:46', '2018-09-27 13:38:37'),
-(2, 'form2', 'national', '2018-09-27 13:31:54', '2018-09-27 13:31:54');
+(4, 'Form1', 'regional', '2018-09-28 14:44:08', '2018-09-28 14:44:08');
 
 -- --------------------------------------------------------
 
@@ -101,6 +100,42 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (2, '2018_09_21_072603_create_surveys_table', 2),
 (3, '2014_10_12_000000_create_users_table', 3),
 (4, '2014_10_12_100000_create_password_resets_table', 3);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `options`
+--
+
+CREATE TABLE `options` (
+  `form_id` int(11) NOT NULL,
+  `question_id` int(11) NOT NULL,
+  `option_id` int(11) NOT NULL,
+  `option_description` varchar(500) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `options`
+--
+
+INSERT INTO `options` (`form_id`, `question_id`, `option_id`, `option_description`, `created_at`, `updated_at`) VALUES
+(2, 6, 1, 'sadasd', '2018-09-28 14:17:26', '2018-09-28 14:17:26'),
+(2, 6, 2, 'gffd  fg', '2018-09-28 14:21:46', '2018-09-28 14:21:46'),
+(2, 2, 4, 'dhaval1', '2018-09-28 14:22:54', '2018-09-28 14:34:21'),
+(2, 2, 5, 'lkjl', '2018-09-28 14:23:02', '2018-09-28 14:23:02'),
+(2, 2, 6, 'sdfds', '2018-09-28 14:35:16', '2018-09-28 14:35:16'),
+(4, 7, 7, 'dfs dsfsd fd', '2018-09-28 14:45:59', '2018-09-28 14:45:59'),
+(4, 7, 8, 'dsfd dsf sd', '2018-09-28 14:46:05', '2018-09-28 14:46:22'),
+(4, 7, 9, 'dsfds', '2018-09-28 14:46:09', '2018-09-28 14:46:09'),
+(4, 7, 10, 'dfds fsd', '2018-09-28 14:46:14', '2018-09-28 14:46:14'),
+(4, 4, 11, 'jayesh', '2018-09-28 14:46:36', '2018-09-28 14:53:40'),
+(4, 4, 12, 'Ups', '2018-09-28 14:47:58', '2018-09-28 14:53:56'),
+(4, 8, 13, 'sdfsd', '2018-09-28 14:51:37', '2018-09-28 14:51:37'),
+(4, 8, 14, 'jayesh', '2018-09-28 14:52:52', '2018-09-28 14:53:14'),
+(4, 8, 15, 'dfgfdg', '2018-09-28 14:52:57', '2018-09-28 14:52:57'),
+(4, 8, 16, 'sdfds', '2018-09-28 14:53:06', '2018-09-28 14:53:06');
 
 -- --------------------------------------------------------
 
@@ -140,10 +175,12 @@ CREATE TABLE `questions` (
 --
 
 INSERT INTO `questions` (`form_id`, `question_id`, `question_description`, `created_at`, `updated_at`) VALUES
-(1, 1, 'dsfdsfs', '2018-09-27 14:54:55', '2018-09-27 14:54:55'),
-(1, 2, 'sdfds', '2018-09-27 14:59:31', '2018-09-27 14:59:31'),
 (1, 3, 'edfds fsdf sdfsd f', '2018-09-27 15:01:10', '2018-09-27 15:01:10'),
-(1, 4, 'dasda', '2018-09-27 15:11:09', '2018-09-27 15:11:09');
+(1, 4, 'dasda', '2018-09-27 15:11:09', '2018-09-27 15:11:09'),
+(1, 5, 'How Old Are You?', '2018-09-28 13:37:51', '2018-09-28 13:37:51'),
+(2, 6, 'sdfsd', '2018-09-28 14:14:33', '2018-09-28 14:14:33'),
+(4, 7, 'asd sa dsfd sfs', '2018-09-28 14:45:40', '2018-09-28 14:45:40'),
+(4, 8, 'What is your name?', '2018-09-28 14:50:27', '2018-09-28 14:54:12');
 
 -- --------------------------------------------------------
 
@@ -260,6 +297,12 @@ ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `options`
+--
+ALTER TABLE `options`
+  ADD UNIQUE KEY `option_id` (`option_id`);
+
+--
 -- Indexes for table `password_resets`
 --
 ALTER TABLE `password_resets`
@@ -292,7 +335,7 @@ ALTER TABLE `company`
 -- AUTO_INCREMENT for table `forms`
 --
 ALTER TABLE `forms`
-  MODIFY `form_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `form_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -301,10 +344,16 @@ ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT for table `options`
+--
+ALTER TABLE `options`
+  MODIFY `option_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
+--
 -- AUTO_INCREMENT for table `questions`
 --
 ALTER TABLE `questions`
-  MODIFY `question_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `question_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `users`

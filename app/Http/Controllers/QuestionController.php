@@ -14,7 +14,7 @@ class QuestionController extends Controller
      */
     public function index($id)
     {
-        $questionDetails = DB::table('questions')->where('questions.form_id','=',$id)->select('questions.question_id', 'questions.question_description', 'questions.created_at', 'questions.updated_at')->get();
+        $questionDetails = DB::table('questions')->where('questions.form_id','=',$id)->select('questions.form_id', 'questions.question_id', 'questions.question_description', 'questions.created_at', 'questions.updated_at')->get();
         return $questionDetails;
     }
 
@@ -25,12 +25,15 @@ class QuestionController extends Controller
      */
     public function create(Request $request)
     {
+        echo $request;
         DB::table('questions')->insert(
              array(
                     'form_id' => $request['form_id'], 
                     'question_description' => $request['description']
              )
         );
+
+        return response()->json('Question Added Successfully.');
     }
 
     /**
@@ -39,10 +42,10 @@ class QuestionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($form_id, $question_id)
+    public function show($formid, $questionid)
     {
-         $quesitonDetails = DB::table('questions')->where(['questions.form_id','=',$form_id],['questions.question_id', '=', $question_id])->select('questions.question_id', 'questions.question_description', 'questions.created_at', 'questions.updated_at')->get();
-        return $formDetails;
+         $questionDetails = DB::table('questions')->where('questions.form_id', '=', $formid)->where('questions.question_id', '=', $questionid)->select('questions.question_id', 'questions.question_description', 'questions.created_at', 'questions.updated_at')->get();
+        return $questionDetails;
     }
 
     /**
@@ -54,10 +57,12 @@ class QuestionController extends Controller
      */
     public function update(Request $request)
     {
-        DB::table('questions')->where(['form_id','=', $request['form_id']],['question_id','=',$request['question_id']])->update([
+        DB::table('questions')->where('form_id','=', $request['fid'])->where('question_id','=',$request['qid'])->update([
                 'question_description' => $request['description']
             ]
         );
+        echo $request;
+        return response()->json('Question Updated Successfully.');
     }
 
     /**
@@ -66,8 +71,9 @@ class QuestionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($form_id, $question_id)
+    public function destroy($formid, $questionid)
     {
-        DB::table('questions')->where(['form_id','=', $form_id],['question_id','=', $question_id])->delete();
+        DB::table('questions')->where('form_id','=', $formid)->where('question_id','=', $questionid)->delete();
+        return response()->json('Question Deleted Successfully.');
     }
 }

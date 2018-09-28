@@ -4,13 +4,14 @@ import axios from 'axios';
 import MyGlobleSetting from './MyGlobleSetting';
 import Nav from './navbar';
 import { Link } from 'react-router-dom';
-import AdminQuestionRow from './AdminQuestionRow';
+import AdminOptionRow from './AdminOptionRow';
 
-class DisplayAdminQuestion extends Component {
+class DisplayAdminOption extends Component {
   constructor(props) {
     super(props);
     this.state = {
-                  form_id: props.match.params.id,
+                  form_id: props.match.params.fid,
+                  question_id: props.match.params.qid,
                   isCompleted: false
                 };
 
@@ -25,10 +26,10 @@ class DisplayAdminQuestion extends Component {
      }
 
     apiCall() {
-      axios.get(MyGlobleSetting.url + '/api/adminquestion/'+ this.state.form_id)
+      axios.get(MyGlobleSetting.url + '/api/adminoption/' + this.state.form_id + "/" + this.state.question_id)
        .then(response => {
         if (response.data.length > 0) {
-         this.setState({ questions: response.data });
+         this.setState({ options: response.data });
         }
 
        })
@@ -40,9 +41,9 @@ class DisplayAdminQuestion extends Component {
 
     tabRow() {
       let self = this;
-      if (this.state.questions instanceof Array) {
-          return this.state.questions.map(function(item, key){
-            return <AdminQuestionRow obj={item} handleSubmit={self.handleSubmit} />;
+      if (this.state.options instanceof Array) {
+          return this.state.options.map(function(item, key){
+            return <AdminOptionRow obj={item} handleSubmit={self.handleSubmit} />;
           })
         }
     }
@@ -64,7 +65,7 @@ class DisplayAdminQuestion extends Component {
           <div className="row">
             <div className="col-md-8 col-md-offset-2">
               <div className="panel panel-default">
-                <div className="panel-heading">Question List</div>
+                <div className="panel-heading">Option List</div>
                 <div className="panel-body">   
                 <div className="col-md-offset-2 col-md-8 col-md-offset-2">
                   {error != undefined && <div className={name} role="alert">{msg}</div>}
@@ -72,7 +73,7 @@ class DisplayAdminQuestion extends Component {
                   <table className="table">
                     <thead>
                       <tr>
-                        <th>Question</th>
+                        <th>Option</th>
                         <th>Created Date</th>
                         <th>Updated Date</th>
                         <th></th>
@@ -81,13 +82,13 @@ class DisplayAdminQuestion extends Component {
                     </thead>
                     <tbody>
                       {this.tabRow()}
-                   </tbody>
-                   <tr>
-                    <td><Link to={"/create-question/"+this.state.form_id}>Create Question</Link></td>
-                    <td><Link to={"/form"}>View Forms</Link></td>
-                  </tr>
+                    </tbody>
+                    <tr>
+                      <td><Link className="" to={"/create-option/" + this.state.form_id + "/" + this.state.question_id }>Create Option</Link></td>
+                      <td><Link className="" to={"/admin-question/" + this.state.form_id}> View Questions</Link></td>
+                      <td><Link className="" to={"/form/"}> View Forms </Link></td>
+                    </tr>
                   </table>
-                  
                 </div>
               </div>
             </div>
@@ -97,4 +98,4 @@ class DisplayAdminQuestion extends Component {
     )
   }
 }
-export default DisplayAdminQuestion;
+export default DisplayAdminOption;
