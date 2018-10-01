@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import axios from 'axios';
-import MyGlobleSetting from './MyGlobleSetting';
-import Nav from './navbar';
+import MyGlobleSetting from '../MyGlobleSetting';
+import Nav from '../navbar';
 import { Link } from 'react-router-dom';
 import FormRow from './FormRow';
 

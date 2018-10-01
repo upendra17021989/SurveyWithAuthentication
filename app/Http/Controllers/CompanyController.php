@@ -46,6 +46,18 @@ class CompanyController extends Controller
     }
 
     /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function companyDropDown()
+    {
+        $companyDropDown = DB::table('company')->select('company.company_id', 'company.company_name')->get();
+        return $companyDropDown;
+    }
+
+    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request

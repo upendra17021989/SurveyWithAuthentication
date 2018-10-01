@@ -46,6 +46,18 @@ class FormController extends Controller
     }
 
     /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function formDropDown()
+    {
+        $formDropDown = DB::table('forms')->select('forms.form_id', 'forms.form_name')->get();
+        return $formDropDown;
+    }
+
+    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request

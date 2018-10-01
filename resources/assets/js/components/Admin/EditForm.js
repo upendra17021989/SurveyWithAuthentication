@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import Nav from './navbar';
+import Nav from '../navbar';
 import axios from 'axios';
-import MyGlobleSetting from './MyGlobleSetting';
+import MyGlobleSetting from '../MyGlobleSetting';
 
-class EditAdminQuestion extends Component {
+class EditForm extends Component {
 
     constructor(props){
         super(props);
         this.state = {
-          fid: props.match.params.fid,
-          qid: props.match.params.qid,
+          id: props.match.params.id,
+          name: '',
           description : ''
         }
      }
@@ -20,10 +20,11 @@ class EditAdminQuestion extends Component {
     }
 
     apiCall() {
-      axios.get(MyGlobleSetting.url + '/api/showquestion/'+ this.state.fid + '/' + this.state.qid)
+      axios.get(MyGlobleSetting.url + '/api/showform/'+ this.state.id)
        .then(response => {
         if (response.data.length > 0) {
-         this.setState({description: response.data[0].question_description,
+         this.setState({ name: response.data[0].form_name,
+                        description: response.data[0].form_description,
                         created_at: response.data[0].created_at,
                         updated_at: response.data[0].updated_at});
         }
@@ -37,17 +38,18 @@ class EditAdminQuestion extends Component {
 
     onSubmit(e){
         e.preventDefault();
-        const {fid, qid, description} = this.state ;
-        axios.post(MyGlobleSetting.url + '/api/updatequestion', {
-            fid,
-            qid,
+        const {id, name, description} = this.state ;
+        axios.post(MyGlobleSetting.url + '/api/updateform', {
+            id,
+            name,
             description
           })
           .then(response=> {
            this.setState({err: false});
-           this.props.history.push("edit-question") ;
+           this.props.history.push("edit-form") ;
           })
           .catch(error=> {
+            this.refs.name.value="";
             this.refs.description.value="";
             this.setState({err: true});
           });
@@ -69,14 +71,22 @@ class EditAdminQuestion extends Component {
                     <div className="row">
                         <div className="col-md-8 col-md-offset-2">
                             <div className="panel panel-default">
-                                <div className="panel-heading">Update Question</div>
+                                <div className="panel-heading">Update Form</div>
                                 <div className="panel-body">
                                     <div className="col-md-offset-2 col-md-8 col-md-offset-2">
                                         {error != undefined && <div className={name} role="alert">{msg}</div>}
                                     </div>   
                                     <form className="form-horizontal" role="form" method="POST" onSubmit= {this.onSubmit.bind(this)}>
                                         <div className="form-group">
-                                            <label for="description" className="col-md-4 control-label">Description</label>
+                                            <label for="name" className="col-md-4 control-label">Name</label>
+
+                                            <div className="col-md-6">
+                                                <input id="name"  value={this.state.name} type="text" className="form-control" ref="name" name="name" onChange={this.onChange.bind(this)} required autofocus />
+                                            </div>
+                                        </div>
+
+                                        <div className="form-group">
+                                            <label for="address" className="col-md-4 control-label">Description</label>
 
                                             <div className="col-md-6">
                                                 <input id="description" value={this.state.description} type="text" className="form-control" ref="description" name="description" onChange={this.onChange.bind(this)} required />
@@ -108,7 +118,7 @@ class EditAdminQuestion extends Component {
                                             </div>
                                         </div>
                                     </form>
-                                    <Link to={"/admin-question/" + this.state.fid}>View Questions</Link>
+                                    <Link to="/form">View Form</Link>
                                 </div>
                             </div>
                         </div>
@@ -119,4 +129,4 @@ class EditAdminQuestion extends Component {
       }
 }
 
-export default EditAdminQuestion
+export default EditForm

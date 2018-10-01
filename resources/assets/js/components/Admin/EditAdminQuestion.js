@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import Nav from './navbar';
+import Nav from '../navbar';
 import axios from 'axios';
-import MyGlobleSetting from './MyGlobleSetting';
+import MyGlobleSetting from '../MyGlobleSetting';
 
-class EditForm extends Component {
+class EditAdminQuestion extends Component {
 
     constructor(props){
         super(props);
         this.state = {
-          id: props.match.params.id,
-          name: '',
+          fid: props.match.params.fid,
+          qid: props.match.params.qid,
           description : ''
         }
      }
@@ -20,11 +20,10 @@ class EditForm extends Component {
     }
 
     apiCall() {
-      axios.get(MyGlobleSetting.url + '/api/showform/'+ this.state.id)
+      axios.get(MyGlobleSetting.url + '/api/showquestion/'+ this.state.fid + '/' + this.state.qid)
        .then(response => {
         if (response.data.length > 0) {
-         this.setState({ name: response.data[0].form_name,
-                        description: response.data[0].form_description,
+         this.setState({description: response.data[0].question_description,
                         created_at: response.data[0].created_at,
                         updated_at: response.data[0].updated_at});
         }
@@ -38,18 +37,17 @@ class EditForm extends Component {
 
     onSubmit(e){
         e.preventDefault();
-        const {id, name, description} = this.state ;
-        axios.post(MyGlobleSetting.url + '/api/updateform', {
-            id,
-            name,
+        const {fid, qid, description} = this.state ;
+        axios.post(MyGlobleSetting.url + '/api/updatequestion', {
+            fid,
+            qid,
             description
           })
           .then(response=> {
            this.setState({err: false});
-           this.props.history.push("edit-form") ;
+           this.props.history.push("edit-question") ;
           })
           .catch(error=> {
-            this.refs.name.value="";
             this.refs.description.value="";
             this.setState({err: true});
           });
@@ -71,22 +69,14 @@ class EditForm extends Component {
                     <div className="row">
                         <div className="col-md-8 col-md-offset-2">
                             <div className="panel panel-default">
-                                <div className="panel-heading">Update Form</div>
+                                <div className="panel-heading">Update Question</div>
                                 <div className="panel-body">
                                     <div className="col-md-offset-2 col-md-8 col-md-offset-2">
                                         {error != undefined && <div className={name} role="alert">{msg}</div>}
                                     </div>   
                                     <form className="form-horizontal" role="form" method="POST" onSubmit= {this.onSubmit.bind(this)}>
                                         <div className="form-group">
-                                            <label for="name" className="col-md-4 control-label">Name</label>
-
-                                            <div className="col-md-6">
-                                                <input id="name"  value={this.state.name} type="text" className="form-control" ref="name" name="name" onChange={this.onChange.bind(this)} required autofocus />
-                                            </div>
-                                        </div>
-
-                                        <div className="form-group">
-                                            <label for="address" className="col-md-4 control-label">Description</label>
+                                            <label for="description" className="col-md-4 control-label">Description</label>
 
                                             <div className="col-md-6">
                                                 <input id="description" value={this.state.description} type="text" className="form-control" ref="description" name="description" onChange={this.onChange.bind(this)} required />
@@ -118,7 +108,7 @@ class EditForm extends Component {
                                             </div>
                                         </div>
                                     </form>
-                                    <Link to="/form">View Form</Link>
+                                    <Link to={"/admin-question/" + this.state.fid}>View Questions</Link>
                                 </div>
                             </div>
                         </div>
@@ -129,4 +119,4 @@ class EditForm extends Component {
       }
 }
 
-export default EditForm
+export default EditAdminQuestion

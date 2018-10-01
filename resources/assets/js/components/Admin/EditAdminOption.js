@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import Nav from './navbar';
+import Nav from '../navbar';
 import axios from 'axios';
-import MyGlobleSetting from './MyGlobleSetting';
+import MyGlobleSetting from '../MyGlobleSetting';
 
-class EditCompany extends Component {
+class EditAdminOption extends Component {
 
     constructor(props){
         super(props);
         this.state = {
-          id: props.match.params.id,
-          name: '',
-          address : ''
+          fid: props.match.params.fid,
+          qid: props.match.params.qid,
+          oid: props.match.params.oid,
+          description : ''
         }
      }
 
@@ -20,11 +21,10 @@ class EditCompany extends Component {
     }
 
     apiCall() {
-      axios.get(MyGlobleSetting.url + '/api/showcompany/'+ this.state.id)
+      axios.get(MyGlobleSetting.url + '/api/showoption/'+ this.state.fid + '/' + this.state.qid + '/' + this.state.oid)
        .then(response => {
         if (response.data.length > 0) {
-         this.setState({ name: response.data[0].company_name,
-                        address: response.data[0].address,
+         this.setState({description: response.data[0].option_description,
                         created_at: response.data[0].created_at,
                         updated_at: response.data[0].updated_at});
         }
@@ -38,19 +38,19 @@ class EditCompany extends Component {
 
     onSubmit(e){
         e.preventDefault();
-        const {id, name, address} = this.state ;
-        axios.post(MyGlobleSetting.url + '/api/updatecompany', {
-            id,
-            name,
-            address
+        const {fid, qid, oid, description} = this.state ;
+        axios.post(MyGlobleSetting.url + '/api/updateoption', {
+            fid,
+            qid,
+            oid,
+            description
           })
           .then(response=> {
            this.setState({err: false});
-           this.props.history.push("edit-company") ;
+           this.props.history.push("edit-option") ;
           })
           .catch(error=> {
-            this.refs.name.value="";
-            this.refs.address.value="";
+            this.refs.description.value="";
             this.setState({err: true});
           });
      }
@@ -71,25 +71,17 @@ class EditCompany extends Component {
                     <div className="row">
                         <div className="col-md-8 col-md-offset-2">
                             <div className="panel panel-default">
-                                <div className="panel-heading">Update Company</div>
+                                <div className="panel-heading">Update Option</div>
                                 <div className="panel-body">
                                     <div className="col-md-offset-2 col-md-8 col-md-offset-2">
                                         {error != undefined && <div className={name} role="alert">{msg}</div>}
                                     </div>   
                                     <form className="form-horizontal" role="form" method="POST" onSubmit= {this.onSubmit.bind(this)}>
                                         <div className="form-group">
-                                            <label for="name" className="col-md-4 control-label">Name</label>
+                                            <label for="description" className="col-md-4 control-label">Description</label>
 
                                             <div className="col-md-6">
-                                                <input id="name"  value={this.state.name} type="text" className="form-control" ref="name" name="name" onChange={this.onChange.bind(this)} required autofocus />
-                                            </div>
-                                        </div>
-
-                                        <div className="form-group">
-                                            <label for="address" className="col-md-4 control-label">Address</label>
-
-                                            <div className="col-md-6">
-                                                <input id="address" value={this.state.address} type="text" className="form-control" ref="address" name="address" onChange={this.onChange.bind(this)} required />
+                                                <input id="description" value={this.state.description} type="text" className="form-control" ref="description" name="description" onChange={this.onChange.bind(this)} required />
                                             </div>
                                         </div>
 
@@ -118,7 +110,7 @@ class EditCompany extends Component {
                                             </div>
                                         </div>
                                     </form>
-                                    <Link to="/company">View Company</Link>
+                                    <Link to={"/admin-option/" + this.state.fid + "/" + this.state.fid}>View Options</Link>
                                 </div>
                             </div>
                         </div>
@@ -129,4 +121,4 @@ class EditCompany extends Component {
       }
 }
 
-export default EditCompany
+export default EditAdminOption

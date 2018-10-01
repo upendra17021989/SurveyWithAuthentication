@@ -1,33 +1,32 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import Nav from './navbar';
-import axios from 'axios';
+import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
+import Nav from '../navbar'
+import axios from 'axios'
 
-class CreateAdminOption extends Component {
+class CreateCompany extends Component {
 
     constructor(props){
         super(props);
         this.state = {
-          form_id: props.match.params.fid,
-          question_id: props.match.params.qid,
-          description : ''
+          name: '',
+          address : ''
         }
      }
 
     onSubmit(e){
         e.preventDefault();
-        const {form_id, question_id, description} = this.state;
-        axios.post('/api/createoption', {
-            form_id,
-            question_id,
-            description
+        const {name, address} = this.state ;
+        axios.post('api/createcompany', {
+            name,
+            address
           })
           .then(response=> {
            this.setState({err: false});
-           this.props.history.push("create-option") ;
+           this.props.history.push("create-company") ;
           })
           .catch(error=> {
-            this.refs.description.value="";
+            this.refs.name.value="";
+            this.refs.address.value="";
             this.setState({err: true});
           });
      }
@@ -48,17 +47,25 @@ class CreateAdminOption extends Component {
                     <div className="row">
                         <div className="col-md-8 col-md-offset-2">
                             <div className="panel panel-default">
-                                <div className="panel-heading">Add Option</div>
+                                <div className="panel-heading">Add Company</div>
                                 <div className="panel-body">
                                     <div className="col-md-offset-2 col-md-8 col-md-offset-2">
                                         {error != undefined && <div className={name} role="alert">{msg}</div>}
                                     </div>   
                                     <form className="form-horizontal" role="form" method="POST" onSubmit= {this.onSubmit.bind(this)}>
                                         <div className="form-group">
-                                            <label for="description" className="col-md-4 control-label">Description</label>
+                                            <label for="name" className="col-md-4 control-label">Name</label>
 
                                             <div className="col-md-6">
-                                                <input id="description" type="text" className="form-control" ref="description" name="description" onChange={this.onChange.bind(this)} required />
+                                                <input id="name" type="text" className="form-control" ref="name" name="name" onChange={this.onChange.bind(this)} required autofocus />
+                                            </div>
+                                        </div>
+
+                                        <div className="form-group">
+                                            <label for="address" className="col-md-4 control-label">Address</label>
+
+                                            <div className="col-md-6">
+                                                <input id="address" type="text" className="form-control" ref="address" name="address" onChange={this.onChange.bind(this)} required />
                                             </div>
                                         </div>
 
@@ -70,7 +77,7 @@ class CreateAdminOption extends Component {
                                             </div>
                                         </div>
                                     </form>
-                                    <Link to={"/admin-option/"+ this.state.form_id + "/" + this.state.question_id}>View Options</Link>
+                                    <Link to="/company">View Company</Link>
                                 </div>
                             </div>
                         </div>
@@ -81,4 +88,4 @@ class CreateAdminOption extends Component {
       }
 }
 
-export default CreateAdminOption
+export default CreateCompany

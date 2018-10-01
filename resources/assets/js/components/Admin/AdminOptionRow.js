@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import MyGlobleSetting from './MyGlobleSetting';
+import MyGlobleSetting from '../MyGlobleSetting';
 import axios from 'axios';
 
 

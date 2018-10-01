@@ -26,7 +26,7 @@ class Register extends Component {
           })
           .then(response=> {
            this.setState({err: false});
-           this.props.history.push("home") ;
+           this.props.history.push("user-home") ;
           })
           .catch(error=> {
             this.refs.name.value="";

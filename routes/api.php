@@ -25,27 +25,34 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('createform','FormController@create');
     Route::post('createquestion','QuestionController@create');
     Route::post('createoption','OptionController@create');
+    Route::post('createadminsurvey','AdminSurveyController@create');
     
     Route::get('company','CompanyController@index');  
     Route::get('form','FormController@index');
     Route::get('adminquestion/{id}','QuestionController@index');
     Route::get('adminoption/{fid}/{qid}','OptionController@index');
+    Route::get('adminsurvey','AdminSurveyController@index');
 
     Route::get('showcompany/{id}','CompanyController@show');  
     Route::get('showform/{id}','FormController@show');
     Route::get('showquestion/{fid}/{qid}','QuestionController@show');  
-    Route::get('showoption/{fid}/{qid}/{oid}','OptionController@show');  
+    Route::get('showoption/{fid}/{qid}/{oid}','OptionController@show');
+    Route::get('showadminsurvey/{sid}','AdminSurveyController@show');  
     
     Route::post('updatecompany','CompanyController@update');  
     Route::post('updateform','FormController@update');  
     Route::post('updatequestion','QuestionController@update');  
-    Route::post('updateoption','OptionController@update');  
+    Route::post('updateoption','OptionController@update');
+    Route::post('updateadminsurvey','AdminSurveyController@update');  
     
     Route::get('deletecompany/{id}','CompanyController@destroy');
     Route::get('deleteform/{id}','FormController@destroy');
     Route::get('deletequestion/{fid}/{qid}','QuestionController@destroy');  
     Route::get('deleteoption/{fid}/{qid}/{oid}','OptionController@destroy');  
+    Route::get('deleteadminsurvey/{sid}','AdminSurveyController@destroy');
         
+    Route::get('companydropdownlist','CompanyController@companyDropDown');
+    Route::get('formdropdownlist','FormController@formDropDown');
     Route::resource('survey', 'SurveyController');   
 });
   

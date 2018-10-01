@@ -2,11 +2,11 @@ import React, {Component} from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import axios from 'axios';
 import { Link } from 'react-router';
-import MyGlobleSetting from './MyGlobleSetting';
-import SurveyOptions from './SurveyOptions';
-import SurveyQuestion from './SurveyQuestion';
-import SurveyEnd from './SurveyEnd';
-import Nav from './navbar'
+import MyGlobleSetting from '../MyGlobleSetting';
+import SurveyOptions from '../SurveyOptions';
+import SurveyQuestion from '../SurveyQuestion';
+import SurveyEnd from '../SurveyEnd';
+import Nav from '../navbar'
 
 class DisplaySurvey extends Component {
   constructor(props) {

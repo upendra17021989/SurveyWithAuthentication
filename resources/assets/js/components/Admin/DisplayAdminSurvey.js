@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import axios from 'axios';
-import MyGlobleSetting from './MyGlobleSetting';
-import Nav from './navbar';
+import MyGlobleSetting from '../MyGlobleSetting';
+import Nav from '../navbar';
 import { Link } from 'react-router-dom';
-import CompanyRow from './CompanyRow';
+import AdminSurveyRow from './AdminSurveyRow';
 
-class DisplayCompany extends Component {
+class DisplayAdminSurvey extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -24,10 +24,10 @@ class DisplayCompany extends Component {
      }
 
     apiCall() {
-      axios.get(MyGlobleSetting.url + '/api/company')
+      axios.get(MyGlobleSetting.url + '/api/adminsurvey')
        .then(response => {
         if (response.data.length > 0) {
-         this.setState({ companies: response.data });
+         this.setState({ surveys: response.data });
         }
 
        })
@@ -39,9 +39,9 @@ class DisplayCompany extends Component {
 
     tabRow() {
       let self = this;
-      if (this.state.companies instanceof Array) {
-          return this.state.companies.map(function(item, key){
-            return <CompanyRow obj={item} handleSubmit={self.handleSubmit} />;
+      if (this.state.surveys instanceof Array) {
+          return this.state.surveys.map(function(item, key){
+            return <AdminSurveyRow obj={item} handleSubmit={self.handleSubmit} />;
           })
         }
     }
@@ -63,7 +63,7 @@ class DisplayCompany extends Component {
           <div className="row">
             <div className="col-md-8 col-md-offset-2">
               <div className="panel panel-default">
-                <div className="panel-heading">Company List</div>
+                <div className="panel-heading">Form List</div>
                 <div className="panel-body">   
                 <div className="col-md-offset-2 col-md-8 col-md-offset-2">
                   {error != undefined && <div className={name} role="alert">{msg}</div>}
@@ -71,10 +71,11 @@ class DisplayCompany extends Component {
                   <table className="table">
                     <thead>
                       <tr>
+                        <th>Survey Name</th>
                         <th>Company Name</th>
-                        <th>Address</th>
-                        <th>Created Date</th>
-                        <th>Updated Date</th>
+                        <th>Form Name</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
                         <th></th>
                         <th></th>
                       </tr>
@@ -83,7 +84,7 @@ class DisplayCompany extends Component {
                       {this.tabRow()}
                    </tbody>
                   </table>
-                  <Link to="/create-company">Create Company</Link>
+                  <Link to="/create-admin-survey">Create New Survey</Link>
                 </div>
               </div>
             </div>
@@ -93,4 +94,4 @@ class DisplayCompany extends Component {
     )
   }
 }
-export default DisplayCompany;
+export default DisplayAdminSurvey;
