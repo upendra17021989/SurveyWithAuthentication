@@ -7,7 +7,8 @@ import Register from './components/register';
 import Home from './components/home';
 import Forgot from './components/forgot';
 import Reset from './components/reset';
-import DisplaySurvey from './components/Admin/DisplaySurvey';
+//import DisplaySurvey from './components/User/DisplaySurvey';
+import SinglePageSurvey from './components/User/SinglePageSurvey';
 import AdminHome from './components/Admin/AdminHome';
 import DisplayAdminSurvey from './components/Admin/DisplayAdminSurvey';
 
@@ -35,7 +36,9 @@ ReactDOM.render(
 	    <Route exact path='/' component={Index}/>
 	    <Route path='/login' component={Login}/>
 	    <Route path='/register' component={Register}/>
-	    <Route path='/user-home' component={DisplaySurvey}/>
+
+	    <Route path='/user-home' component={SinglePageSurvey}/>
+
 	    <Route path='/admin-home' component={AdminHome}/>
 	    <Route path='/admin-survey' component={DisplayAdminSurvey}/>
 

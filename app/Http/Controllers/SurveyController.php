@@ -15,10 +15,8 @@ class SurveyController extends Controller
      */
     public function index()
     {
-        //$surveys = Survey::all();
-        //return response()->json($surveys);
         $surveyDetails = DB::table('questions')->join('options', 
-            'survey_option.question_id', '=', 'survey_question.id')->select('survey_question.id as question_id', 'survey_question.description as desc','survey_option.option_id', 'survey_option.description as desc2')->get();
+            'questions.question_id', '=', 'options.question_id')->select('questions.question_id as question_id', 'questions.question_description as question_description','options.option_id', 'options.option_description as option_description')->get();
         return $surveyDetails;
     }
 

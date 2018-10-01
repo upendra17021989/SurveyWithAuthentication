@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 28, 2018 at 04:56 PM
+-- Generation Time: Oct 01, 2018 at 04:22 PM
 -- Server version: 10.1.35-MariaDB
 -- PHP Version: 7.2.9
 
@@ -51,12 +51,23 @@ INSERT INTO `company` (`company_id`, `company_name`, `address`, `created_at`, `u
 --
 
 CREATE TABLE `company_survey` (
+  `survey_id` int(11) NOT NULL,
   `company_id` int(5) NOT NULL,
-  `survey_id` int(10) NOT NULL,
   `form_id` int(10) NOT NULL,
+  `survey_name` varchar(200) NOT NULL,
   `start_dt` date NOT NULL,
-  `end_dt` date NOT NULL
+  `end_dt` date NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `company_survey`
+--
+
+INSERT INTO `company_survey` (`survey_id`, `company_id`, `form_id`, `survey_name`, `start_dt`, `end_dt`, `created_at`, `updated_at`) VALUES
+(1, 15, 5, 'Customer Satisfaction Survey', '2018-09-19', '2018-09-23', '2018-10-01 07:58:20', '2018-10-01 11:55:55'),
+(2, 15, 4, 'Dhaval', '2018-09-11', '2018-09-11', '2018-10-01 07:59:46', '2018-10-01 11:02:38');
 
 -- --------------------------------------------------------
 
@@ -77,7 +88,8 @@ CREATE TABLE `forms` (
 --
 
 INSERT INTO `forms` (`form_id`, `form_name`, `form_description`, `created_at`, `updated_at`) VALUES
-(4, 'Form1', 'regional', '2018-09-28 14:44:08', '2018-09-28 14:44:08');
+(4, 'Form1', 'regional', '2018-09-28 14:44:08', '2018-09-28 14:44:08'),
+(5, 'Form2', 'Still working on it.', '2018-10-01 04:32:14', '2018-10-01 04:32:14');
 
 -- --------------------------------------------------------
 
@@ -190,6 +202,7 @@ INSERT INTO `questions` (`form_id`, `question_id`, `question_description`, `crea
 
 CREATE TABLE `survey` (
   `survey_id` int(5) NOT NULL,
+  `company_id` int(11) NOT NULL,
   `survey_type` varchar(50) NOT NULL,
   `description` varchar(500) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -272,7 +285,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `user_type`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 'Upendra', 'admin', 'ups12384@gmail.com', '$2y$10$.f1lYp1vIWtL/pyDZ09kkOkPsKykx/6y6nemA.4Bz/YRizebJy1Ru', NULL, '2018-09-22 05:31:18', '2018-09-22 05:31:18'),
-(2, 'Jayesh Ingle', 'respondent', 'abc@gmail.com', '$2y$10$1V4yOkrQbwAN2bUm6hAInOMYfTApHORNRW135ZE1ldtn9a7eYaUb.', NULL, '2018-09-22 06:12:56', '2018-09-22 06:12:56');
+(2, 'Jayesh Ingle', 'respondent', 'abc@gmail.com', '$2y$10$1V4yOkrQbwAN2bUm6hAInOMYfTApHORNRW135ZE1ldtn9a7eYaUb.', NULL, '2018-09-22 06:12:56', '2018-09-22 06:12:56'),
+(3, 'Dhaval Patel', 'respondent', 'dhaval@gmail.com', '$2y$10$GjhjabwUiIi.vbTCoX8ZXu2KaWk/LxSLWvoQHdxCrYxKGClMafE4S', NULL, '2018-10-01 06:10:06', '2018-10-01 06:10:06');
 
 --
 -- Indexes for dumped tables
@@ -283,6 +297,12 @@ INSERT INTO `users` (`id`, `name`, `user_type`, `email`, `password`, `remember_t
 --
 ALTER TABLE `company`
   ADD PRIMARY KEY (`company_id`);
+
+--
+-- Indexes for table `company_survey`
+--
+ALTER TABLE `company_survey`
+  ADD PRIMARY KEY (`survey_id`);
 
 --
 -- Indexes for table `forms`
@@ -332,10 +352,16 @@ ALTER TABLE `company`
   MODIFY `company_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
+-- AUTO_INCREMENT for table `company_survey`
+--
+ALTER TABLE `company_survey`
+  MODIFY `survey_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `forms`
 --
 ALTER TABLE `forms`
-  MODIFY `form_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `form_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -359,7 +385,7 @@ ALTER TABLE `questions`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -20,6 +20,9 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('password/email','Auth\ForgotPasswordController@sendResetLinkEmail'); 
     Route::post('password/reset','Auth\ResetPasswordController@reset');
     Route::get('user/{id}','Auth\LoginController@getUser');
+
+
+
     
     Route::post('createcompany','CompanyController@create');
     Route::post('createform','FormController@create');
@@ -54,6 +57,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('companydropdownlist','CompanyController@companyDropDown');
     Route::get('formdropdownlist','FormController@formDropDown');
     Route::resource('survey', 'SurveyController');   
+
+    Route::get('showusersurvey', 'UserSurveyController@index'); 
 });
   
 
