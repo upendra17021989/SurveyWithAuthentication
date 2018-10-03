@@ -30,13 +30,18 @@ class UserSurveyOption extends Component {
      })
   }
 
+  onButtonCheck(e,question_id) {
+    this.setState({answer_id: e.value});
+    this.props.onButtonCheck(e.value, question_id);
+  }
+
   tabRow() {
     let self = this;
     if (this.state.options instanceof Array) {
         return this.state.options.map(function(item, key){
           return (
             <div>
-            <RadioButton value={item.option_id} name={"surveyOptions"+ item.question_id} onChange={(e) => self.setState({answer_id: e.value})} checked={self.state.answer_id === item.option_id} />
+            <RadioButton value={item.option_id} name={"surveyOptions"+ item.question_id} onChange={(e) => self.onButtonCheck(e, item.question_id)} checked={self.state.answer_id === item.option_id} />
           <label htmlFor="rb1" className="p-radiobutton-label">{item.option_description}</label>
           </div>
           )

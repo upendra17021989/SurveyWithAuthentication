@@ -12,8 +12,10 @@ class SinglePageSurvey extends Component {
                   value: '',
                   surveys: '',
                   counter: 0,
-                  isCompleted: false
+                  isCompleted: false,
+                  answerSet: []
                 };
+      this.onButtonCheck = this.onButtonCheck.bind(this);
   }
 
 
@@ -43,12 +45,17 @@ class SinglePageSurvey extends Component {
       console.log('state:', this.state);
       alert('hi')
     }
+
+    onButtonCheck(selected_option_id, question_id) {
+      this.state.answerSet.push({question_id, selected_option_id});
+    }
+
      
      tabRow() {
         let self = this;
         if (this.state.surveys instanceof Array) {
           return this.state.surveys.map(function(object, i){
-              return <UserSurveyQuestion currentCount={i+1} obj={object} />;
+              return <UserSurveyQuestion onButtonCheck={self.onButtonCheck} currentCount={i+1} obj={object} />;
           })
         }
        }

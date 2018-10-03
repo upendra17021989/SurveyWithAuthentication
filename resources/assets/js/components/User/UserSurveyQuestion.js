@@ -10,7 +10,7 @@ class UserSurveyQuestion extends Component {
     return (
       <div className="surveyQuestion">
           {this.props.currentCount}.) {this.props.obj.question_description}
-          <UserSurveyOption obj={this.props.obj} />
+          <UserSurveyOption obj={this.props.obj} onButtonCheck={this.props.onButtonCheck}/>
 	    </div>
     )
   }
