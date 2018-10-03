@@ -12,9 +12,9 @@ class FormController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($company_id)
     {
-        $formDetails = DB::table('forms')->select('forms.form_id', 'forms.form_name', 'forms.form_description', 'forms.created_at', 'forms.updated_at')->get();
+        $formDetails = DB::table('forms')->where('forms.company_id', '=' ,$company_id)->select('forms.form_id', 'forms.form_name', 'forms.form_description', 'forms.created_at', 'forms.updated_at')->get();
         return $formDetails;
     }
 
@@ -23,14 +23,19 @@ class FormController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $data)
+    public function create(Request $request)
     {
+        echo $request;
+
         DB::table('forms')->insert(
-             array(
-                    'form_name' => $data['name'], 
-                    'form_description' => $data['description']
-             )
+            array(
+                'company_id' => $request['company_id'], 
+                'form_name' => $request['name'], 
+                'form_description' => $request['description']
+            )
         );
+
+        return response()->json('Form Added Successfully.');
     }
 
     /**
@@ -39,9 +44,9 @@ class FormController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($companyid, $formid)
     {
-         $formDetails = DB::table('forms')->where('forms.form_id','=',$id)->select('forms.form_id', 'forms.form_name', 'forms.form_description', 'forms.created_at', 'forms.updated_at')->get();
+        $formDetails = DB::table('forms')->where('forms.company_id','=',$companyid)->where('forms.form_id', '=', $formid)->select('forms.form_id', 'forms.form_name', 'forms.form_description', 'forms.created_at', 'forms.updated_at')->get();
         return $formDetails;
     }
 
@@ -51,9 +56,9 @@ class FormController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function formDropDown()
+    public function formDropDown($company_id)
     {
-        $formDropDown = DB::table('forms')->select('forms.form_id', 'forms.form_name')->get();
+        $formDropDown = DB::table('forms')->where('forms.company_id','=', $company_id)->select('forms.form_id', 'forms.form_name')->get();
         return $formDropDown;
     }
 
@@ -66,7 +71,7 @@ class FormController extends Controller
      */
     public function update(Request $request)
     {
-        DB::table('forms')->where('form_id', $request['id'])->update([
+        DB::table('forms')->where('company_id', $request['company_id'])->where('form_id', $request['form_id'])->update([
                 'form_name' => $request['name'],
                 'form_description' => $request['description']
             ]
@@ -79,8 +84,8 @@ class FormController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($company_id, $form_id)
     {
-        DB::table('forms')->where('form_id', $id)->delete();
+        DB::table('forms')->where('company_id', $company_id)->where('form_id', $form_id)->delete();
     }
 }

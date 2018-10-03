@@ -10,8 +10,9 @@ class DisplayForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-                  isCompleted: false
-                };
+      company_id: props.match.params.cid,
+      isCompleted: false
+    };
 
     this.handleSubmit = this.handleSubmit.bind(this);
 
@@ -24,7 +25,7 @@ class DisplayForm extends Component {
      }
 
     apiCall() {
-      axios.get(MyGlobleSetting.url + '/api/form')
+      axios.get(MyGlobleSetting.url + '/api/form/' + this.state.company_id)
        .then(response => {
         if (response.data.length > 0) {
          this.setState({ forms: response.data });
@@ -41,7 +42,7 @@ class DisplayForm extends Component {
       let self = this;
       if (this.state.forms instanceof Array) {
           return this.state.forms.map(function(item, key){
-            return <FormRow obj={item} handleSubmit={self.handleSubmit} />;
+            return <FormRow obj={item} company_id={self.state.company_id} handleSubmit={self.handleSubmit} />;
           })
         }
     }
@@ -83,7 +84,7 @@ class DisplayForm extends Component {
                       {this.tabRow()}
                    </tbody>
                   </table>
-                  <Link to="/create-form">Create Form</Link>
+                  <Link to={"/create-form/" + this.state.company_id}>Create Form</Link>
                 </div>
               </div>
             </div>

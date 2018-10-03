@@ -1,13 +1,14 @@
-import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
-import Nav from '../navbar'
-import axios from 'axios'
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import Nav from '../navbar';
+import axios from 'axios';
 
 class CreateForm extends Component {
 
     constructor(props){
         super(props);
         this.state = {
+          company_id: props.match.params.cid,
           name: '',
           description : ''
         }
@@ -15,8 +16,9 @@ class CreateForm extends Component {
 
     onSubmit(e){
         e.preventDefault();
-        const {name, description} = this.state ;
-        axios.post('api/createform', {
+        const {company_id, name, description} = this.state;
+        axios.post('/api/createform', {
+            company_id,
             name,
             description
           })
@@ -77,7 +79,7 @@ class CreateForm extends Component {
                                             </div>
                                         </div>
                                     </form>
-                                    <Link to="/form">View Forms</Link>
+                                    <Link to={"/form/" + this.state.company_id}>View Forms</Link>
                                 </div>
                             </div>
                         </div>

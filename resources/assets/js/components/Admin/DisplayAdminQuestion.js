@@ -10,9 +10,9 @@ class DisplayAdminQuestion extends Component {
   constructor(props) {
     super(props);
     this.state = {
-                  form_id: props.match.params.id,
-                  isCompleted: false
-                };
+      form_id: props.match.params.fid,
+      isCompleted: false
+    };
 
     this.handleSubmit = this.handleSubmit.bind(this);
 

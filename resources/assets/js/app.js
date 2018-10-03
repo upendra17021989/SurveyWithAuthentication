@@ -29,6 +29,8 @@ import EditAdminQuestion from './components/Admin/EditAdminQuestion';
 import EditAdminOption from './components/Admin/EditAdminOption';
 import EditAdminSurvey from './components/Admin/EditAdminSurvey';
 
+import SurveyComplete from './components/User/SurveyComplete';
+
 
 ReactDOM.render(
 	<Router>
@@ -43,21 +45,23 @@ ReactDOM.render(
 	    <Route path='/admin-survey' component={DisplayAdminSurvey}/>
 
 	    <Route path='/create-company' component={CreateCompany}/>
-	    <Route path='/create-form' component={CreateForm}/>
-	    <Route path='/create-question/:id' component={CreateAdminQuestion}/>
+	    <Route path='/create-form/:cid' component={CreateForm}/>
+	    <Route path='/create-question/:fid' component={CreateAdminQuestion}/>
 	    <Route path='/create-option/:fid/:qid' component={CreateAdminOption}/>
 	    <Route path='/create-admin-survey' component={CreateAdminSurvey}/>
 
 	    <Route path='/company' component={DisplayCompany}/>
-	    <Route path='/form' component={DisplayForm}/>
-	    <Route path='/admin-question/:id' component={DisplayAdminQuestion}/>
+	    <Route path='/form/:cid' component={DisplayForm}/>
+	    <Route path='/admin-question/:fid' component={DisplayAdminQuestion}/>
 	    <Route path='/admin-option/:fid/:qid' component={DisplayAdminOption}/>
 
 	    <Route path='/edit-company/:id' component={EditCompany}/>
-	    <Route path='/edit-form/:id' component={EditForm}/>
+	    <Route path='/edit-form/:cid/:fid' component={EditForm}/>
 	    <Route path='/edit-question/:fid/:qid' component={EditAdminQuestion}/>
 	    <Route path='/edit-option/:fid/:qid/:oid' component={EditAdminOption}/>
 	    <Route path='/edit-admin-survey/:sid' component={EditAdminSurvey}/>
+
+	    <Route path='/survey-complete' component={SurveyComplete}/>
 
 	    <Route path='/forgotpassword' component={Forgot}/>
 	    <Route path='/password/reset/:token' component={Reset}/>

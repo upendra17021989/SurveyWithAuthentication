@@ -29,7 +29,12 @@ class Login extends Component {
                         if (response.data[0].user_type == 'admin') {
                             this.props.history.push("admin-home") ;    
                         } else {
-                            this.props.history.push("user-home") ;
+                            this.props.history.push({
+                                pathname:"/user-home",
+                                state: {
+                                    user_id : this.state.email
+                            }
+                        });
                         }
                     }
                 }).catch(error=> {

@@ -28,8 +28,9 @@ class QuestionController extends Controller
         echo $request;
         DB::table('questions')->insert(
              array(
-                    'form_id' => $request['form_id'], 
-                    'question_description' => $request['description']
+                'form_id' => $request['form_id'], 
+                'question_description' => $request['description'],
+                'question_type' => $request['question_type']
              )
         );
 
@@ -44,7 +45,7 @@ class QuestionController extends Controller
      */
     public function show($formid, $questionid)
     {
-         $questionDetails = DB::table('questions')->where('questions.form_id', '=', $formid)->where('questions.question_id', '=', $questionid)->select('questions.question_id', 'questions.question_description', 'questions.created_at', 'questions.updated_at')->get();
+         $questionDetails = DB::table('questions')->where('questions.form_id', '=', $formid)->where('questions.question_id', '=', $questionid)->select('questions.question_id', 'questions.question_description', 'questions.question_type', 'questions.created_at', 'questions.updated_at')->get();
         return $questionDetails;
     }
 
@@ -57,8 +58,11 @@ class QuestionController extends Controller
      */
     public function update(Request $request)
     {
+        echo $request;
+        
         DB::table('questions')->where('form_id','=', $request['fid'])->where('question_id','=',$request['qid'])->update([
-                'question_description' => $request['description']
+                'question_description' => $request['description'],
+                'question_type' => $request['question_type']
             ]
         );
         echo $request;

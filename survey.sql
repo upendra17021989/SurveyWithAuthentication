@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 03, 2018 at 07:20 AM
+-- Generation Time: Oct 03, 2018 at 04:32 PM
 -- Server version: 10.1.35-MariaDB
 -- PHP Version: 7.2.9
 
@@ -41,8 +41,7 @@ CREATE TABLE `company` (
 --
 
 INSERT INTO `company` (`company_id`, `company_name`, `address`, `created_at`, `updated_at`) VALUES
-(15, 'Jayesh Enterprises', 'Ahmedabad', '2018-09-27 07:14:22', '2018-09-27 11:48:52'),
-(18, 'Gaurav Pvt. ltd.', 'Ahmedabad', '2018-09-27 07:16:45', '2018-09-27 07:16:55');
+(15, 'Jayesh Enterprises', 'Ahmedabad', '2018-09-27 07:14:22', '2018-09-27 11:48:52');
 
 -- --------------------------------------------------------
 
@@ -76,6 +75,7 @@ INSERT INTO `company_survey` (`survey_id`, `company_id`, `form_id`, `survey_name
 --
 
 CREATE TABLE `forms` (
+  `company_id` int(11) NOT NULL,
   `form_id` int(10) NOT NULL,
   `form_name` varchar(50) NOT NULL,
   `form_description` varchar(200) NOT NULL,
@@ -87,9 +87,9 @@ CREATE TABLE `forms` (
 -- Dumping data for table `forms`
 --
 
-INSERT INTO `forms` (`form_id`, `form_name`, `form_description`, `created_at`, `updated_at`) VALUES
-(4, 'Form1', 'regional', '2018-09-28 14:44:08', '2018-09-28 14:44:08'),
-(5, 'Form2', 'Still working on it.', '2018-10-01 04:32:14', '2018-10-01 04:32:14');
+INSERT INTO `forms` (`company_id`, `form_id`, `form_name`, `form_description`, `created_at`, `updated_at`) VALUES
+(15, 6, 'Gaurav Pvt. ltd.', 'regional', '2018-10-03 11:05:56', '2018-10-03 11:05:56'),
+(15, 7, 'Survey 1', 'dfdsf', '2018-10-03 11:32:33', '2018-10-03 11:32:33');
 
 -- --------------------------------------------------------
 
@@ -133,21 +133,12 @@ CREATE TABLE `options` (
 --
 
 INSERT INTO `options` (`form_id`, `question_id`, `option_id`, `option_description`, `created_at`, `updated_at`) VALUES
-(2, 6, 1, 'sadasd', '2018-09-28 14:17:26', '2018-09-28 14:17:26'),
-(2, 6, 2, 'gffd  fg', '2018-09-28 14:21:46', '2018-09-28 14:21:46'),
-(2, 2, 4, 'dhaval1', '2018-09-28 14:22:54', '2018-09-28 14:34:21'),
-(2, 2, 5, 'lkjl', '2018-09-28 14:23:02', '2018-09-28 14:23:02'),
-(2, 2, 6, 'sdfds', '2018-09-28 14:35:16', '2018-09-28 14:35:16'),
-(4, 7, 7, 'dfs dsfsd fd', '2018-09-28 14:45:59', '2018-09-28 14:45:59'),
-(4, 7, 8, 'dsfd dsf sd', '2018-09-28 14:46:05', '2018-09-28 14:46:22'),
-(4, 7, 9, 'dsfds', '2018-09-28 14:46:09', '2018-09-28 14:46:09'),
-(4, 7, 10, 'dfds fsd', '2018-09-28 14:46:14', '2018-09-28 14:46:14'),
-(4, 4, 11, 'jayesh', '2018-09-28 14:46:36', '2018-09-28 14:53:40'),
-(4, 4, 12, 'Ups', '2018-09-28 14:47:58', '2018-09-28 14:53:56'),
-(4, 8, 13, 'sdfsd', '2018-09-28 14:51:37', '2018-09-28 14:51:37'),
-(4, 8, 14, 'jayesh', '2018-09-28 14:52:52', '2018-09-28 14:53:14'),
-(4, 8, 15, 'dfgfdg', '2018-09-28 14:52:57', '2018-09-28 14:52:57'),
-(4, 8, 16, 'sdfds', '2018-09-28 14:53:06', '2018-09-28 14:53:06');
+(6, 9, 17, 'Superior', '2018-10-03 12:29:40', '2018-10-03 12:29:40'),
+(6, 9, 18, 'Very Satisfactory', '2018-10-03 12:29:50', '2018-10-03 12:29:50'),
+(6, 9, 19, 'About Average', '2018-10-03 12:30:33', '2018-10-03 12:30:33'),
+(6, 9, 20, 'Somewhat Unsatisfactory', '2018-10-03 12:30:39', '2018-10-03 12:30:39'),
+(6, 9, 21, 'Very Poor', '2018-10-03 12:30:46', '2018-10-03 12:30:46'),
+(6, 10, 22, 'sdasad', '2018-10-03 14:11:55', '2018-10-03 14:11:55');
 
 -- --------------------------------------------------------
 
@@ -178,6 +169,7 @@ CREATE TABLE `questions` (
   `form_id` int(10) NOT NULL,
   `question_id` int(10) NOT NULL,
   `question_description` varchar(500) NOT NULL,
+  `question_type` varchar(10) NOT NULL DEFAULT 'multiple',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -186,13 +178,9 @@ CREATE TABLE `questions` (
 -- Dumping data for table `questions`
 --
 
-INSERT INTO `questions` (`form_id`, `question_id`, `question_description`, `created_at`, `updated_at`) VALUES
-(1, 3, 'edfds fsdf sdfsd f', '2018-09-27 15:01:10', '2018-09-27 15:01:10'),
-(1, 4, 'dasda', '2018-09-27 15:11:09', '2018-09-27 15:11:09'),
-(1, 5, 'How Old Are You?', '2018-09-28 13:37:51', '2018-09-28 13:37:51'),
-(2, 6, 'sdfsd', '2018-09-28 14:14:33', '2018-09-28 14:14:33'),
-(4, 7, 'asd sa dsfd sfs', '2018-09-28 14:45:40', '2018-09-28 14:45:40'),
-(4, 8, 'What is your name?', '2018-09-28 14:50:27', '2018-09-28 14:54:12');
+INSERT INTO `questions` (`form_id`, `question_id`, `question_description`, `question_type`, `created_at`, `updated_at`) VALUES
+(6, 9, 'In thinking about your most recent experience with [COMPANY], how was the quality of customer service you received?', 'MCQ', '2018-10-03 12:19:28', '2018-10-03 12:27:48'),
+(6, 10, 'The process for getting your concerns resolved was:', 'MCQ', '2018-10-03 12:38:55', '2018-10-03 12:38:55');
 
 -- --------------------------------------------------------
 
@@ -305,6 +293,16 @@ CREATE TABLE `user_survey` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
+-- Dumping data for table `user_survey`
+--
+
+INSERT INTO `user_survey` (`user_id`, `survey_id`, `form_id`, `question_id`, `answer_id`, `created_at`, `updated_at`) VALUES
+('dhaval@gmail.com', 2, 4, 7, 8, '2018-10-03 10:40:55', '2018-10-03 10:40:55'),
+('dhaval@gmail.com', 2, 4, 8, 13, '2018-10-03 10:40:55', '2018-10-03 10:40:55'),
+('dhaval@gmail.com', 2, 4, 7, 8, '2018-10-03 10:42:51', '2018-10-03 10:42:51'),
+('dhaval@gmail.com', 2, 4, 8, 14, '2018-10-03 10:42:51', '2018-10-03 10:42:51');
+
+--
 -- Indexes for dumped tables
 --
 
@@ -377,7 +375,7 @@ ALTER TABLE `company_survey`
 -- AUTO_INCREMENT for table `forms`
 --
 ALTER TABLE `forms`
-  MODIFY `form_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `form_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -389,13 +387,13 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `options`
 --
 ALTER TABLE `options`
-  MODIFY `option_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `option_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `questions`
 --
 ALTER TABLE `questions`
-  MODIFY `question_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `question_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `users`

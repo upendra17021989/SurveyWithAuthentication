@@ -31,13 +31,13 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('createadminsurvey','AdminSurveyController@create');
     
     Route::get('company','CompanyController@index');  
-    Route::get('form','FormController@index');
+    Route::get('form/{cid}','FormController@index');
     Route::get('adminquestion/{id}','QuestionController@index');
     Route::get('adminoption/{fid}/{qid}','OptionController@index');
     Route::get('adminsurvey','AdminSurveyController@index');
 
     Route::get('showcompany/{id}','CompanyController@show');  
-    Route::get('showform/{id}','FormController@show');
+    Route::get('showform/{cid}/{fid}','FormController@show');
     Route::get('showquestion/{fid}/{qid}','QuestionController@show');  
     Route::get('showoption/{fid}/{qid}/{oid}','OptionController@show');
     Route::get('showadminsurvey/{sid}','AdminSurveyController@show');  
@@ -49,7 +49,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('updateadminsurvey','AdminSurveyController@update');  
     
     Route::get('deletecompany/{id}','CompanyController@destroy');
-    Route::get('deleteform/{id}','FormController@destroy');
+    Route::get('deleteform/{cid}/{fid}','FormController@destroy');
     Route::get('deletequestion/{fid}/{qid}','QuestionController@destroy');  
     Route::get('deleteoption/{fid}/{qid}/{oid}','OptionController@destroy');  
     Route::get('deleteadminsurvey/{sid}','AdminSurveyController@destroy');
@@ -59,6 +59,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::resource('survey', 'SurveyController');   
 
     Route::get('showusersurvey', 'UserSurveyController@index'); 
+
+    Route::post('addusersurveydata', 'UserSurveyEndController@create'); 
 });
   
 

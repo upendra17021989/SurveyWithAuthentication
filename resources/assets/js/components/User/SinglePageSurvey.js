@@ -9,11 +9,13 @@ class SinglePageSurvey extends Component {
   constructor(props) {
     super(props);
     this.state = {
-                  value: '',
+                  user_id: props.location.state.user_id,
                   surveys: '',
                   counter: 0,
                   isCompleted: false,
-                  answerSet: []
+                  answerSet: [],
+                  form_id: 4,
+                  survey_id: 2
                 };
       this.onButtonCheck = this.onButtonCheck.bind(this);
   }
@@ -42,12 +44,41 @@ class SinglePageSurvey extends Component {
 
     onSubmit(e){
       e.preventDefault();
-      console.log('state:', this.state);
-      alert('hi')
+      let self = this;
+      this.state.surveys.map(function(object, i){
+        let question_id = object.question_id;
+        let answer_id = 0;
+        
+        for (var j=0; j< self.state.answerSet.length ; j++) {
+          if (self.state.answerSet[j].question_id == question_id) {
+            answer_id = self.state.answerSet[j].answer_id;
+            break;
+          }
+        }
+
+        const {user_id, form_id, survey_id} = self.state;
+        axios.post('/api/addusersurveydata', {
+            user_id,
+            survey_id,
+            form_id,
+            question_id,
+            answer_id
+          })
+          .then(response=> {
+            self.setState({err: false});
+            self.props.history.push("survey-complete") ;
+          })
+          .catch(error=> {
+            self.setState({err: true});
+          });
+        })
     }
 
     onButtonCheck(selected_option_id, question_id) {
-      this.state.answerSet.push({question_id, selected_option_id});
+      let item = {}
+      item["question_id"] = question_id;
+      item["answer_id"] = selected_option_id;
+      this.state.answerSet.push(item);
     }
 
      

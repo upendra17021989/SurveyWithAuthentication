@@ -31,6 +31,7 @@ class CompanyRow extends Component {
           <td>{this.props.obj.address}</td>
           <td>{this.props.obj.created_at}</td>
           <td>{this.props.obj.updated_at}</td>
+          <td><Link to={"form/"+this.props.obj.company_id} className="btn btn-primary">View Forms</Link></td>
           <td><Link to={"edit-company/"+this.props.obj.company_id} className="btn btn-primary">Edit</Link></td>
           <td><form onSubmit={this.handleSubmit}>
                 <input type="submit" value="Delete" className="btn btn-danger"/>

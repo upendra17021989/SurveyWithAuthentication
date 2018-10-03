@@ -38,7 +38,6 @@ class Nav extends Component {
               </div>
               <ul className="nav navbar-nav navbar-right">
                 <li><Link to="/admin-survey">Survey</Link></li>
-                <li><Link to="/form">Form</Link></li>
                 <li><Link to="/company">Company</Link></li>
                 <li><a className="navbar-brand" href="#" onClick={this.logout.bind(this)}>Logout</a></li>
               </ul>

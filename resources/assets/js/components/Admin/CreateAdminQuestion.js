@@ -2,27 +2,37 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Nav from '../navbar';
 import axios from 'axios';
+import {InputTextarea} from 'primereact/inputtextarea';
+import {Dropdown} from 'primereact/dropdown';
+
+const questionTypes = [
+  {label: 'Multiple Choice', value: 'MCQ'},
+  {label: 'Open Ended', value: 'OE'}
+];
+
 
 class CreateAdminQuestion extends Component {
 
     constructor(props){
         super(props);
         this.state = {
-          form_id: props.match.params.id,
-          description : ''
+          form_id: props.match.params.fid,
+          description : '',
+          question_type: 'MCQ'
         }
      }
 
     onSubmit(e){
         e.preventDefault();
-        const {form_id, description} = this.state;
+        const {form_id, description, question_type} = this.state;
         axios.post('/api/createquestion', {
             form_id,
-            description
+            description,
+            question_type
           })
           .then(response=> {
            this.setState({err: false});
-           this.props.history.push("create-question") ;
+           //this.props.history.push("create-question") ;
           })
           .catch(error=> {
             this.refs.description.value="";
@@ -56,7 +66,15 @@ class CreateAdminQuestion extends Component {
                                             <label for="description" className="col-md-4 control-label">Description</label>
 
                                             <div className="col-md-6">
-                                                <input id="description" type="text" className="form-control" ref="description" name="description" onChange={this.onChange.bind(this)} required />
+                                              <InputTextarea rows={5} cols={50} value={this.state.description} onChange={(e) => this.setState({description: e.target.value})} />
+                                            </div>
+                                        </div>
+
+                                        <div className="form-group">
+                                            <label for="company_type" className="col-md-4 control-label">Type</label>
+
+                                            <div className="col-md-6">
+                                              <Dropdown value={this.state.question_type} options={questionTypes} onChange={(e) => {this.setState({question_type: e.value})}} placeholder="Select a Type"/>
                                             </div>
                                         </div>
 

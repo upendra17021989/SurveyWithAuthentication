@@ -3,6 +3,13 @@ import { Link } from 'react-router-dom';
 import Nav from '../navbar';
 import axios from 'axios';
 import MyGlobleSetting from '../MyGlobleSetting';
+import {InputTextarea} from 'primereact/inputtextarea';
+import {Dropdown} from 'primereact/dropdown';
+
+const questionTypes = [
+  {label: 'Multiple Choice', value: 'MCQ'},
+  {label: 'Open Ended', value: 'OE'}
+];
 
 class EditAdminQuestion extends Component {
 
@@ -23,9 +30,12 @@ class EditAdminQuestion extends Component {
       axios.get(MyGlobleSetting.url + '/api/showquestion/'+ this.state.fid + '/' + this.state.qid)
        .then(response => {
         if (response.data.length > 0) {
-         this.setState({description: response.data[0].question_description,
-                        created_at: response.data[0].created_at,
-                        updated_at: response.data[0].updated_at});
+          this.setState({
+            description: response.data[0].question_description,
+            question_type: response.data[0].question_type,
+            created_at: response.data[0].created_at,
+            updated_at: response.data[0].updated_at
+          });
         }
 
        })
@@ -37,18 +47,18 @@ class EditAdminQuestion extends Component {
 
     onSubmit(e){
         e.preventDefault();
-        const {fid, qid, description} = this.state ;
+        const {fid, qid, description, question_type} = this.state ;
         axios.post(MyGlobleSetting.url + '/api/updatequestion', {
             fid,
             qid,
-            description
+            description,
+            question_type
           })
           .then(response=> {
            this.setState({err: false});
            this.props.history.push("edit-question") ;
           })
           .catch(error=> {
-            this.refs.description.value="";
             this.setState({err: true});
           });
      }
@@ -79,7 +89,15 @@ class EditAdminQuestion extends Component {
                                             <label for="description" className="col-md-4 control-label">Description</label>
 
                                             <div className="col-md-6">
-                                                <input id="description" value={this.state.description} type="text" className="form-control" ref="description" name="description" onChange={this.onChange.bind(this)} required />
+                                              <InputTextarea rows={5} cols={50} value={this.state.description} onChange={(e) => this.setState({description: e.target.value})} />
+                                            </div>
+                                        </div>
+
+                                        <div className="form-group">
+                                            <label for="company_type" className="col-md-4 control-label">Type</label>
+
+                                            <div className="col-md-6">
+                                              <Dropdown value={this.state.question_type} options={questionTypes} onChange={(e) => {this.setState({question_type: e.value})}} placeholder="Select a Type"/>
                                             </div>
                                         </div>
 

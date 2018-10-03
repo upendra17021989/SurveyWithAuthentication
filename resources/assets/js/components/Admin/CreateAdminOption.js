@@ -3,6 +3,11 @@ import { Link } from 'react-router-dom';
 import Nav from '../navbar';
 import axios from 'axios';
 
+const divStyle = {
+  display: 'inline-flex',
+  paddingTop: '10px'
+};
+
 class CreateAdminOption extends Component {
 
     constructor(props){
@@ -10,11 +15,29 @@ class CreateAdminOption extends Component {
         this.state = {
           form_id: props.match.params.fid,
           question_id: props.match.params.qid,
-          description : ''
+          description : '',
+          options: []
         }
      }
 
+  createUI(){
+    return this.state.options.map((el, i) => 
+       <div key={i} className="col-md-8" style={divStyle}>
+          <label for="description" className="col-md-6 control-label">Description</label>
+          <input type="text" className="col-md-8 form-control" value={el||''} onChange={this.handleChange.bind(this, i)} required />
+          <input type='button' className="btn btn-primary" value='remove' onClick={this.removeClick.bind(this, i)}/>
+      </div>          
+    )
+  }
+
+  handleChange(i, event) {
+     let options = [...this.state.options];
+     options[i] = event.target.value;
+     this.setState({ options });
+  }
+
     onSubmit(e){
+      console.log('state:', this.state);
         e.preventDefault();
         const {form_id, question_id, description} = this.state;
         axios.post('/api/createoption', {
@@ -27,7 +50,6 @@ class CreateAdminOption extends Component {
            this.props.history.push("create-option") ;
           })
           .catch(error=> {
-            this.refs.description.value="";
             this.setState({err: true});
           });
      }
@@ -36,6 +58,16 @@ class CreateAdminOption extends Component {
         const {name, value} = e.target ;
         this.setState({[name]: value});
      }
+
+    addClick(){
+      this.setState(prevState => ({ options: [...prevState.options, '']}))
+    }
+
+    removeClick(i){
+      let options = [...this.state.options];
+      options.splice(i,1);
+      this.setState({ options });
+    } 
 
     render() {
         let error = this.state.err ;
@@ -54,19 +86,23 @@ class CreateAdminOption extends Component {
                                         {error != undefined && <div className={name} role="alert">{msg}</div>}
                                     </div>   
                                     <form className="form-horizontal" role="form" method="POST" onSubmit= {this.onSubmit.bind(this)}>
-                                        <div className="form-group">
-                                            <label for="description" className="col-md-4 control-label">Description</label>
-
-                                            <div className="col-md-6">
-                                                <input id="description" type="text" className="form-control" ref="description" name="description" onChange={this.onChange.bind(this)} required />
-                                            </div>
-                                        </div>
-
+                                      <div className="form-group">
+                                          {this.createUI()}
+                                      </div>
                                         <div className="form-group">
                                             <div className="col-md-6 col-md-offset-4">
+                                              <table>
+                                              <tr>
+                                              <td width="200px">
+                                              <input className="btn btn-primary" type='button' value='add more' onClick={this.addClick.bind(this)}/> 
+                                              </td>
+                                              <td>
                                                 <button type="submit" className="btn btn-primary">
                                                     Create
                                                 </button>
+                                              </td>
+                                              </tr>
+                                              </table>
                                             </div>
                                         </div>
                                     </form>
