@@ -14,7 +14,7 @@ class QuestionController extends Controller
      */
     public function index($id)
     {
-        $questionDetails = DB::table('questions')->where('questions.form_id','=',$id)->select('questions.form_id', 'questions.question_id', 'questions.question_description', 'questions.created_at', 'questions.updated_at')->get();
+        $questionDetails = DB::table('questions')->where('questions.form_id','=',$id)->select('questions.form_id', 'questions.question_id', 'questions.question_description', 'questions.question_type', 'questions.created_at', 'questions.updated_at')->get();
         return $questionDetails;
     }
 

@@ -37,21 +37,25 @@ class CreateAdminOption extends Component {
   }
 
     onSubmit(e){
-      console.log('state:', this.state);
+        let self = this;
+        const {form_id, question_id} = this.state;
         e.preventDefault();
-        const {form_id, question_id, description} = this.state;
-        axios.post('/api/createoption', {
-            form_id,
-            question_id,
-            description
-          })
-          .then(response=> {
-           this.setState({err: false});
-           this.props.history.push("create-option") ;
-          })
-          .catch(error=> {
-            this.setState({err: true});
-          });
+        for (var i=0 ; i<this.state.options.length ; i++) {
+          let description = this.state.options[i];
+            
+          axios.post('/api/createoption', {
+              form_id,
+              question_id,
+              description
+            })
+            .then(response=> {
+             self.setState({err: false});
+             //self.props.history.push("create-option") ;
+            })
+            .catch(error=> {
+              self.setState({err: true});
+            });
+        }
      }
 
      onChange(e){

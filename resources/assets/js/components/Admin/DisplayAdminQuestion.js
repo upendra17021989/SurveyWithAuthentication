@@ -73,8 +73,11 @@ class DisplayAdminQuestion extends Component {
                     <thead>
                       <tr>
                         <th>Question</th>
+                        <th>Type</th>
                         <th>Created Date</th>
                         <th>Updated Date</th>
+                        <th></th>
+                        <th></th>
                         <th></th>
                         <th></th>
                       </tr>
@@ -84,6 +87,7 @@ class DisplayAdminQuestion extends Component {
                    </tbody>
                    <tr>
                     <td><Link to={"/create-question/"+this.state.form_id}>Create Question</Link></td>
+                    <td></td>
                     <td><Link to={"/form"}>View Forms</Link></td>
                   </tr>
                   </table>

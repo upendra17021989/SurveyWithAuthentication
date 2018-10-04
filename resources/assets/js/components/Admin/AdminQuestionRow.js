@@ -28,9 +28,10 @@ class AdminQuestionRow extends Component {
     return (
         <tr>
           <td>{this.props.obj.question_description}</td>
+          <td>{this.props.obj.question_type}</td>
           <td>{this.props.obj.created_at}</td>
           <td>{this.props.obj.updated_at}</td>
-          <td><Link to={"/admin-option/" + this.props.obj.form_id + "/" + this.props.obj.question_id} className="btn btn-primary">Options</Link></td>
+          <td><Link to={this.props.obj.question_type == 'OE' ? '#' : "/admin-option/" + this.props.obj.form_id + "/" + this.props.obj.question_id} disabled={this.props.obj.question_type == 'OE'} className="btn btn-primary">Options</Link></td>
           <td><Link to={"/edit-question/" + this.props.obj.form_id + "/" + this.props.obj.question_id} className="btn btn-primary">Edit</Link></td>
           <td><form onSubmit={this.handleSubmit}>
                 <input type="submit" value="Delete" className="btn btn-danger"/>
