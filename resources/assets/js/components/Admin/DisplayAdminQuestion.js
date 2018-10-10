@@ -10,6 +10,7 @@ class DisplayAdminQuestion extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      company_id: props.match.params.cid,
       form_id: props.match.params.fid,
       isCompleted: false
     };
@@ -86,9 +87,9 @@ class DisplayAdminQuestion extends Component {
                       {this.tabRow()}
                    </tbody>
                    <tr>
-                    <td><Link to={"/create-question/"+this.state.form_id}>Create Question</Link></td>
+                    <td><Link to={"/create-question/" + this.state.company_id + "/" + this.state.form_id}>Create Question</Link></td>
                     <td></td>
-                    <td><Link to={"/form"}>View Forms</Link></td>
+                    <td><Link to={"/form/" + this.state.company_id}>View Forms</Link></td>
                   </tr>
                   </table>
                   

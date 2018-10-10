@@ -1,36 +1,53 @@
-import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
-import Nav from '../navbar'
-import axios from 'axios'
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import Nav from '../navbar';
+import axios from 'axios';
+import MyGlobleSetting from '../MyGlobleSetting';
 import {Dropdown} from 'primereact/dropdown';
 import {Calendar} from 'primereact/calendar';
 import 'primereact/resources/themes/omega/theme.css';
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
 
-class CreateAdminSurvey extends Component {
+class AddUserSurvey extends Component {
 
     constructor(props){
         super(props);
         this.state = {
-          company_id: '',
-          form_id : '',
+          company_id: props.match.params.cid,
+          survey_id: props.match.params.sid,
           survey_name: '',
-          start_dt: '',
-          end_dt:''
         }
      }
 
     componentDidMount(){
       this.getCompanyDropDown();
       this.getFormDropDown();
+      this.apiCall();
     }
 
-    componentWillMount(){
-      this.getFormDropDown();
+    apiCall() {
+      axios.get(MyGlobleSetting.url + '/api/showadminsurvey/'+ this.state.survey_id)
+       .then(response => {
+        if (response.data.length > 0) {
+          let start_date = new Date(response.data[0].start_dt),
+              end_date = new Date(response.data[0].end_dt);
+         this.setState({ company_id: response.data[0].company_id,
+                        form_id: response.data[0].form_id,
+                        survey_name: response.data[0].survey_name,
+                        start_dt: start_date,
+                        end_dt: end_date
+                      });
+        }
+
+       })
+       .catch(function (error) {
+         console.log(error);
+       })
+       
     }
 
-    getCompanyDropDown() {
+     getCompanyDropDown() {
       axios.get('/api/companydropdownlist')
        .then(response => {
         if (response.data.length > 0) {
@@ -50,34 +67,31 @@ class CreateAdminSurvey extends Component {
        
     }
 
-    getFormDropDown(value) {
-      if (value) {
-        axios.get('/api/formdropdownlist/' + value)
-         .then(response => {
-          if (response.data.length > 0) {
-              let formSelectItems = [];
-              if (response.data instanceof Array) {
-                  response.data.map(function(item, key){
-                      formSelectItems.push({label: item.form_name, value: item.form_id});
-                  })
-              }
-                  this.setState({ formSelectItems: formSelectItems });
-          }
+    getFormDropDown() {
+      axios.get('/api/formdropdownlist')
+       .then(response => {
+        if (response.data.length > 0) {
+            let formSelectItems = [];
+            if (response.data instanceof Array) {
+                response.data.map(function(item, key){
+                    formSelectItems.push({label: item.form_name, value: item.form_id});
+                })
+            }
+                this.setState({ formSelectItems: formSelectItems });
+        }
 
-         })
-         .catch(function (error) {
-           console.log(error);
-         })
-
-         this.setState({company_id : value });
-       }
+       })
+       .catch(function (error) {
+         console.log(error);
+       })
        
     }
 
     onSubmit(e){
         e.preventDefault();
-        const {company_id, form_id, survey_name, start_dt, end_dt} = this.state ;
-        axios.post('api/createadminsurvey', {
+        const {survey_id, company_id, form_id, survey_name, start_dt, end_dt} = this.state ;
+        axios.post(MyGlobleSetting.url + '/api/updateadminsurvey', {
+            survey_id,
             company_id,
             form_id,
             survey_name,
@@ -86,10 +100,11 @@ class CreateAdminSurvey extends Component {
           })
           .then(response=> {
            this.setState({err: false});
-           this.props.history.push("create-admin-survey");
+           this.props.history.push("edit-admin-survey") ;
           })
           .catch(error=> {
-            this.refs.survey_name.value="";
+            this.refs.name.value="";
+            this.refs.description.value="";
             this.setState({err: true});
           });
      }
@@ -101,7 +116,7 @@ class CreateAdminSurvey extends Component {
 
     render() {
         let error = this.state.err ;
-        let msg = (!error) ? 'Created Successfully' : 'Oops! , Something went wrong.' ;
+        let msg = (!error) ? 'Updated Successfully' : 'Oops! , Something went wrong.' ;
         let name = (!error) ? 'alert alert-success' : 'alert alert-danger' ;
         return (   
              <div>   
@@ -110,7 +125,7 @@ class CreateAdminSurvey extends Component {
                     <div className="row">
                         <div className="col-md-8 col-md-offset-2">
                             <div className="panel panel-default">
-                                <div className="panel-heading">Add New Survey</div>
+                                <div className="panel-heading">Update Form</div>
                                 <div className="panel-body">
                                     <div className="col-md-offset-2 col-md-8 col-md-offset-2">
                                         {error != undefined && <div className={name} role="alert">{msg}</div>}
@@ -120,7 +135,7 @@ class CreateAdminSurvey extends Component {
                                             <label for="company" className="col-md-4 control-label">Select Company</label>
 
                                             <div className="col-md-6">
-                                                <Dropdown style={{width: '100%'}} value={this.state.company_id} options={this.state.companySelectItems} onChange={(e) => {this.getFormDropDown(e.value)}} placeholder="Select a Company"/>
+                                                <Dropdown style={{width: '100%'}} value={this.state.company_id} options={this.state.companySelectItems} onChange={(e) => {this.setState({company_id: e.value})}} placeholder="Select a Company"/>
                                             </div>
                                         </div>
 
@@ -136,7 +151,7 @@ class CreateAdminSurvey extends Component {
                                             <label for="name" className="col-md-4 control-label">Survey Name</label>
 
                                             <div className="col-md-6">
-                                                <input id="survey_name" type="text" className="form-control" ref="survey_name" name="survey_name" onChange={this.onChange.bind(this)} required />
+                                                <input id="survey_name" value={this.state.survey_name} type="text" className="form-control" ref="survey_name" name="survey_name" onChange={this.onChange.bind(this)} required />
                                             </div>
                                         </div>
 
@@ -156,10 +171,11 @@ class CreateAdminSurvey extends Component {
                                             </div>
                                         </div>
 
+
                                         <div className="form-group">
                                             <div className="col-md-6 col-md-offset-4">
                                                 <button type="submit" className="btn btn-primary">
-                                                    Create
+                                                    Update
                                                 </button>
                                             </div>
                                         </div>
@@ -175,4 +191,4 @@ class CreateAdminSurvey extends Component {
       }
 }
 
-export default CreateAdminSurvey
+export default AddUserSurvey

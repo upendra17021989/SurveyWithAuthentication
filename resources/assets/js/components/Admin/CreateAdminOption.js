@@ -30,6 +30,11 @@ class CreateAdminOption extends Component {
     )
   }
 
+  componentDidMount(){
+      this.addClick();
+       
+  }
+
   handleChange(i, event) {
      let options = [...this.state.options];
      options[i] = event.target.value;
@@ -91,7 +96,7 @@ class CreateAdminOption extends Component {
                                     </div>   
                                     <form className="form-horizontal" role="form" method="POST" onSubmit= {this.onSubmit.bind(this)}>
                                       <div className="form-group">
-                                          {this.createUI()}
+                                        {this.createUI()}
                                       </div>
                                         <div className="form-group">
                                             <div className="col-md-6 col-md-offset-4">

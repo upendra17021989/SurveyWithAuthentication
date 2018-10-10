@@ -28,6 +28,7 @@ import EditForm from './components/Admin/EditForm';
 import EditAdminQuestion from './components/Admin/EditAdminQuestion';
 import EditAdminOption from './components/Admin/EditAdminOption';
 import EditAdminSurvey from './components/Admin/EditAdminSurvey';
+import AddUserSurvey from './components/Admin/AddUserSurvey';
 
 import SurveyComplete from './components/User/SurveyComplete';
 
@@ -46,13 +47,13 @@ ReactDOM.render(
 
 	    <Route path='/create-company' component={CreateCompany}/>
 	    <Route path='/create-form/:cid' component={CreateForm}/>
-	    <Route path='/create-question/:fid' component={CreateAdminQuestion}/>
+	    <Route path='/create-question/:cid/:fid' component={CreateAdminQuestion}/>
 	    <Route path='/create-option/:fid/:qid' component={CreateAdminOption}/>
 	    <Route path='/create-admin-survey' component={CreateAdminSurvey}/>
 
 	    <Route path='/company' component={DisplayCompany}/>
 	    <Route path='/form/:cid' component={DisplayForm}/>
-	    <Route path='/admin-question/:fid' component={DisplayAdminQuestion}/>
+	    <Route path='/admin-question/:cid/:fid' component={DisplayAdminQuestion}/>
 	    <Route path='/admin-option/:fid/:qid' component={DisplayAdminOption}/>
 
 	    <Route path='/edit-company/:id' component={EditCompany}/>
@@ -62,6 +63,8 @@ ReactDOM.render(
 	    <Route path='/edit-admin-survey/:sid' component={EditAdminSurvey}/>
 
 	    <Route path='/survey-complete' component={SurveyComplete}/>
+
+	    <Route path='/add-user-survey/:cid/:sid' component={AddUserSurvey}/>
 
 	    <Route path='/forgotpassword' component={Forgot}/>
 	    <Route path='/password/reset/:token' component={Reset}/>

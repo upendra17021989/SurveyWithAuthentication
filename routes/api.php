@@ -55,7 +55,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('deleteadminsurvey/{sid}','AdminSurveyController@destroy');
         
     Route::get('companydropdownlist','CompanyController@companyDropDown');
-    Route::get('formdropdownlist','FormController@formDropDown');
+    Route::get('formdropdownlist/{cid}','FormController@formDropDown');
     Route::resource('survey', 'SurveyController');   
 
     Route::get('showusersurvey', 'UserSurveyController@index'); 

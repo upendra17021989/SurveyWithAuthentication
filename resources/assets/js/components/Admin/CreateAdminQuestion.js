@@ -16,6 +16,7 @@ class CreateAdminQuestion extends Component {
     constructor(props){
         super(props);
         this.state = {
+          company_id: props.match.params.cid,
           form_id: props.match.params.fid,
           description : '',
           question_type: 'MCQ'
@@ -86,7 +87,7 @@ class CreateAdminQuestion extends Component {
                                             </div>
                                         </div>
                                     </form>
-                                    <Link to={"/admin-question/"+this.state.form_id}>View Questions</Link>
+                                    <Link to={"/admin-question/" + this.state.company_id + "/" + this.state.form_id}>View Questions</Link>
                                 </div>
                             </div>
                         </div>

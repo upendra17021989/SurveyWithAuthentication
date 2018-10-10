@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use DB;
 use DateTime;
 
-class AdminSurveyController extends Controller
+class AddUserSurveyController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,10 +15,9 @@ class AdminSurveyController extends Controller
      */
     public function index()
     {
-        $adminSurveyDetails = DB::table('company_survey')->join('company', 
-            'company_survey.company_id', '=', 'company.company_id')->join('forms', 
-            'forms.form_id', '=', 'company_survey.form_id')->select('company_survey.company_id as company_id','company_survey.survey_id as survey_id', 'company.company_name as company_name', 'forms.form_name as form_name','company_survey.survey_name', 'company_survey.start_dt', 'company_survey.end_dt')->get();
-        return $adminSurveyDetails;
+         /*$userSurveyDetails = DB::table('questions')->join('options', 
+            'questions.question_id', '=', 'options.question_id')->select('questions.question_id as question_id', 'questions.question_description as question_description','options.option_id', 'options.option_description as option_description')->get();
+        return $userSurveyDetails;*/
     }
 
     /**
@@ -30,17 +29,15 @@ class AdminSurveyController extends Controller
     {
         echo $request;
 
-        DB::table('company_survey')->insert(
-             array(
+        DB::table('user_survey_link')->insert(
+            array(
                 'company_id' => $request['company_id'], 
-                'form_id' => $request['form_id'],
-                'survey_name' => $request['survey_name'],
-                'start_dt' => new DateTime($request['start_dt']),//DateTime::createFromFormat('d/m/Y', $request['start_dt']),
-                'end_dt' => new DateTime($request['end_dt']) //DateTime::createFromFormat('d/m/Y', $request['end_dt'])
-             )
+                'user_id' => $request['user_id'],
+                'survey_id' => $request['survey_id'],
+            )
         );
 
-        return response()->json('Survey Created Successfully.');
+        return response()->json('User Added to Survey');
     }
 
     /**

@@ -14232,7 +14232,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__components_Admin_EditAdminQuestion__ = __webpack_require__(170);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__components_Admin_EditAdminOption__ = __webpack_require__(169);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__components_Admin_EditAdminSurvey__ = __webpack_require__(171);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__components_User_SurveyComplete__ = __webpack_require__(176);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__components_Admin_AddUserSurvey__ = __webpack_require__(347);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__components_User_SurveyComplete__ = __webpack_require__(176);
 
 
 
@@ -14243,6 +14244,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 //import DisplaySurvey from './components/User/DisplaySurvey';
+
 
 
 
@@ -14280,19 +14282,20 @@ __WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODU
 		__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["c" /* Route */], { path: '/admin-survey', component: __WEBPACK_IMPORTED_MODULE_11__components_Admin_DisplayAdminSurvey__["a" /* default */] }),
 		__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["c" /* Route */], { path: '/create-company', component: __WEBPACK_IMPORTED_MODULE_12__components_Admin_CreateCompany__["a" /* default */] }),
 		__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["c" /* Route */], { path: '/create-form/:cid', component: __WEBPACK_IMPORTED_MODULE_13__components_Admin_CreateForm__["a" /* default */] }),
-		__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["c" /* Route */], { path: '/create-question/:fid', component: __WEBPACK_IMPORTED_MODULE_14__components_Admin_CreateAdminQuestion__["a" /* default */] }),
+		__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["c" /* Route */], { path: '/create-question/:cid/:fid', component: __WEBPACK_IMPORTED_MODULE_14__components_Admin_CreateAdminQuestion__["a" /* default */] }),
 		__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["c" /* Route */], { path: '/create-option/:fid/:qid', component: __WEBPACK_IMPORTED_MODULE_15__components_Admin_CreateAdminOption__["a" /* default */] }),
 		__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["c" /* Route */], { path: '/create-admin-survey', component: __WEBPACK_IMPORTED_MODULE_16__components_Admin_CreateAdminSurvey__["a" /* default */] }),
 		__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["c" /* Route */], { path: '/company', component: __WEBPACK_IMPORTED_MODULE_17__components_Admin_DisplayCompany__["a" /* default */] }),
 		__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["c" /* Route */], { path: '/form/:cid', component: __WEBPACK_IMPORTED_MODULE_18__components_Admin_DisplayForm__["a" /* default */] }),
-		__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["c" /* Route */], { path: '/admin-question/:fid', component: __WEBPACK_IMPORTED_MODULE_19__components_Admin_DisplayAdminQuestion__["a" /* default */] }),
+		__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["c" /* Route */], { path: '/admin-question/:cid/:fid', component: __WEBPACK_IMPORTED_MODULE_19__components_Admin_DisplayAdminQuestion__["a" /* default */] }),
 		__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["c" /* Route */], { path: '/admin-option/:fid/:qid', component: __WEBPACK_IMPORTED_MODULE_20__components_Admin_DisplayAdminOption__["a" /* default */] }),
 		__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["c" /* Route */], { path: '/edit-company/:id', component: __WEBPACK_IMPORTED_MODULE_21__components_Admin_EditCompany__["a" /* default */] }),
 		__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["c" /* Route */], { path: '/edit-form/:cid/:fid', component: __WEBPACK_IMPORTED_MODULE_22__components_Admin_EditForm__["a" /* default */] }),
 		__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["c" /* Route */], { path: '/edit-question/:fid/:qid', component: __WEBPACK_IMPORTED_MODULE_23__components_Admin_EditAdminQuestion__["a" /* default */] }),
 		__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["c" /* Route */], { path: '/edit-option/:fid/:qid/:oid', component: __WEBPACK_IMPORTED_MODULE_24__components_Admin_EditAdminOption__["a" /* default */] }),
 		__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["c" /* Route */], { path: '/edit-admin-survey/:sid', component: __WEBPACK_IMPORTED_MODULE_25__components_Admin_EditAdminSurvey__["a" /* default */] }),
-		__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["c" /* Route */], { path: '/survey-complete', component: __WEBPACK_IMPORTED_MODULE_26__components_User_SurveyComplete__["a" /* default */] }),
+		__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["c" /* Route */], { path: '/survey-complete', component: __WEBPACK_IMPORTED_MODULE_27__components_User_SurveyComplete__["a" /* default */] }),
+		__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["c" /* Route */], { path: '/add-user-survey/:cid/:sid', component: __WEBPACK_IMPORTED_MODULE_26__components_Admin_AddUserSurvey__["a" /* default */] }),
 		__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["c" /* Route */], { path: '/forgotpassword', component: __WEBPACK_IMPORTED_MODULE_7__components_forgot__["a" /* default */] }),
 		__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["c" /* Route */], { path: '/password/reset/:token', component: __WEBPACK_IMPORTED_MODULE_8__components_reset__["a" /* default */] })
 	)
@@ -15514,6 +15517,15 @@ var AdminSurveyRow = function (_Component) {
           null,
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             __WEBPACK_IMPORTED_MODULE_1_react_router_dom__["d" /* Link */],
+            { to: "add-user-survey/" + this.props.obj.company_id + "/" + this.props.obj.survey_id, className: 'btn btn-primary' },
+            'Add Users To Survey'
+          )
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'td',
+          null,
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            __WEBPACK_IMPORTED_MODULE_1_react_router_dom__["d" /* Link */],
             { to: "edit-admin-survey/" + this.props.obj.survey_id, className: 'btn btn-primary' },
             'Edit'
           )
@@ -15678,193 +15690,198 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 var divStyle = {
-    display: 'inline-flex',
-    paddingTop: '10px'
+  display: 'inline-flex',
+  paddingTop: '10px'
 };
 
 var CreateAdminOption = function (_Component) {
-    _inherits(CreateAdminOption, _Component);
+  _inherits(CreateAdminOption, _Component);
 
-    function CreateAdminOption(props) {
-        _classCallCheck(this, CreateAdminOption);
+  function CreateAdminOption(props) {
+    _classCallCheck(this, CreateAdminOption);
 
-        var _this = _possibleConstructorReturn(this, (CreateAdminOption.__proto__ || Object.getPrototypeOf(CreateAdminOption)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (CreateAdminOption.__proto__ || Object.getPrototypeOf(CreateAdminOption)).call(this, props));
 
-        _this.state = {
-            form_id: props.match.params.fid,
-            question_id: props.match.params.qid,
-            description: '',
-            options: []
-        };
-        return _this;
+    _this.state = {
+      form_id: props.match.params.fid,
+      question_id: props.match.params.qid,
+      description: '',
+      options: []
+    };
+    return _this;
+  }
+
+  _createClass(CreateAdminOption, [{
+    key: 'createUI',
+    value: function createUI() {
+      var _this2 = this;
+
+      return this.state.options.map(function (el, i) {
+        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'div',
+          { key: i, className: 'col-md-8', style: divStyle },
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'label',
+            { 'for': 'description', className: 'col-md-6 control-label' },
+            'Description'
+          ),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', className: 'col-md-8 form-control', value: el || '', onChange: _this2.handleChange.bind(_this2, i), required: true }),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'button', className: 'btn btn-primary', value: 'remove', onClick: _this2.removeClick.bind(_this2, i) })
+        );
+      });
     }
+  }, {
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      this.addClick();
+    }
+  }, {
+    key: 'handleChange',
+    value: function handleChange(i, event) {
+      var options = [].concat(_toConsumableArray(this.state.options));
+      options[i] = event.target.value;
+      this.setState({ options: options });
+    }
+  }, {
+    key: 'onSubmit',
+    value: function onSubmit(e) {
+      var self = this;
+      var _state = this.state,
+          form_id = _state.form_id,
+          question_id = _state.question_id;
 
-    _createClass(CreateAdminOption, [{
-        key: 'createUI',
-        value: function createUI() {
-            var _this2 = this;
+      e.preventDefault();
+      for (var i = 0; i < this.state.options.length; i++) {
+        var description = this.state.options[i];
 
-            return this.state.options.map(function (el, i) {
-                return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'div',
-                    { key: i, className: 'col-md-8', style: divStyle },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'label',
-                        { 'for': 'description', className: 'col-md-6 control-label' },
-                        'Description'
-                    ),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', className: 'col-md-8 form-control', value: el || '', onChange: _this2.handleChange.bind(_this2, i), required: true }),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'button', className: 'btn btn-primary', value: 'remove', onClick: _this2.removeClick.bind(_this2, i) })
-                );
-            });
-        }
-    }, {
-        key: 'handleChange',
-        value: function handleChange(i, event) {
-            var options = [].concat(_toConsumableArray(this.state.options));
-            options[i] = event.target.value;
-            this.setState({ options: options });
-        }
-    }, {
-        key: 'onSubmit',
-        value: function onSubmit(e) {
-            var self = this;
-            var _state = this.state,
-                form_id = _state.form_id,
-                question_id = _state.question_id;
+        __WEBPACK_IMPORTED_MODULE_3_axios___default.a.post('/api/createoption', {
+          form_id: form_id,
+          question_id: question_id,
+          description: description
+        }).then(function (response) {
+          self.setState({ err: false });
+          //self.props.history.push("create-option") ;
+        }).catch(function (error) {
+          self.setState({ err: true });
+        });
+      }
+    }
+  }, {
+    key: 'onChange',
+    value: function onChange(e) {
+      var _e$target = e.target,
+          name = _e$target.name,
+          value = _e$target.value;
 
-            e.preventDefault();
-            for (var i = 0; i < this.state.options.length; i++) {
-                var description = this.state.options[i];
-
-                __WEBPACK_IMPORTED_MODULE_3_axios___default.a.post('/api/createoption', {
-                    form_id: form_id,
-                    question_id: question_id,
-                    description: description
-                }).then(function (response) {
-                    self.setState({ err: false });
-                    //self.props.history.push("create-option") ;
-                }).catch(function (error) {
-                    self.setState({ err: true });
-                });
-            }
-        }
-    }, {
-        key: 'onChange',
-        value: function onChange(e) {
-            var _e$target = e.target,
-                name = _e$target.name,
-                value = _e$target.value;
-
-            this.setState(_defineProperty({}, name, value));
-        }
-    }, {
-        key: 'addClick',
-        value: function addClick() {
-            this.setState(function (prevState) {
-                return { options: [].concat(_toConsumableArray(prevState.options), ['']) };
-            });
-        }
-    }, {
-        key: 'removeClick',
-        value: function removeClick(i) {
-            var options = [].concat(_toConsumableArray(this.state.options));
-            options.splice(i, 1);
-            this.setState({ options: options });
-        }
-    }, {
-        key: 'render',
-        value: function render() {
-            var error = this.state.err;
-            var msg = !error ? 'Created Successfully' : 'Oops! , Something went wrong.';
-            var name = !error ? 'alert alert-success' : 'alert alert-danger';
-            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+      this.setState(_defineProperty({}, name, value));
+    }
+  }, {
+    key: 'addClick',
+    value: function addClick() {
+      this.setState(function (prevState) {
+        return { options: [].concat(_toConsumableArray(prevState.options), ['']) };
+      });
+    }
+  }, {
+    key: 'removeClick',
+    value: function removeClick(i) {
+      var options = [].concat(_toConsumableArray(this.state.options));
+      options.splice(i, 1);
+      this.setState({ options: options });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var error = this.state.err;
+      var msg = !error ? 'Created Successfully' : 'Oops! , Something went wrong.';
+      var name = !error ? 'alert alert-success' : 'alert alert-danger';
+      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        'div',
+        null,
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__navbar__["a" /* default */], { link: 'admin' }),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'div',
+          { className: 'container' },
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'div',
+            { className: 'row' },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'div',
+              { className: 'col-md-8 col-md-offset-2' },
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'div',
-                null,
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__navbar__["a" /* default */], { link: 'admin' }),
+                { className: 'panel panel-default' },
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                  'div',
+                  { className: 'panel-heading' },
+                  'Add Option'
+                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                  'div',
+                  { className: 'panel-body' },
+                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'div',
-                    { className: 'container' },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'div',
-                        { className: 'row' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'div',
-                            { className: 'col-md-8 col-md-offset-2' },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                'div',
-                                { className: 'panel panel-default' },
-                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                    'div',
-                                    { className: 'panel-heading' },
-                                    'Add Option'
-                                ),
-                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                    'div',
-                                    { className: 'panel-body' },
-                                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                        'div',
-                                        { className: 'col-md-offset-2 col-md-8 col-md-offset-2' },
-                                        error != undefined && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                            'div',
-                                            { className: name, role: 'alert' },
-                                            msg
-                                        )
-                                    ),
-                                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                        'form',
-                                        { className: 'form-horizontal', role: 'form', method: 'POST', onSubmit: this.onSubmit.bind(this) },
-                                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                            'div',
-                                            { className: 'form-group' },
-                                            this.createUI()
-                                        ),
-                                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                            'div',
-                                            { className: 'form-group' },
-                                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                                'div',
-                                                { className: 'col-md-6 col-md-offset-4' },
-                                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                                    'table',
-                                                    null,
-                                                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                                        'tr',
-                                                        null,
-                                                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                                            'td',
-                                                            { width: '200px' },
-                                                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { className: 'btn btn-primary', type: 'button', value: 'add more', onClick: this.addClick.bind(this) })
-                                                        ),
-                                                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                                            'td',
-                                                            null,
-                                                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                                                'button',
-                                                                { type: 'submit', className: 'btn btn-primary' },
-                                                                'Create'
-                                                            )
-                                                        )
-                                                    )
-                                                )
-                                            )
-                                        )
-                                    ),
-                                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                        __WEBPACK_IMPORTED_MODULE_1_react_router_dom__["d" /* Link */],
-                                        { to: "/admin-option/" + this.state.form_id + "/" + this.state.question_id },
-                                        'View Options'
-                                    )
-                                )
-                            )
-                        )
+                    { className: 'col-md-offset-2 col-md-8 col-md-offset-2' },
+                    error != undefined && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                      'div',
+                      { className: name, role: 'alert' },
+                      msg
                     )
+                  ),
+                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'form',
+                    { className: 'form-horizontal', role: 'form', method: 'POST', onSubmit: this.onSubmit.bind(this) },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                      'div',
+                      { className: 'form-group' },
+                      this.createUI()
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                      'div',
+                      { className: 'form-group' },
+                      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'div',
+                        { className: 'col-md-6 col-md-offset-4' },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                          'table',
+                          null,
+                          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'tr',
+                            null,
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                              'td',
+                              { width: '200px' },
+                              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { className: 'btn btn-primary', type: 'button', value: 'add more', onClick: this.addClick.bind(this) })
+                            ),
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                              'td',
+                              null,
+                              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                'button',
+                                { type: 'submit', className: 'btn btn-primary' },
+                                'Create'
+                              )
+                            )
+                          )
+                        )
+                      )
+                    )
+                  ),
+                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    __WEBPACK_IMPORTED_MODULE_1_react_router_dom__["d" /* Link */],
+                    { to: "/admin-option/" + this.state.form_id + "/" + this.state.question_id },
+                    'View Options'
+                  )
                 )
-            );
-        }
-    }]);
+              )
+            )
+          )
+        )
+      );
+    }
+  }]);
 
-    return CreateAdminOption;
+  return CreateAdminOption;
 }(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
 
 /* harmony default export */ __webpack_exports__["a"] = (CreateAdminOption);
@@ -15912,6 +15929,7 @@ var CreateAdminQuestion = function (_Component) {
         var _this = _possibleConstructorReturn(this, (CreateAdminQuestion.__proto__ || Object.getPrototypeOf(CreateAdminQuestion)).call(this, props));
 
         _this.state = {
+            company_id: props.match.params.cid,
             form_id: props.match.params.fid,
             description: '',
             question_type: 'MCQ'
@@ -16043,7 +16061,7 @@ var CreateAdminQuestion = function (_Component) {
                                     ),
                                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                         __WEBPACK_IMPORTED_MODULE_1_react_router_dom__["d" /* Link */],
-                                        { to: "/admin-question/" + this.state.form_id },
+                                        { to: "/admin-question/" + this.state.company_id + "/" + this.state.form_id },
                                         'View Questions'
                                     )
                                 )
@@ -16126,6 +16144,11 @@ var CreateAdminSurvey = function (_Component) {
             this.getFormDropDown();
         }
     }, {
+        key: 'componentWillMount',
+        value: function componentWillMount() {
+            this.getFormDropDown();
+        }
+    }, {
         key: 'getCompanyDropDown',
         value: function getCompanyDropDown() {
             var _this2 = this;
@@ -16146,22 +16169,26 @@ var CreateAdminSurvey = function (_Component) {
         }
     }, {
         key: 'getFormDropDown',
-        value: function getFormDropDown() {
+        value: function getFormDropDown(value) {
             var _this3 = this;
 
-            __WEBPACK_IMPORTED_MODULE_3_axios___default.a.get('/api/formdropdownlist').then(function (response) {
-                if (response.data.length > 0) {
-                    var formSelectItems = [];
-                    if (response.data instanceof Array) {
-                        response.data.map(function (item, key) {
-                            formSelectItems.push({ label: item.form_name, value: item.form_id });
-                        });
+            if (value) {
+                __WEBPACK_IMPORTED_MODULE_3_axios___default.a.get('/api/formdropdownlist/' + value).then(function (response) {
+                    if (response.data.length > 0) {
+                        var formSelectItems = [];
+                        if (response.data instanceof Array) {
+                            response.data.map(function (item, key) {
+                                formSelectItems.push({ label: item.form_name, value: item.form_id });
+                            });
+                        }
+                        _this3.setState({ formSelectItems: formSelectItems });
                     }
-                    _this3.setState({ formSelectItems: formSelectItems });
-                }
-            }).catch(function (error) {
-                console.log(error);
-            });
+                }).catch(function (error) {
+                    console.log(error);
+                });
+
+                this.setState({ company_id: value });
+            }
         }
     }, {
         key: 'onSubmit',
@@ -16255,7 +16282,7 @@ var CreateAdminSurvey = function (_Component) {
                                                 'div',
                                                 { className: 'col-md-6' },
                                                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_primereact_dropdown__["Dropdown"], { style: { width: '100%' }, value: this.state.company_id, options: this.state.companySelectItems, onChange: function onChange(e) {
-                                                        _this5.setState({ company_id: e.value });
+                                                        _this5.getFormDropDown(e.value);
                                                     }, placeholder: 'Select a Company' })
                                             )
                                         ),
@@ -16300,7 +16327,7 @@ var CreateAdminSurvey = function (_Component) {
                                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                                 'div',
                                                 { className: 'col-md-6' },
-                                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5_primereact_calendar__["Calendar"], { dateFormat: 'yy-mm-dd', value: this.state.start_dt, onChange: function onChange(e) {
+                                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5_primereact_calendar__["Calendar"], { dateFormat: 'dd/mm/yy', value: this.state.start_dt, onChange: function onChange(e) {
                                                         return _this5.setState({ start_dt: e.value });
                                                     } })
                                             )
@@ -16949,6 +16976,7 @@ var DisplayAdminQuestion = function (_Component) {
     var _this = _possibleConstructorReturn(this, (DisplayAdminQuestion.__proto__ || Object.getPrototypeOf(DisplayAdminQuestion)).call(this, props));
 
     _this.state = {
+      company_id: props.match.params.cid,
       form_id: props.match.params.fid,
       isCompleted: false
     };
@@ -17079,7 +17107,7 @@ var DisplayAdminQuestion = function (_Component) {
                         null,
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                           __WEBPACK_IMPORTED_MODULE_5_react_router_dom__["d" /* Link */],
-                          { to: "/create-question/" + this.state.form_id },
+                          { to: "/create-question/" + this.state.company_id + "/" + this.state.form_id },
                           'Create Question'
                         )
                       ),
@@ -17089,7 +17117,7 @@ var DisplayAdminQuestion = function (_Component) {
                         null,
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                           __WEBPACK_IMPORTED_MODULE_5_react_router_dom__["d" /* Link */],
-                          { to: "/form" },
+                          { to: "/form/" + this.state.company_id },
                           'View Forms'
                         )
                       )
@@ -19007,7 +19035,7 @@ var FormRow = function (_Component) {
           null,
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             __WEBPACK_IMPORTED_MODULE_1_react_router_dom__["d" /* Link */],
-            { to: "/admin-question/" + this.props.obj.form_id, className: 'btn btn-primary' },
+            { to: "/admin-question/" + this.props.company_id + "/" + this.props.obj.form_id, className: 'btn btn-primary' },
             'Questions'
           )
         ),
@@ -38465,6 +38493,330 @@ function valueEqual(a, b) {
 __webpack_require__(135);
 module.exports = __webpack_require__(136);
 
+
+/***/ }),
+/* 341 */,
+/* 342 */,
+/* 343 */,
+/* 344 */,
+/* 345 */,
+/* 346 */,
+/* 347 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_router_dom__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__navbar__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_axios__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_axios__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__MyGlobleSetting__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_primereact_dropdown__ = __webpack_require__(42);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_primereact_dropdown___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_primereact_dropdown__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_primereact_calendar__ = __webpack_require__(90);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_primereact_calendar___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_primereact_calendar__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_primereact_resources_themes_omega_theme_css__ = __webpack_require__(134);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_primereact_resources_themes_omega_theme_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_primereact_resources_themes_omega_theme_css__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_primereact_resources_primereact_min_css__ = __webpack_require__(133);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_primereact_resources_primereact_min_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_primereact_resources_primereact_min_css__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_primeicons_primeicons_css__ = __webpack_require__(132);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_primeicons_primeicons_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_primeicons_primeicons_css__);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+
+
+
+
+
+
+
+
+
+var AddUserSurvey = function (_Component) {
+    _inherits(AddUserSurvey, _Component);
+
+    function AddUserSurvey(props) {
+        _classCallCheck(this, AddUserSurvey);
+
+        var _this = _possibleConstructorReturn(this, (AddUserSurvey.__proto__ || Object.getPrototypeOf(AddUserSurvey)).call(this, props));
+
+        _this.state = {
+            company_id: props.match.params.cid,
+            survey_id: props.match.params.sid,
+            survey_name: ''
+        };
+        return _this;
+    }
+
+    _createClass(AddUserSurvey, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            this.getCompanyDropDown();
+            this.getFormDropDown();
+            this.apiCall();
+        }
+    }, {
+        key: 'apiCall',
+        value: function apiCall() {
+            var _this2 = this;
+
+            __WEBPACK_IMPORTED_MODULE_3_axios___default.a.get(__WEBPACK_IMPORTED_MODULE_4__MyGlobleSetting__["a" /* default */].url + '/api/showadminsurvey/' + this.state.survey_id).then(function (response) {
+                if (response.data.length > 0) {
+                    var start_date = new Date(response.data[0].start_dt),
+                        end_date = new Date(response.data[0].end_dt);
+                    _this2.setState({ company_id: response.data[0].company_id,
+                        form_id: response.data[0].form_id,
+                        survey_name: response.data[0].survey_name,
+                        start_dt: start_date,
+                        end_dt: end_date
+                    });
+                }
+            }).catch(function (error) {
+                console.log(error);
+            });
+        }
+    }, {
+        key: 'getCompanyDropDown',
+        value: function getCompanyDropDown() {
+            var _this3 = this;
+
+            __WEBPACK_IMPORTED_MODULE_3_axios___default.a.get('/api/companydropdownlist').then(function (response) {
+                if (response.data.length > 0) {
+                    var companySelectItems = [];
+                    if (response.data instanceof Array) {
+                        response.data.map(function (item, key) {
+                            companySelectItems.push({ label: item.company_name, value: item.company_id });
+                        });
+                    }
+                    _this3.setState({ companySelectItems: companySelectItems });
+                }
+            }).catch(function (error) {
+                console.log(error);
+            });
+        }
+    }, {
+        key: 'getFormDropDown',
+        value: function getFormDropDown() {
+            var _this4 = this;
+
+            __WEBPACK_IMPORTED_MODULE_3_axios___default.a.get('/api/formdropdownlist').then(function (response) {
+                if (response.data.length > 0) {
+                    var formSelectItems = [];
+                    if (response.data instanceof Array) {
+                        response.data.map(function (item, key) {
+                            formSelectItems.push({ label: item.form_name, value: item.form_id });
+                        });
+                    }
+                    _this4.setState({ formSelectItems: formSelectItems });
+                }
+            }).catch(function (error) {
+                console.log(error);
+            });
+        }
+    }, {
+        key: 'onSubmit',
+        value: function onSubmit(e) {
+            var _this5 = this;
+
+            e.preventDefault();
+            var _state = this.state,
+                survey_id = _state.survey_id,
+                company_id = _state.company_id,
+                form_id = _state.form_id,
+                survey_name = _state.survey_name,
+                start_dt = _state.start_dt,
+                end_dt = _state.end_dt;
+
+            __WEBPACK_IMPORTED_MODULE_3_axios___default.a.post(__WEBPACK_IMPORTED_MODULE_4__MyGlobleSetting__["a" /* default */].url + '/api/updateadminsurvey', {
+                survey_id: survey_id,
+                company_id: company_id,
+                form_id: form_id,
+                survey_name: survey_name,
+                start_dt: start_dt,
+                end_dt: end_dt
+            }).then(function (response) {
+                _this5.setState({ err: false });
+                _this5.props.history.push("edit-admin-survey");
+            }).catch(function (error) {
+                _this5.refs.name.value = "";
+                _this5.refs.description.value = "";
+                _this5.setState({ err: true });
+            });
+        }
+    }, {
+        key: 'onChange',
+        value: function onChange(e) {
+            var _e$target = e.target,
+                name = _e$target.name,
+                value = _e$target.value;
+
+            this.setState(_defineProperty({}, name, value));
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            var _this6 = this;
+
+            var error = this.state.err;
+            var msg = !error ? 'Updated Successfully' : 'Oops! , Something went wrong.';
+            var name = !error ? 'alert alert-success' : 'alert alert-danger';
+            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'div',
+                null,
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__navbar__["a" /* default */], { link: 'admin' }),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'div',
+                    { className: 'container' },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'div',
+                        { className: 'row' },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'div',
+                            { className: 'col-md-8 col-md-offset-2' },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                'div',
+                                { className: 'panel panel-default' },
+                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                    'div',
+                                    { className: 'panel-heading' },
+                                    'Update Form'
+                                ),
+                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                    'div',
+                                    { className: 'panel-body' },
+                                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                        'div',
+                                        { className: 'col-md-offset-2 col-md-8 col-md-offset-2' },
+                                        error != undefined && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                            'div',
+                                            { className: name, role: 'alert' },
+                                            msg
+                                        )
+                                    ),
+                                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                        'form',
+                                        { className: 'form-horizontal', role: 'form', method: 'POST', onSubmit: this.onSubmit.bind(this) },
+                                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                            'div',
+                                            { className: 'form-group' },
+                                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                                'label',
+                                                { 'for': 'company', className: 'col-md-4 control-label' },
+                                                'Select Company'
+                                            ),
+                                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                                'div',
+                                                { className: 'col-md-6' },
+                                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5_primereact_dropdown__["Dropdown"], { style: { width: '100%' }, value: this.state.company_id, options: this.state.companySelectItems, onChange: function onChange(e) {
+                                                        _this6.setState({ company_id: e.value });
+                                                    }, placeholder: 'Select a Company' })
+                                            )
+                                        ),
+                                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                            'div',
+                                            { className: 'form-group' },
+                                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                                'label',
+                                                { 'for': 'form', className: 'col-md-4 control-label' },
+                                                'Select Form'
+                                            ),
+                                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                                'div',
+                                                { className: 'col-md-6' },
+                                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5_primereact_dropdown__["Dropdown"], { style: { width: '100%' }, value: this.state.form_id, options: this.state.formSelectItems, onChange: function onChange(e) {
+                                                        _this6.setState({ form_id: e.value });
+                                                    }, placeholder: 'Select a Form' })
+                                            )
+                                        ),
+                                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                            'div',
+                                            { className: 'form-group' },
+                                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                                'label',
+                                                { 'for': 'name', className: 'col-md-4 control-label' },
+                                                'Survey Name'
+                                            ),
+                                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                                'div',
+                                                { className: 'col-md-6' },
+                                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { id: 'survey_name', value: this.state.survey_name, type: 'text', className: 'form-control', ref: 'survey_name', name: 'survey_name', onChange: this.onChange.bind(this), required: true })
+                                            )
+                                        ),
+                                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                            'div',
+                                            { className: 'form-group' },
+                                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                                'label',
+                                                { 'for': 'start_dt', className: 'col-md-4 control-label' },
+                                                'Start Date'
+                                            ),
+                                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                                'div',
+                                                { className: 'col-md-6' },
+                                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6_primereact_calendar__["Calendar"], { dateFormat: 'dd/mm/yy', value: this.state.start_dt, onChange: function onChange(e) {
+                                                        return _this6.setState({ start_dt: e.value });
+                                                    } })
+                                            )
+                                        ),
+                                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                            'div',
+                                            { className: 'form-group' },
+                                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                                'label',
+                                                { 'for': 'end_dt', className: 'col-md-4 control-label' },
+                                                'End Date'
+                                            ),
+                                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                                'div',
+                                                { className: 'col-md-6' },
+                                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6_primereact_calendar__["Calendar"], { dateFormat: 'dd/mm/yy', value: this.state.end_dt, onChange: function onChange(e) {
+                                                        return _this6.setState({ end_dt: e.value });
+                                                    } })
+                                            )
+                                        ),
+                                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                            'div',
+                                            { className: 'form-group' },
+                                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                                'div',
+                                                { className: 'col-md-6 col-md-offset-4' },
+                                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                                    'button',
+                                                    { type: 'submit', className: 'btn btn-primary' },
+                                                    'Update'
+                                                )
+                                            )
+                                        )
+                                    ),
+                                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                        __WEBPACK_IMPORTED_MODULE_1_react_router_dom__["d" /* Link */],
+                                        { to: '/admin-survey' },
+                                        'View Surveys'
+                                    )
+                                )
+                            )
+                        )
+                    )
+                )
+            );
+        }
+    }]);
+
+    return AddUserSurvey;
+}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
+
+/* harmony default export */ __webpack_exports__["a"] = (AddUserSurvey);
 
 /***/ })
 /******/ ]);
