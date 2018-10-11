@@ -41,6 +41,30 @@ class AddUserSurveyController extends Controller
     }
 
     /**
+     * Fetch Users details related to company.
+     *
+     * @param  int  $company_id
+     * @return \Illuminate\Http\Response
+     */
+    public function getUsers($company_id)
+    {
+         $userDetails = DB::table('users')->where('users.company_id','=',$company_id)->where('users.user_type','=','respondent')->select('users.email', 'users.name')->get();
+        return $userDetails;
+    }
+
+    /**
+     * Fetch Survey details related to company.
+     *
+     * @param  int  $company_id
+     * @return \Illuminate\Http\Response
+     */
+    public function getSurvey($company_id)
+    {
+         $surveyDetails = DB::table('company_survey')->where('company_id','=',$company_id)->select('survey_id', 'survey_name')->get();
+        return $surveyDetails;
+    }
+
+    /**
      * Display the specified resource.
      *
      * @param  int  $id

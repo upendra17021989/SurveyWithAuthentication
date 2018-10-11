@@ -59,6 +59,10 @@ Route::group(['middleware' => ['web']], function () {
     Route::resource('survey', 'SurveyController');   
 
     Route::get('showusersurvey', 'UserSurveyController@index'); 
+    Route::get('getaddusersurvey/{cid}', 'AddUserSurveyController@getUsers'); 
+    Route::get('getsurveys/{cid}', 'AddUserSurveyController@getSurvey'); 
+    Route::post('addusertosurvey', 'AddUserSurveyController@create'); 
+    
 
     Route::post('addusersurveydata', 'UserSurveyEndController@create'); 
 });
