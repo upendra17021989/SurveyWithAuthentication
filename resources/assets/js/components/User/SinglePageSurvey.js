@@ -14,17 +14,33 @@ class SinglePageSurvey extends Component {
                   counter: 0,
                   isCompleted: false,
                   answerSet: [],
-                  form_id: 4,
-                  survey_id: 2
+                  form_id: '',
+                  survey_id: ''
                 };
       this.onButtonCheck = this.onButtonCheck.bind(this);
   }
 
 
     componentDidMount(){
-      this.apiCall(4);
+      this.getFormId(this.state.user_id);
+    }
+
+    getFormId($user_id) {
+      axios.get(MyGlobleSetting.url + '/api/getformid/' + $user_id)
+       .then(response => {
+        if (response.data.length > 0) {
+            this.apiCall(response.data[0].form_id);
+            this.setState({survey_name: response.data[0].survey_name,
+                           form_id: response.data[0].form_id,
+                            survey_id: response.data[0].survey_id});
+        }
+
+       })
+       .catch(function (error) {
+         console.log(error);
+       })
        
-     }
+    }
 
     apiCall($form_id) {
       axios.get(MyGlobleSetting.url + '/api/adminquestion/' + $form_id)
@@ -49,7 +65,7 @@ class SinglePageSurvey extends Component {
         let question_id = object.question_id;
         let answer_id = 0;
         
-        for (var j=0; j< self.state.answerSet.length ; j++) {
+        for (var j=0; j< self.state.answerSet.length; j++) {
           if (self.state.answerSet[j].question_id == question_id) {
             answer_id = self.state.answerSet[j].answer_id;
             break;
@@ -75,10 +91,21 @@ class SinglePageSurvey extends Component {
     }
 
     onButtonCheck(selected_option_id, question_id) {
-      let item = {}
-      item["question_id"] = question_id;
-      item["answer_id"] = selected_option_id;
-      this.state.answerSet.push(item);
+      var flag = false;
+      for (var j=0; j< this.state.answerSet.length ; j++) {
+        if (this.state.answerSet[j].question_id == question_id) {
+          this.state.answerSet[j].answer_id = selected_option_id;
+          flag = true;
+          break;
+        }
+      }
+
+      if (!flag) {
+        let item = {}
+        item["question_id"] = question_id;
+        item["answer_id"] = selected_option_id;
+        this.state.answerSet.push(item);
+      }
     }
 
      
@@ -97,11 +124,11 @@ class SinglePageSurvey extends Component {
       <div>
         <Nav link="Logout" />
           <form className="form-horizontal" role="form" method="POST" onSubmit= {this.onSubmit.bind(this)}>
-            {this.state.surveys && this.state.surveys[0].form_id}
+            {this.state.survey_name}
             {this.tabRow()}
             <button type="submit" className="btn btn-primary">
-                                                    Complete Survey
-                                                </button>
+                Complete Survey
+            </button>
           </form>
       </div>
   )}

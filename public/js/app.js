@@ -19432,8 +19432,8 @@ var SinglePageSurvey = function (_Component) {
       counter: 0,
       isCompleted: false,
       answerSet: [],
-      form_id: 4,
-      survey_id: 2
+      form_id: '',
+      survey_id: ''
     };
     _this.onButtonCheck = _this.onButtonCheck.bind(_this);
     return _this;
@@ -19442,18 +19442,34 @@ var SinglePageSurvey = function (_Component) {
   _createClass(SinglePageSurvey, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
-      this.apiCall(4);
+      this.getFormId(this.state.user_id);
+    }
+  }, {
+    key: 'getFormId',
+    value: function getFormId($user_id) {
+      var _this2 = this;
+
+      __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get(__WEBPACK_IMPORTED_MODULE_3__MyGlobleSetting__["a" /* default */].url + '/api/getformid/' + $user_id).then(function (response) {
+        if (response.data.length > 0) {
+          _this2.apiCall(response.data[0].form_id);
+          _this2.setState({ survey_name: response.data[0].survey_name,
+            form_id: response.data[0].form_id,
+            survey_id: response.data[0].survey_id });
+        }
+      }).catch(function (error) {
+        console.log(error);
+      });
     }
   }, {
     key: 'apiCall',
     value: function apiCall($form_id) {
-      var _this2 = this;
+      var _this3 = this;
 
       __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get(__WEBPACK_IMPORTED_MODULE_3__MyGlobleSetting__["a" /* default */].url + '/api/adminquestion/' + $form_id).then(function (response) {
         if (response.data.length > 0) {
-          _this2.setState({ surveys: response.data });
+          _this3.setState({ surveys: response.data });
         } else {
-          _this2.setState({ isCompleted: true });
+          _this3.setState({ isCompleted: true });
         }
       }).catch(function (error) {
         console.log(error);
@@ -19497,10 +19513,21 @@ var SinglePageSurvey = function (_Component) {
   }, {
     key: 'onButtonCheck',
     value: function onButtonCheck(selected_option_id, question_id) {
-      var item = {};
-      item["question_id"] = question_id;
-      item["answer_id"] = selected_option_id;
-      this.state.answerSet.push(item);
+      var flag = false;
+      for (var j = 0; j < this.state.answerSet.length; j++) {
+        if (this.state.answerSet[j].question_id == question_id) {
+          this.state.answerSet[j].answer_id = selected_option_id;
+          flag = true;
+          break;
+        }
+      }
+
+      if (!flag) {
+        var item = {};
+        item["question_id"] = question_id;
+        item["answer_id"] = selected_option_id;
+        this.state.answerSet.push(item);
+      }
     }
   }, {
     key: 'tabRow',
@@ -19522,7 +19549,7 @@ var SinglePageSurvey = function (_Component) {
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           'form',
           { className: 'form-horizontal', role: 'form', method: 'POST', onSubmit: this.onSubmit.bind(this) },
-          this.state.surveys && this.state.surveys[0].form_id,
+          this.state.survey_name,
           this.tabRow(),
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'button',
@@ -19697,6 +19724,8 @@ var UserSurveyOption = function (_Component) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__UserSurveyOption__ = __webpack_require__(178);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_primereact_inputtextarea__ = __webpack_require__(94);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_primereact_inputtextarea___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_primereact_inputtextarea__);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -19708,26 +19737,53 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
+
 var UserSurveyQuestion = function (_Component) {
   _inherits(UserSurveyQuestion, _Component);
 
   function UserSurveyQuestion(props) {
     _classCallCheck(this, UserSurveyQuestion);
 
-    return _possibleConstructorReturn(this, (UserSurveyQuestion.__proto__ || Object.getPrototypeOf(UserSurveyQuestion)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (UserSurveyQuestion.__proto__ || Object.getPrototypeOf(UserSurveyQuestion)).call(this, props));
+
+    _this.state = {
+      answer_id: ''
+    };
+    return _this;
   }
 
   _createClass(UserSurveyQuestion, [{
+    key: 'onButtonCheck',
+    value: function onButtonCheck(e, question_id) {
+      this.setState({ answer_id: e.target.value });
+      this.props.onButtonCheck(e.target.value, question_id);
+    }
+  }, {
     key: 'render',
     value: function render() {
-      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-        'div',
-        { className: 'surveyQuestion' },
-        this.props.currentCount,
-        '.) ',
-        this.props.obj.question_description,
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__UserSurveyOption__["a" /* default */], { obj: this.props.obj, onButtonCheck: this.props.onButtonCheck })
-      );
+      var _this2 = this;
+
+      if (this.props.obj.question_type == 'MCQ') {
+        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'div',
+          { className: 'surveyQuestion' },
+          this.props.currentCount,
+          '.) ',
+          this.props.obj.question_description,
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__UserSurveyOption__["a" /* default */], { obj: this.props.obj, onButtonCheck: this.props.onButtonCheck })
+        );
+      } else if (this.props.obj.question_type = 'OE') {
+        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'div',
+          { className: 'surveyQuestion' },
+          this.props.currentCount,
+          '.) ',
+          this.props.obj.question_description,
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_primereact_inputtextarea__["InputTextarea"], { rows: 10, cols: 50, value: this.state.answer_id, onChange: function onChange(e) {
+              return _this2.onButtonCheck(e, _this2.props.obj.question_id);
+            } })
+        );
+      }
     }
   }]);
 
