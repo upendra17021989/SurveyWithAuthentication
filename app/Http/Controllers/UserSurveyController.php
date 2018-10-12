@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use DB;
 use DateTime;
 
+use Mail;
+use App\Mail\testing;
+
 class UserSurveyController extends Controller
 {
     /**
@@ -100,5 +103,22 @@ class UserSurveyController extends Controller
     public function destroy($survey_id)
     {
         DB::table('company_survey')->where('survey_id', $survey_id)->delete();
+    }
+
+    public function sendMail() {
+        $title = 'testing';
+        $content = 'hi how are you';
+
+        Mail::send('mail', ['title' => $title, 'content' => $content], function ($message)
+        {
+
+            $message->from('ups17021989@gmail.com', 'Christian Nwamba');
+
+            $message->to('ups12384@gmail.com');
+
+        });
+
+
+        return response()->json(['message' => 'Request completed']);
     }
 }

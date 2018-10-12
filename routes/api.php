@@ -66,6 +66,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('getformid/{uid}', 'UserSurveyController@getFormId'); 
     
     Route::post('addusersurveydata', 'UserSurveyEndController@create'); 
+
+    Route::get('/mail', 'UserSurveyController@sendMail');
 });
   
 
