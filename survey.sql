@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 18, 2018 at 02:35 PM
+-- Generation Time: Oct 18, 2018 at 03:00 PM
 -- Server version: 10.1.35-MariaDB
 -- PHP Version: 7.2.9
 
@@ -146,7 +146,17 @@ INSERT INTO `options` (`form_id`, `question_id`, `option_id`, `option_descriptio
 (6, 11, 35, 'option 1', '2018-10-10 04:22:00', '2018-10-10 04:22:00'),
 (6, 11, 36, 'option 23', '2018-10-10 04:22:00', '2018-10-10 04:22:41'),
 (6, 11, 37, 'option 3', '2018-10-10 04:22:00', '2018-10-10 04:22:00'),
-(6, 11, 39, 'option 4', '2018-10-10 04:22:32', '2018-10-10 04:22:32');
+(6, 11, 39, 'option 4', '2018-10-10 04:22:32', '2018-10-10 04:22:32'),
+(6, 14, 40, 'Pizza', '2018-10-18 12:43:07', '2018-10-18 12:43:07'),
+(6, 14, 41, 'Pasta', '2018-10-18 12:43:07', '2018-10-18 12:43:07'),
+(6, 14, 42, 'Salad', '2018-10-18 12:43:07', '2018-10-18 12:43:07'),
+(6, 14, 43, 'Steak', '2018-10-18 12:43:08', '2018-10-18 12:43:08'),
+(6, 14, 44, 'Soup', '2018-10-18 12:43:08', '2018-10-18 12:43:08'),
+(6, 14, 45, 'Other', '2018-10-18 12:43:08', '2018-10-18 12:56:10'),
+(6, 15, 46, '$0-10k', '2018-10-18 12:57:58', '2018-10-18 12:57:58'),
+(6, 15, 47, '$10-35k', '2018-10-18 12:57:58', '2018-10-18 12:57:58'),
+(6, 15, 48, '$35-60k', '2018-10-18 12:57:58', '2018-10-18 12:57:58'),
+(6, 15, 49, '$60k+', '2018-10-18 12:57:59', '2018-10-18 12:57:59');
 
 -- --------------------------------------------------------
 
@@ -190,7 +200,9 @@ INSERT INTO `questions` (`form_id`, `question_id`, `question_description`, `ques
 (6, 9, 'In thinking about your most recent experience with [COMPANY], how was the quality of customer service you received?', 'MCQ', '2018-10-03 12:19:28', '2018-10-03 12:27:48'),
 (6, 10, 'The process for getting your concerns resolved was:', 'MCQ', '2018-10-03 12:38:55', '2018-10-04 14:00:32'),
 (6, 11, 'Now please think about the features and benefits of the [PRODUCT] itself. How satisfied are you with the [PRODUCT]:', 'MCQ', '2018-10-05 11:24:21', '2018-10-05 11:24:21'),
-(6, 13, 'Give your feedback.', 'OE', '2018-10-10 04:31:57', '2018-10-10 04:31:57');
+(6, 13, 'Give your feedback.', 'OE', '2018-10-10 04:31:57', '2018-10-10 04:31:57'),
+(6, 14, 'What\'s your favorite food?', 'MCQ', '2018-10-18 12:42:11', '2018-10-18 12:42:11'),
+(6, 15, 'What\'s your household income?', 'MCQ', '2018-10-18 12:57:13', '2018-10-18 12:57:13');
 
 -- --------------------------------------------------------
 
@@ -424,13 +436,13 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `options`
 --
 ALTER TABLE `options`
-  MODIFY `option_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `option_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT for table `questions`
 --
 ALTER TABLE `questions`
-  MODIFY `question_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `question_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `users`

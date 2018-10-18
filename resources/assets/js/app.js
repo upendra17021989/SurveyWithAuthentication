@@ -56,7 +56,7 @@ ReactDOM.render(
 	    <Route path='/company' component={DisplayCompany}/>
 	    <Route path='/form/:cid' component={DisplayForm}/>
 	    <Route path='/admin-question/:cid/:fid' component={DisplayAdminQuestion}/>
-	    <Route path='/admin-option/:fid/:qid' component={DisplayAdminOption}/>
+	    <Route path='/admin-option/:cid/:fid/:qid' component={DisplayAdminOption}/>
 
 	    <Route path='/edit-company/:id' component={EditCompany}/>
 	    <Route path='/edit-form/:cid/:fid' component={EditForm}/>

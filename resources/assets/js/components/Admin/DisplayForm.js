@@ -65,28 +65,26 @@ class DisplayForm extends Component {
             <div className="col-md-8 col-md-offset-2">
               <div className="panel panel-default">
                 <div className="panel-heading">Form List</div>
-                <div className="panel-body">   
-                <div className="col-md-offset-2 col-md-8 col-md-offset-2">
-                  {error != undefined && <div className={name} role="alert">{msg}</div>}
-                </div>
-                  <div className="table-responsive">
-                    <table className="table">
-                      <thead>
-                        <tr>
-                          <th>Form Name</th>
-                          <th>Description</th>
-                          <th>Created Date</th>
-                          <th>Updated Date</th>
-                          <th></th>
-                          <th></th>
-                          <th></th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {this.tabRow()}
-                     </tbody>
-                    </table>
+                <div className="table-responsive panel-body">   
+                  <div className="col-md-offset-2 col-md-8 col-md-offset-2">
+                    {error != undefined && <div className={name} role="alert">{msg}</div>}
                   </div>
+                  <table className="table">
+                    <thead>
+                      <tr>
+                        <th>Form Name</th>
+                        <th>Description</th>
+                        <th>Created Date</th>
+                        <th>Updated Date</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {this.tabRow()}
+                   </tbody>
+                  </table>
                   <Link to={"/create-form/" + this.state.company_id}>Create Form</Link>
                 </div>
               </div>

@@ -43,7 +43,7 @@ class DisplayAdminQuestion extends Component {
       let self = this;
       if (this.state.questions instanceof Array) {
           return this.state.questions.map(function(item, key){
-            return <AdminQuestionRow obj={item} handleSubmit={self.handleSubmit} />;
+            return <AdminQuestionRow company_id={self.state.company_id} obj={item} handleSubmit={self.handleSubmit} />;
           })
         }
     }
