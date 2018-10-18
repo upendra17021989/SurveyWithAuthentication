@@ -9,7 +9,7 @@ class SinglePageSurvey extends Component {
   constructor(props) {
     super(props);
     this.state = {
-                  user_id: props.location.state.user_id,
+                  user_id: props.match.params.id,
                   surveys: '',
                   counter: 0,
                   isCompleted: false,
@@ -22,6 +22,10 @@ class SinglePageSurvey extends Component {
 
 
     componentDidMount(){
+      this.getFormId(this.state.user_id);
+    }
+
+    componentWillMount(){
       this.getFormId(this.state.user_id);
     }
 
@@ -82,7 +86,7 @@ class SinglePageSurvey extends Component {
           })
           .then(response=> {
             self.setState({err: false});
-            self.props.history.push("survey-complete") ;
+            self.props.history.push("/survey-complete") ;
           })
           .catch(error=> {
             self.setState({err: true});
@@ -121,14 +125,16 @@ class SinglePageSurvey extends Component {
 
   render() {
     return (
-      <div>
+      <div className="single-page-survey">
         <Nav link="Logout" />
           <form className="form-horizontal" role="form" method="POST" onSubmit= {this.onSubmit.bind(this)}>
-            {this.state.survey_name}
+            <h1 className="title">{this.state.survey_name}</h1>
             {this.tabRow()}
-            <button type="submit" className="btn btn-primary">
-                Complete Survey
-            </button>
+            <div className="complete-button">
+              <button type="submit" className="btn btn-primary">
+                  Complete Survey
+              </button>
+            </div>
           </form>
       </div>
   )}

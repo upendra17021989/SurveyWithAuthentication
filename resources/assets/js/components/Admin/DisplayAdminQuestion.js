@@ -66,32 +66,32 @@ class DisplayAdminQuestion extends Component {
             <div className="col-md-8 col-md-offset-2">
               <div className="panel panel-default">
                 <div className="panel-heading">Question List</div>
-                <div className="panel-body">   
-                <div className="col-md-offset-2 col-md-8 col-md-offset-2">
-                  {error != undefined && <div className={name} role="alert">{msg}</div>}
-                </div>
-                  <table className="table">
-                    <thead>
-                      <tr>
-                        <th>Question</th>
-                        <th>Type</th>
-                        <th>Created Date</th>
-                        <th>Updated Date</th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {this.tabRow()}
-                   </tbody>
-                   <tr>
-                    <td><Link to={"/create-question/" + this.state.company_id + "/" + this.state.form_id}>Create Question</Link></td>
-                    <td></td>
-                    <td><Link to={"/form/" + this.state.company_id}>View Forms</Link></td>
-                  </tr>
-                  </table>
+                <div className="table-responsive panel-body">   
+                  <div className="col-md-offset-2 col-md-8 col-md-offset-2">
+                    {error != undefined && <div className={name} role="alert">{msg}</div>}
+                  </div>
+                    <table className="table">
+                      <thead>
+                        <tr>
+                          <th>Question</th>
+                          <th>Type</th>
+                          <th>Created Date</th>
+                          <th>Updated Date</th>
+                          <th></th>
+                          <th></th>
+                          <th></th>
+                          <th></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {this.tabRow()}
+                     </tbody>
+                     <tr>
+                      <td><Link to={"/create-question/" + this.state.company_id + "/" + this.state.form_id}>Create Question</Link></td>
+                      <td></td>
+                      <td><Link to={"/form/" + this.state.company_id}>View Forms</Link></td>
+                    </tr>
+                    </table>
                   
                 </div>
               </div>

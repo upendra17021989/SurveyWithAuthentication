@@ -137,7 +137,7 @@ class AddUserSurvey extends Component {
         let msg = (!error) ? 'Updated Successfully' : 'Oops! , Something went wrong.' ;
         let name = (!error) ? 'alert alert-success' : 'alert alert-danger' ;
         return (   
-             <div>   
+             <div className="add-user-survey">   
                 <Nav link="admin" />
                 <div className="container">
                     <div className="row">
@@ -157,14 +157,15 @@ class AddUserSurvey extends Component {
                                             </div>
                                         </div>
 
-                                        <div className="form-group">
-                                        <table>
-                                          <thead></thead>
-                                          <tr>
-                                            <th> User Name </th>
-                                            <th> User Email </th>
-                                            <th>Survey</th>
-                                          </tr>
+                                        <div className="form-grou table-responsive">
+                                        <table className="table table-bordered">
+                                          <thead>
+                                            <tr>
+                                              <th> User Name </th>
+                                              <th> User Email </th>
+                                              <th>Survey</th>
+                                            </tr>
+                                          </thead>
                                           <tbody>
                                             {this.tabRow()}
                                           </tbody>
@@ -173,9 +174,9 @@ class AddUserSurvey extends Component {
 
 
                                         <div className="form-group">
-                                            <div className="col-md-6 col-md-offset-4">
+                                            <div className="button-align">
                                                 <button type="submit" className="btn btn-primary">
-                                                    Link 
+                                                    Link Users To Survey
                                                 </button>
                                             </div>
                                         </div>

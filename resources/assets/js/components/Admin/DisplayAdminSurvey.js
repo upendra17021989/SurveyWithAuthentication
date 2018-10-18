@@ -78,6 +78,9 @@ class DisplayAdminSurvey extends Component {
                         <th>End Date</th>
                         <th></th>
                         <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
                       </tr>
                     </thead>
                     <tbody>

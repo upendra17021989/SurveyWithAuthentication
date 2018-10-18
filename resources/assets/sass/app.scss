@@ -7,3 +7,109 @@
 
 // Bootstrap
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+.user-survey-home {
+	text-align: center;
+	.title {
+		font-size: 44px;
+		@media(max-width: 767px) {
+			margin-top: 58px;
+			font-size: 27px;
+		}
+    	margin-top: 130px;
+	}
+
+	.content {
+		font-size: 18px;
+		@media(max-width: 767px) {
+			margin: 10px 5px 0 5px;
+			font-size: 14px;
+		}
+	}
+
+	.start-button {
+		zoom: 2;
+		margin-top: 40px;
+
+		@media(max-width: 767px) {
+			zoom: 1.8;
+			margin-top: 20px;		
+		}
+	}
+}
+
+.single-page-survey {
+	margin-bottom: 170px;
+	.form-horizontal {
+		@media(min-width: 768px) {
+			border-style: solid;
+			border-color: cadetblue;
+			border-radius: 10px;
+			width: 80%;
+		}
+		margin: 0 auto;
+
+		.title {
+			margin: 40px 0 40px 0;
+			text-align: center;
+			font-size: 44px;
+		}
+
+		.survey-question {
+			font-size: 18px;
+			font-family: "Raleway", sans-serif;
+			line-height: 1.6;
+    		color: #636b6f;
+    		font-weight: bold;
+    		margin: 0 20px 0 20px;
+
+			.survey-option {
+				font-size: 16px;
+
+				.p-radiobutton-label {
+					font-weight: normal;
+				}
+			}
+
+			.open-ended {
+				display: block;
+			}
+
+			.text-area {
+				margin-left: 38px;
+				
+				@media(max-width: 767px) {
+					margin-left: 10px;
+				}
+				
+			}
+
+			ul {
+				@media(max-width: 767px) {
+					padding-left: 10px;
+				}
+			}
+		}
+
+		.complete-button {
+			text-align: center;
+			margin: 40px 0 40px 0;
+			zoom: 1.5;
+		}
+	}
+	
+}
+
+.add-user-survey {
+	.form-group {
+		.button-align {
+			margin: 0 auto;
+			display: table;
+
+			button {
+				zoom: 1.3;
+				margin-top: 20px;
+			}
+		}
+	}
+}

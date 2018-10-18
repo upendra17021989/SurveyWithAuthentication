@@ -40,7 +40,7 @@ class UserSurveyOption extends Component {
     if (this.state.options instanceof Array) {
         return this.state.options.map(function(item, key){
           return (
-            <div>
+            <div className="survey-option">
             <RadioButton value={item.option_id} name={"surveyOptions"+ item.question_id} onChange={(e) => self.onButtonCheck(e, item.question_id)} checked={self.state.answer_id === item.option_id} />
           <label htmlFor="rb1" className="p-radiobutton-label">{item.option_description}</label>
           </div>
