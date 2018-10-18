@@ -113,3 +113,16 @@
 		}
 	}
 }
+
+.survey-complete {
+	.message {
+		font-size: 50px;
+		text-align: center;
+		margin-top: 250px;
+
+		@media(max-width: 767px) {
+			font-size: 24px;
+			margin-top: 115px;			
+		}
+	}
+}

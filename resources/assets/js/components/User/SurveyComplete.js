@@ -8,11 +8,11 @@ class SurveyComplete extends Component {
 
   render() {
     return (
-      <div>
+      <div className="survey-complete">
       <Nav link="Logout" />
-      <div className="surveyComplete">
+      <h1 className="message">
           Thanks for Participating in the Survey!!!
-	    </div>
+	    </h1>
       </div>
     )
   }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 18, 2018 at 03:00 PM
+-- Generation Time: Oct 18, 2018 at 03:10 PM
 -- Server version: 10.1.35-MariaDB
 -- PHP Version: 7.2.9
 
@@ -67,7 +67,7 @@ CREATE TABLE `company_survey` (
 INSERT INTO `company_survey` (`survey_id`, `company_id`, `form_id`, `survey_name`, `start_dt`, `end_dt`, `created_at`, `updated_at`) VALUES
 (1, 15, 5, 'Customer Satisfaction Survey', '2018-09-19', '2018-09-23', '2018-10-01 07:58:20', '2018-10-01 11:55:55'),
 (2, 15, 4, 'Dhaval', '2018-09-11', '2018-09-11', '2018-10-01 07:59:46', '2018-10-01 11:02:38'),
-(3, 15, 6, 'NAGAR', '2018-10-10', '2018-10-23', '2018-10-10 05:20:20', '2018-10-10 05:20:20');
+(3, 15, 6, 'Employee Satisfaction Survey', '2018-10-10', '2018-10-23', '2018-10-10 05:20:20', '2018-10-18 13:09:45');
 
 -- --------------------------------------------------------
 
@@ -314,6 +314,18 @@ CREATE TABLE `user_survey` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `user_survey`
+--
+
+INSERT INTO `user_survey` (`user_id`, `survey_id`, `form_id`, `question_id`, `answer_id`, `created_at`, `updated_at`) VALUES
+('dhaval@gmail.com', 3, 6, 9, '0', '2018-10-18 13:10:20', '2018-10-18 13:10:20'),
+('dhaval@gmail.com', 3, 6, 10, '0', '2018-10-18 13:10:20', '2018-10-18 13:10:20'),
+('dhaval@gmail.com', 3, 6, 11, '0', '2018-10-18 13:10:20', '2018-10-18 13:10:20'),
+('dhaval@gmail.com', 3, 6, 13, '0', '2018-10-18 13:10:20', '2018-10-18 13:10:20'),
+('dhaval@gmail.com', 3, 6, 14, '0', '2018-10-18 13:10:21', '2018-10-18 13:10:21'),
+('dhaval@gmail.com', 3, 6, 15, '0', '2018-10-18 13:10:21', '2018-10-18 13:10:21');
 
 -- --------------------------------------------------------
 
