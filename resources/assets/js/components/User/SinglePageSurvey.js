@@ -9,7 +9,7 @@ class SinglePageSurvey extends Component {
   constructor(props) {
     super(props);
     this.state = {
-                  user_id: props.match.params.id,
+                  user_id: props.location.state.user_id,
                   surveys: '',
                   counter: 0,
                   isCompleted: false,

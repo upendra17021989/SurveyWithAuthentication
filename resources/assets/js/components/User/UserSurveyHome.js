@@ -13,7 +13,10 @@ class UserSurveyHome extends Component {
   }
 
   handleClick(e) {
-    this.props.history.push('/single-page-survey/'+this.state.user_id);
+    this.props.history.push({
+      pathname: '/single-page-survey',
+      state: {user_id: this.state.user_id }
+    });
   }
 
   render() {

@@ -34,7 +34,7 @@ class Nav extends Component {
         <nav className="navbar navbar-default">
           <div className="container-fluid">
               <div className="navbar-header">
-                <a className="navbar-brand" href="#" onClick={this.handleClick.bind(this)}>Admin Home</a>
+                <Link className="navbar-brand" to="/admin-home">Admin Home</Link>
               </div>
               <ul className="nav navbar-nav navbar-right">
                 <li><Link to="/admin-survey">Survey</Link></li>

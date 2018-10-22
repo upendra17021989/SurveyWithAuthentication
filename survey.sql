@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 18, 2018 at 03:10 PM
+-- Generation Time: Oct 22, 2018 at 04:04 PM
 -- Server version: 10.1.35-MariaDB
 -- PHP Version: 7.2.9
 
@@ -156,7 +156,12 @@ INSERT INTO `options` (`form_id`, `question_id`, `option_id`, `option_descriptio
 (6, 15, 46, '$0-10k', '2018-10-18 12:57:58', '2018-10-18 12:57:58'),
 (6, 15, 47, '$10-35k', '2018-10-18 12:57:58', '2018-10-18 12:57:58'),
 (6, 15, 48, '$35-60k', '2018-10-18 12:57:58', '2018-10-18 12:57:58'),
-(6, 15, 49, '$60k+', '2018-10-18 12:57:59', '2018-10-18 12:57:59');
+(6, 15, 49, '$60k+', '2018-10-18 12:57:59', '2018-10-18 12:57:59'),
+(6, 16, 50, 'Customer Service', '2018-10-22 13:46:32', '2018-10-22 13:46:32'),
+(6, 16, 51, 'Finance/Accounting', '2018-10-22 13:46:33', '2018-10-22 13:46:33'),
+(6, 16, 52, 'MIS  Sales/Marketing', '2018-10-22 13:46:33', '2018-10-22 13:46:33'),
+(6, 16, 53, 'Corporate Marketing', '2018-10-22 13:46:33', '2018-10-22 13:46:33'),
+(6, 16, 54, 'Human Resources', '2018-10-22 13:46:33', '2018-10-22 13:46:33');
 
 -- --------------------------------------------------------
 
@@ -202,7 +207,8 @@ INSERT INTO `questions` (`form_id`, `question_id`, `question_description`, `ques
 (6, 11, 'Now please think about the features and benefits of the [PRODUCT] itself. How satisfied are you with the [PRODUCT]:', 'MCQ', '2018-10-05 11:24:21', '2018-10-05 11:24:21'),
 (6, 13, 'Give your feedback.', 'OE', '2018-10-10 04:31:57', '2018-10-10 04:31:57'),
 (6, 14, 'What\'s your favorite food?', 'MCQ', '2018-10-18 12:42:11', '2018-10-18 12:42:11'),
-(6, 15, 'What\'s your household income?', 'MCQ', '2018-10-18 12:57:13', '2018-10-18 12:57:13');
+(6, 15, 'What\'s your household income?', 'MCQ', '2018-10-18 12:57:13', '2018-10-18 12:57:13'),
+(6, 16, 'Which of the following best describes the department you work in?', 'MCQ', '2018-10-22 13:45:26', '2018-10-22 13:45:26');
 
 -- --------------------------------------------------------
 
@@ -297,7 +303,8 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `company_id`, `name`, `user_type`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
 (2, 15, 'Jayesh Ingle', 'respondent', 'abc@gmail.com', '$2y$10$1V4yOkrQbwAN2bUm6hAInOMYfTApHORNRW135ZE1ldtn9a7eYaUb.', NULL, '2018-09-22 06:12:56', '2018-09-22 06:12:56'),
 (3, 15, 'Dhaval Patel', 'respondent', 'dhaval@gmail.com', '$2y$10$GjhjabwUiIi.vbTCoX8ZXu2KaWk/LxSLWvoQHdxCrYxKGClMafE4S', NULL, '2018-10-01 06:10:06', '2018-10-01 06:10:06'),
-(4, NULL, 'Admin', 'admin', 'survey@gmail.com', '$2y$10$NsM4I1ELRg.qY7IdWV5sxOWETR9PCbH4K87f2fWXF2Lzd/.RflfF2', NULL, '2018-10-15 00:16:00', '2018-10-15 00:16:00');
+(4, NULL, 'Admin', 'admin', 'survey@gmail.com', '$2y$10$NsM4I1ELRg.qY7IdWV5sxOWETR9PCbH4K87f2fWXF2Lzd/.RflfF2', NULL, '2018-10-15 00:16:00', '2018-10-15 00:16:00'),
+(5, 15, 'Gaurav', 'respondent', 'gaurav@gmail.com', '$2y$10$1WM41vlsB8504jsEmRWm6ut6vTcpBRIXIzW0ZXC/25Xpp9yXzpFam', NULL, '2018-10-18 07:47:05', '2018-10-18 07:47:05');
 
 -- --------------------------------------------------------
 
@@ -314,18 +321,6 @@ CREATE TABLE `user_survey` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `user_survey`
---
-
-INSERT INTO `user_survey` (`user_id`, `survey_id`, `form_id`, `question_id`, `answer_id`, `created_at`, `updated_at`) VALUES
-('dhaval@gmail.com', 3, 6, 9, '0', '2018-10-18 13:10:20', '2018-10-18 13:10:20'),
-('dhaval@gmail.com', 3, 6, 10, '0', '2018-10-18 13:10:20', '2018-10-18 13:10:20'),
-('dhaval@gmail.com', 3, 6, 11, '0', '2018-10-18 13:10:20', '2018-10-18 13:10:20'),
-('dhaval@gmail.com', 3, 6, 13, '0', '2018-10-18 13:10:20', '2018-10-18 13:10:20'),
-('dhaval@gmail.com', 3, 6, 14, '0', '2018-10-18 13:10:21', '2018-10-18 13:10:21'),
-('dhaval@gmail.com', 3, 6, 15, '0', '2018-10-18 13:10:21', '2018-10-18 13:10:21');
 
 -- --------------------------------------------------------
 
@@ -349,7 +344,8 @@ CREATE TABLE `user_survey_link` (
 INSERT INTO `user_survey_link` (`company_id`, `user_id`, `survey_id`, `status`, `created_at`, `updated_at`) VALUES
 (15, 'abc@gmail.com', 1, 'open', '2018-10-11 08:29:07', '2018-10-11 08:29:07'),
 (15, 'abc@gmail.com', 3, 'open', '2018-10-12 14:02:38', '2018-10-12 14:02:38'),
-(15, 'dhaval@gmail.com', 3, 'open', '2018-10-11 08:29:07', '2018-10-11 10:21:53');
+(15, 'dhaval@gmail.com', 3, 'open', '2018-10-11 08:29:07', '2018-10-11 10:21:53'),
+(15, 'gaurav@gmail.com', 3, 'open', '2018-10-18 13:20:03', '2018-10-18 13:20:03');
 
 --
 -- Indexes for dumped tables
@@ -448,19 +444,19 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `options`
 --
 ALTER TABLE `options`
-  MODIFY `option_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `option_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
 -- AUTO_INCREMENT for table `questions`
 --
 ALTER TABLE `questions`
-  MODIFY `question_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `question_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

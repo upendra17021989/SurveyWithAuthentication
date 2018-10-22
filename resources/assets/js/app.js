@@ -42,7 +42,7 @@ ReactDOM.render(
 	    <Route path='/register' component={Register}/>
 
 	    <Route path='/user-home' component={UserSurveyHome}/>
-		<Route path='/single-page-survey/:id' component={SinglePageSurvey}/>
+		<Route path='/single-page-survey' component={SinglePageSurvey}/>
 
 	    <Route path='/admin-home' component={AdminHome}/>
 	    <Route path='/admin-survey' component={DisplayAdminSurvey}/>
