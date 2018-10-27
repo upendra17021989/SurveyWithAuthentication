@@ -12,6 +12,7 @@ import UserSurveyHome from './components/User/UserSurveyHome';
 import SinglePageSurvey from './components/User/SinglePageSurvey';
 import AdminHome from './components/Admin/AdminHome';
 import DisplayAdminSurvey from './components/Admin/DisplayAdminSurvey';
+import AdminUser from './components/Admin/AdminUser';
 
 import CreateCompany from './components/Admin/CreateCompany';
 import CreateForm from './components/Admin/CreateForm';
@@ -46,6 +47,7 @@ ReactDOM.render(
 
 	    <Route path='/admin-home' component={AdminHome}/>
 	    <Route path='/admin-survey' component={DisplayAdminSurvey}/>
+	    <Route path='/admin-user' component={AdminUser}/>
 
 	    <Route path='/create-company' component={CreateCompany}/>
 	    <Route path='/create-form/:cid' component={CreateForm}/>
