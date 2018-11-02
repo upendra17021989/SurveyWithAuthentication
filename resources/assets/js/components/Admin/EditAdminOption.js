@@ -110,7 +110,7 @@ class EditAdminOption extends Component {
                                             </div>
                                         </div>
                                     </form>
-                                    <Link to={"/admin-option/" + this.state.fid + "/" + this.state.fid}>View Options</Link>
+                                    <Link to={"/admin-option/" + this.state.fid + "/" + this.state.qid}>View Options</Link>
                                 </div>
                             </div>
                         </div>

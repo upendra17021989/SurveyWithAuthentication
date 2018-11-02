@@ -8,7 +8,6 @@ class CreateForm extends Component {
     constructor(props){
         super(props);
         this.state = {
-          company_id: props.match.params.cid,
           name: '',
           description : ''
         }
@@ -16,9 +15,8 @@ class CreateForm extends Component {
 
     onSubmit(e){
         e.preventDefault();
-        const {company_id, name, description} = this.state;
+        const {name, description} = this.state;
         axios.post('/api/createform', {
-            company_id,
             name,
             description
           })
@@ -79,7 +77,7 @@ class CreateForm extends Component {
                                             </div>
                                         </div>
                                     </form>
-                                    <Link to={"/form/" + this.state.company_id}>View Forms</Link>
+                                    <Link to={"/form"}>View Forms</Link>
                                 </div>
                             </div>
                         </div>

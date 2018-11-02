@@ -83,7 +83,7 @@ class DisplayCompany extends Component {
                       {this.tabRow()}
                    </tbody>
                   </table>
-                  <Link to="/create-company">Create Company</Link>
+                  <Link to="/create-company">Add New Company</Link>
                 </div>
               </div>
             </div>

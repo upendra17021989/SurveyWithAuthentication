@@ -13,7 +13,7 @@ class FormRow extends Component {
   handleSubmit(event) {
     event.preventDefault();
     if(confirm("Do You Really Want to delete?")) {
-      let uri = MyGlobleSetting.url + `/api/deleteform/${this.props.company_id}/${this.props.obj.form_id}`;
+      let uri = MyGlobleSetting.url + `/api/deleteform/${this.props.obj.form_id}`;
       axios.get(uri)
        .then(response => {
         this.props.handleSubmit();
@@ -31,8 +31,8 @@ class FormRow extends Component {
           <td>{this.props.obj.form_description}</td>
           <td>{this.props.obj.created_at}</td>
           <td>{this.props.obj.updated_at}</td>
-          <td><Link to={"/admin-question/" + this.props.company_id + "/" + this.props.obj.form_id} className="btn btn-primary">Questions</Link></td>
-          <td><Link to={"/edit-form/" + this.props.company_id + "/" + this.props.obj.form_id} className="btn btn-primary">Edit</Link></td>
+          <td><Link to={"/admin-question/" + this.props.obj.form_id} className="btn btn-primary">Questions</Link></td>
+          <td><Link to={"/edit-form/" + this.props.obj.form_id} className="btn btn-primary">Edit</Link></td>
           <td><form onSubmit={this.handleSubmit}>
                 <input type="submit" value="Delete" className="btn btn-danger"/>
               </form>

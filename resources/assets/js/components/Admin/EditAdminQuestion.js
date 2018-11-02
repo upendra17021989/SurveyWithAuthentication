@@ -16,6 +16,7 @@ class EditAdminQuestion extends Component {
     constructor(props){
         super(props);
         this.state = {
+          cid: props.match.params.cid,
           fid: props.match.params.fid,
           qid: props.match.params.qid,
           description : ''

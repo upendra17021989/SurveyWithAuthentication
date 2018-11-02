@@ -50,18 +50,18 @@ ReactDOM.render(
 	    <Route path='/admin-user' component={AdminUser}/>
 
 	    <Route path='/create-company' component={CreateCompany}/>
-	    <Route path='/create-form/:cid' component={CreateForm}/>
-	    <Route path='/create-question/:cid/:fid' component={CreateAdminQuestion}/>
+	    <Route path='/create-form' component={CreateForm}/>
+	    <Route path='/create-question/:fid' component={CreateAdminQuestion}/>
 	    <Route path='/create-option/:fid/:qid' component={CreateAdminOption}/>
 	    <Route path='/create-admin-survey' component={CreateAdminSurvey}/>
 
 	    <Route path='/company' component={DisplayCompany}/>
-	    <Route path='/form/:cid' component={DisplayForm}/>
-	    <Route path='/admin-question/:cid/:fid' component={DisplayAdminQuestion}/>
-	    <Route path='/admin-option/:cid/:fid/:qid' component={DisplayAdminOption}/>
+	    <Route path='/form' component={DisplayForm}/>
+	    <Route path='/admin-question/:fid' component={DisplayAdminQuestion}/>
+	    <Route path='/admin-option/:fid/:qid' component={DisplayAdminOption}/>
 
 	    <Route path='/edit-company/:id' component={EditCompany}/>
-	    <Route path='/edit-form/:cid/:fid' component={EditForm}/>
+	    <Route path='/edit-form/:fid' component={EditForm}/>
 	    <Route path='/edit-question/:fid/:qid' component={EditAdminQuestion}/>
 	    <Route path='/edit-option/:fid/:qid/:oid' component={EditAdminOption}/>
 	    <Route path='/edit-admin-survey/:sid' component={EditAdminSurvey}/>

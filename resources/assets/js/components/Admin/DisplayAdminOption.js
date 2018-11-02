@@ -10,7 +10,6 @@ class DisplayAdminOption extends Component {
   constructor(props) {
     super(props);
     this.state = {
-                  company_id: props.match.params.cid,
                   form_id: props.match.params.fid,
                   question_id: props.match.params.qid,
                   isCompleted: false
@@ -86,8 +85,8 @@ class DisplayAdminOption extends Component {
                     </tbody>
                     <tr>
                       <td><Link className="" to={"/create-option/" + this.state.form_id + "/" + this.state.question_id }>Create Option</Link></td>
-                      <td><Link className="" to={"/admin-question/" + this.state.company_id + "/" + this.state.form_id}> View Questions</Link></td>
-                      <td><Link className="" to={"/form/" + this.state.company_id }> View Forms </Link></td>
+                      <td><Link className="" to={"/admin-question/" + this.state.form_id}> View Questions</Link></td>
+                      <td><Link className="" to={"/form"}> View Forms </Link></td>
                     </tr>
                   </table>
                 </div>

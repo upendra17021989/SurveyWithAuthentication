@@ -9,7 +9,6 @@ class EditForm extends Component {
     constructor(props){
         super(props);
         this.state = {
-          company_id: props.match.params.cid,
           form_id: props.match.params.fid,
           name: '',
           description : ''
@@ -21,7 +20,7 @@ class EditForm extends Component {
     }
 
     apiCall() {
-      axios.get(MyGlobleSetting.url + '/api/showform/'+ this.state.company_id +"/" + this.state.form_id)
+      axios.get(MyGlobleSetting.url + '/api/showform/' + this.state.form_id)
        .then(response => {
         if (response.data.length > 0) {
          this.setState({ name: response.data[0].form_name,
@@ -119,7 +118,7 @@ class EditForm extends Component {
                                             </div>
                                         </div>
                                     </form>
-                                    <Link to={"/form/" + this.state.company_id}>View Forms</Link>
+                                    <Link to={"/form"}>View Forms</Link>
                                 </div>
                             </div>
                         </div>

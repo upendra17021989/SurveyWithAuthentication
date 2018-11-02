@@ -52,7 +52,7 @@ class CreateAdminSurvey extends Component {
 
     getFormDropDown(value) {
       if (value) {
-        axios.get('/api/formdropdownlist/' + value)
+        axios.get('/api/formdropdownlist')
          .then(response => {
           if (response.data.length > 0) {
               let formSelectItems = [];
