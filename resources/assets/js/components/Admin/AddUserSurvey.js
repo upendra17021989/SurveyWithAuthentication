@@ -14,7 +14,7 @@ class AddUserSurvey extends Component {
     constructor(props){
         super(props);
         this.state = {
-          company_id: props.match.params.cid,
+          company_id: props && props.match && props.match.params && props.match.params.cid,
           survey_id: props.match.params.sid,
           usersDetail: '',
           linkedSurvey: [],
@@ -35,6 +35,8 @@ class AddUserSurvey extends Component {
        .then(response => {
         if (response.data.length > 0) {
          this.setState({usersDetail: response.data});
+        } else {
+          this.setState({usersDetail: []})
         }
 
        })
@@ -53,7 +55,9 @@ class AddUserSurvey extends Component {
                     companySelectItems.push({label: item.company_name, value: item.company_id});
                 })
             }
-                this.setState({ companySelectItems: companySelectItems });
+              this.setState({ companySelectItems: companySelectItems,
+                company_id: this.state.company_id
+              });
         }
 
        })
@@ -74,6 +78,8 @@ class AddUserSurvey extends Component {
                 })
             }
                 this.setState({ surveySelectItems: surveySelectItems });
+        } else {
+          this.setState({surveySelectItems: []});
         }
 
        })
@@ -115,9 +121,10 @@ class AddUserSurvey extends Component {
           return this.state.usersDetail.map(function(item, key){
             return (
               <tr>
-                <td style={{width: '30%' }}> {item.name} </td>
-                <td style={{width: '30%' }}> {item.email} </td>
-                <td style={{width: '40%'}} ><Dropdown style={{width: '100%'}} value={self.state.linkedSurvey[key]} options={self.state.surveySelectItems} onChange={(e) => {self.handleChange(key, e.value, item.email)}} placeholder="Select a Survey"/></td>
+                <td> {item.name} </td>
+                <td> {item.email} </td>
+                <td> {item.survey_name} </td>
+                <td> {item.status} </td>
               </tr>
               )
           })
@@ -130,6 +137,12 @@ class AddUserSurvey extends Component {
       linkedSurvey[i] = value;
       linkedUser[i] = user_id;
       this.setState({ linkedSurvey, linkedUser });
+    }
+
+    reloadUsers($company_id) {
+      this.getUsersDetails($company_id);
+      this.setState({company_id: $company_id });
+      this.getSurveyDropDown($company_id );
     }
 
     render() {
@@ -153,7 +166,13 @@ class AddUserSurvey extends Component {
                                             <label for="company" className="col-md-4 control-label">Select Company</label>
 
                                             <div className="col-md-6">
-                                                <Dropdown style={{width: '100%'}} value={this.state.company_id} options={this.state.companySelectItems} onChange={(e) => {this.setState({company_id: e.value})}} placeholder="Select a Company"/>
+                                                <Dropdown style={{width: '50%'}} value={parseInt(this.state.company_id)} options={this.state.companySelectItems} onChange={(e) => {this.reloadUsers(e.value)}} placeholder="Select a Company"/>
+                                            </div>
+
+                                            <label for="company" className="col-md-4 control-label">Select Survey</label>
+
+                                            <div className="col-md-6">
+                                                <Dropdown style={{width: '50%'}} value={parseInt(this.state.survey_id)} options={this.state.surveySelectItems} onChange={(e) => {this.reloadUsers(e.value)}} placeholder="Select a Survey"/>
                                             </div>
                                         </div>
 
@@ -163,22 +182,14 @@ class AddUserSurvey extends Component {
                                             <tr>
                                               <th> User Name </th>
                                               <th> User Email </th>
-                                              <th>Survey</th>
+                                              <th> Survey Name </th>
+                                              <th>Status</th>
                                             </tr>
                                           </thead>
                                           <tbody>
                                             {this.tabRow()}
                                           </tbody>
                                         </table>
-                                        </div>
-
-
-                                        <div className="form-group">
-                                            <div className="button-align">
-                                                <button type="submit" className="btn btn-primary">
-                                                    Link Users To Survey
-                                                </button>
-                                            </div>
                                         </div>
                                     </form>
                                     <Link to="/admin-survey">View Surveys</Link>

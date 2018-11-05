@@ -300,7 +300,13 @@ var Nav = function (_Component) {
     value: function handleClick(e) {
 
       e.preventDefault();
-      this.props.history.push('/');
+      this.props.history.push({
+        pathname: '/user-home',
+        state: {
+          user_id: this.props.location.state.user_id,
+          company_id: this.props.location.state.company_id
+        }
+      });
     }
   }, {
     key: 'render',
@@ -15336,7 +15342,7 @@ var AddUserSurvey = function (_Component) {
         var _this = _possibleConstructorReturn(this, (AddUserSurvey.__proto__ || Object.getPrototypeOf(AddUserSurvey)).call(this, props));
 
         _this.state = {
-            company_id: props.match.params.cid,
+            company_id: props && props.match && props.match.params && props.match.params.cid,
             survey_id: props.match.params.sid,
             usersDetail: '',
             linkedSurvey: [],
@@ -15362,6 +15368,8 @@ var AddUserSurvey = function (_Component) {
             __WEBPACK_IMPORTED_MODULE_3_axios___default.a.get(__WEBPACK_IMPORTED_MODULE_4__MyGlobleSetting__["a" /* default */].url + '/api/getaddusersurvey/' + $company_id).then(function (response) {
                 if (response.data.length > 0) {
                     _this2.setState({ usersDetail: response.data });
+                } else {
+                    _this2.setState({ usersDetail: [] });
                 }
             }).catch(function (error) {
                 console.log(error);
@@ -15380,7 +15388,9 @@ var AddUserSurvey = function (_Component) {
                             companySelectItems.push({ label: item.company_name, value: item.company_id });
                         });
                     }
-                    _this3.setState({ companySelectItems: companySelectItems });
+                    _this3.setState({ companySelectItems: companySelectItems,
+                        company_id: _this3.state.company_id
+                    });
                 }
             }).catch(function (error) {
                 console.log(error);
@@ -15400,6 +15410,8 @@ var AddUserSurvey = function (_Component) {
                         });
                     }
                     _this4.setState({ surveySelectItems: surveySelectItems });
+                } else {
+                    _this4.setState({ surveySelectItems: [] });
                 }
             }).catch(function (error) {
                 console.log(error);
@@ -15448,24 +15460,31 @@ var AddUserSurvey = function (_Component) {
                         null,
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             'td',
-                            { style: { width: '30%' } },
+                            null,
                             ' ',
                             item.name,
                             ' '
                         ),
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             'td',
-                            { style: { width: '30%' } },
+                            null,
                             ' ',
                             item.email,
                             ' '
                         ),
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             'td',
-                            { style: { width: '40%' } },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5_primereact_dropdown__["Dropdown"], { style: { width: '100%' }, value: self.state.linkedSurvey[key], options: self.state.surveySelectItems, onChange: function onChange(e) {
-                                    self.handleChange(key, e.value, item.email);
-                                }, placeholder: 'Select a Survey' })
+                            null,
+                            ' ',
+                            item.survey_name,
+                            ' '
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'td',
+                            null,
+                            ' ',
+                            item.status,
+                            ' '
                         )
                     );
                 });
@@ -15479,6 +15498,13 @@ var AddUserSurvey = function (_Component) {
             linkedSurvey[i] = value;
             linkedUser[i] = user_id;
             this.setState({ linkedSurvey: linkedSurvey, linkedUser: linkedUser });
+        }
+    }, {
+        key: 'reloadUsers',
+        value: function reloadUsers($company_id) {
+            this.getUsersDetails($company_id);
+            this.setState({ company_id: $company_id });
+            this.getSurveyDropDown($company_id);
         }
     }, {
         key: 'render',
@@ -15535,9 +15561,21 @@ var AddUserSurvey = function (_Component) {
                                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                                 'div',
                                                 { className: 'col-md-6' },
-                                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5_primereact_dropdown__["Dropdown"], { style: { width: '100%' }, value: this.state.company_id, options: this.state.companySelectItems, onChange: function onChange(e) {
-                                                        _this6.setState({ company_id: e.value });
+                                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5_primereact_dropdown__["Dropdown"], { style: { width: '50%' }, value: parseInt(this.state.company_id), options: this.state.companySelectItems, onChange: function onChange(e) {
+                                                        _this6.reloadUsers(e.value);
                                                     }, placeholder: 'Select a Company' })
+                                            ),
+                                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                                'label',
+                                                { 'for': 'company', className: 'col-md-4 control-label' },
+                                                'Select Survey'
+                                            ),
+                                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                                'div',
+                                                { className: 'col-md-6' },
+                                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5_primereact_dropdown__["Dropdown"], { style: { width: '50%' }, value: parseInt(this.state.survey_id), options: this.state.surveySelectItems, onChange: function onChange(e) {
+                                                        _this6.reloadUsers(e.value);
+                                                    }, placeholder: 'Select a Survey' })
                                             )
                                         ),
                                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -15565,7 +15603,12 @@ var AddUserSurvey = function (_Component) {
                                                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                                             'th',
                                                             null,
-                                                            'Survey'
+                                                            ' Survey Name '
+                                                        ),
+                                                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                                            'th',
+                                                            null,
+                                                            'Status'
                                                         )
                                                     )
                                                 ),
@@ -15573,19 +15616,6 @@ var AddUserSurvey = function (_Component) {
                                                     'tbody',
                                                     null,
                                                     this.tabRow()
-                                                )
-                                            )
-                                        ),
-                                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                            'div',
-                                            { className: 'form-group' },
-                                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                                'div',
-                                                { className: 'button-align' },
-                                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                                    'button',
-                                                    { type: 'submit', className: 'btn btn-primary' },
-                                                    'Link Users To Survey'
                                                 )
                                             )
                                         )
@@ -15985,7 +16015,7 @@ var AdminSurveyRow = function (_Component) {
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             __WEBPACK_IMPORTED_MODULE_1_react_router_dom__["d" /* Link */],
             { to: "add-user-survey/" + this.props.obj.company_id + "/" + this.props.obj.survey_id, className: 'btn btn-primary' },
-            'Add Users To Survey'
+            'View Users Status'
           )
         ),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -19779,6 +19809,7 @@ var SinglePageSurvey = function (_Component) {
 
     _this.state = {
       user_id: props.location.state.user_id,
+      company_id: props.location.state.company_id,
       surveys: '',
       counter: 0,
       isCompleted: false,
@@ -19793,19 +19824,19 @@ var SinglePageSurvey = function (_Component) {
   _createClass(SinglePageSurvey, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
-      this.getFormId(this.state.user_id);
+      this.getFormId(this.state.company_id);
     }
   }, {
     key: 'componentWillMount',
     value: function componentWillMount() {
-      this.getFormId(this.state.user_id);
+      this.getFormId(this.state.company_id);
     }
   }, {
     key: 'getFormId',
-    value: function getFormId($user_id) {
+    value: function getFormId($company_id) {
       var _this2 = this;
 
-      __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get(__WEBPACK_IMPORTED_MODULE_3__MyGlobleSetting__["a" /* default */].url + '/api/getformid/' + $user_id).then(function (response) {
+      __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get(__WEBPACK_IMPORTED_MODULE_3__MyGlobleSetting__["a" /* default */].url + '/api/getformid/' + $company_id).then(function (response) {
         if (response.data.length > 0) {
           _this2.apiCall(response.data[0].form_id);
           _this2.setState({ survey_name: response.data[0].survey_name,
@@ -20010,7 +20041,8 @@ var UserSurveyHome = function (_Component) {
     var _this = _possibleConstructorReturn(this, (UserSurveyHome.__proto__ || Object.getPrototypeOf(UserSurveyHome)).call(this, props));
 
     _this.state = {
-      user_id: props.location.state.user_id
+      user_id: props.location.state && props.location.state.user_id,
+      company_id: props.location.state && props.location.state.company_id
     };
 
     _this.handleClick = _this.handleClick.bind(_this);
@@ -20022,7 +20054,10 @@ var UserSurveyHome = function (_Component) {
     value: function handleClick(e) {
       this.props.history.push({
         pathname: '/single-page-survey',
-        state: { user_id: this.state.user_id }
+        state: {
+          user_id: this.state.user_id,
+          company_id: this.state.company_id
+        }
       });
     }
   }, {
@@ -20562,7 +20597,8 @@ var Login = function (_Component) {
                             _this2.props.history.push({
                                 pathname: "/user-home",
                                 state: {
-                                    user_id: _this2.state.email
+                                    user_id: _this2.state.email,
+                                    company_id: response.data[0].company_id
                                 }
                             });
                         }

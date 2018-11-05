@@ -24,7 +24,13 @@ class Nav extends Component {
   handleClick(e){
 
     e.preventDefault();
-    this.props.history.push('/');
+    this.props.history.push({
+      pathname: '/user-home',
+      state: {
+              user_id: this.props.location.state.user_id,
+              company_id: this.props.location.state.company_id 
+            }
+    });
 
   }
   render() {

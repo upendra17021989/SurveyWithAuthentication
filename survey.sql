@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 02, 2018 at 03:47 PM
+-- Generation Time: Nov 05, 2018 at 02:44 PM
 -- Server version: 10.1.35-MariaDB
 -- PHP Version: 7.2.9
 
@@ -41,7 +41,8 @@ CREATE TABLE `company` (
 --
 
 INSERT INTO `company` (`company_id`, `company_name`, `address`, `created_at`, `updated_at`) VALUES
-(15, 'Jayesh Enterprises', 'Ahmedabad', '2018-09-27 07:14:22', '2018-09-27 11:48:52');
+(15, 'Jayesh Enterprises', 'Ahmedabad', '2018-09-27 07:14:22', '2018-09-27 11:48:52'),
+(16, 'Gaurav Pvt. ltd.', 'Ahmedabad', '2018-11-05 06:54:02', '2018-11-05 06:54:02');
 
 -- --------------------------------------------------------
 
@@ -65,10 +66,7 @@ CREATE TABLE `company_survey` (
 --
 
 INSERT INTO `company_survey` (`survey_id`, `company_id`, `form_id`, `survey_name`, `start_dt`, `end_dt`, `created_at`, `updated_at`) VALUES
-(1, 15, 5, 'Customer Satisfaction Survey', '2018-09-19', '2018-09-23', '2018-10-01 07:58:20', '2018-10-01 11:55:55'),
-(2, 15, 4, 'Dhaval', '2018-09-11', '2018-09-11', '2018-10-01 07:59:46', '2018-10-01 11:02:38'),
-(3, 15, 6, 'Employee Satisfaction Survey', '2018-10-10', '2018-10-23', '2018-10-10 05:20:20', '2018-10-18 13:09:45'),
-(4, 15, 6, 'NAGAR', '2018-11-07', '2018-11-21', '2018-11-02 14:39:58', '2018-11-02 14:39:58');
+(6, 15, 6, 'Survey 1', '2018-11-06', '2018-11-20', '2018-11-05 09:59:19', '2018-11-05 09:59:19');
 
 -- --------------------------------------------------------
 
@@ -310,7 +308,7 @@ INSERT INTO `users` (`id`, `company_id`, `name`, `user_type`, `email`, `password
 (3, 15, 'Dhaval Patel', 'respondent', 'dhaval@gmail.com', '$2y$10$GjhjabwUiIi.vbTCoX8ZXu2KaWk/LxSLWvoQHdxCrYxKGClMafE4S', NULL, '2018-10-01 06:10:06', '2018-10-01 06:10:06'),
 (4, NULL, 'Admin', 'admin', 'survey@gmail.com', '$2y$10$NsM4I1ELRg.qY7IdWV5sxOWETR9PCbH4K87f2fWXF2Lzd/.RflfF2', NULL, '2018-10-15 00:16:00', '2018-10-15 00:16:00'),
 (5, 15, 'Gaurav', 'respondent', 'gaurav@gmail.com', '$2y$10$1WM41vlsB8504jsEmRWm6ut6vTcpBRIXIzW0ZXC/25Xpp9yXzpFam', NULL, '2018-10-18 07:47:05', '2018-10-18 07:47:05'),
-(16, 15, 'ups1', 'respondent', 'abc1@gmail.com', '$2y$10$82nWwxu9JLEzQyOpGrSAn.CeqXfxu18KwMC1DRbqOmoBoMAasfmfi', NULL, NULL, NULL),
+(16, 16, 'ups1', 'respondent', 'abc1@gmail.com', '$2y$10$82nWwxu9JLEzQyOpGrSAn.CeqXfxu18KwMC1DRbqOmoBoMAasfmfi', NULL, NULL, NULL),
 (17, 15, 'ups2', 'respondent', 'abc2@gmail.com', '$2y$10$N3xWiBDF0JXFul0E6VPaqOtUjXxN1n0GdgJ1tLssq14w.HOZbnfVO', NULL, NULL, NULL),
 (18, 15, 'ups3', 'respondent', 'abc3@gmail.com', '$2y$10$by4K7jrzxAXWNltjVjctU.pww.8FVFw62J3KYzh9lWhqwcyKGvCGW', NULL, NULL, NULL),
 (19, 15, 'ups4', 'respondent', 'abc4@gmail.com', '$2y$10$Cr8Om3cpTToZe.GscVSxBuX1URubk7rjuACqKJ3nmJFt6S4OqhDce', NULL, NULL, NULL),
@@ -332,29 +330,6 @@ CREATE TABLE `user_survey` (
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `user_survey`
---
-
-INSERT INTO `user_survey` (`user_id`, `survey_id`, `form_id`, `question_id`, `answer_id`, `created_at`, `updated_at`) VALUES
-('abc1@gmail.com', 3, 6, 15, '47', '2018-10-27 07:59:35', '2018-10-27 07:59:35'),
-('abc1@gmail.com', 3, 6, 16, '51', '2018-10-27 07:59:36', '2018-10-27 07:59:36'),
-('abc2@gmail.com', 3, 6, 9, '17', '2018-10-27 08:08:26', '2018-10-27 08:08:26'),
-('abc2@gmail.com', 3, 6, 10, '32', '2018-10-27 08:08:26', '2018-10-27 08:08:26'),
-('abc2@gmail.com', 3, 6, 11, '36', '2018-10-27 08:08:26', '2018-10-27 08:08:26'),
-('abc2@gmail.com', 3, 6, 13, 'dfsf', '2018-10-27 08:08:26', '2018-10-27 08:08:26'),
-('abc2@gmail.com', 3, 6, 14, '42', '2018-10-27 08:08:27', '2018-10-27 08:08:27'),
-('abc2@gmail.com', 3, 6, 15, '48', '2018-10-27 08:08:27', '2018-10-27 08:08:27'),
-('abc2@gmail.com', 3, 6, 16, '52', '2018-10-27 08:08:27', '2018-10-27 08:08:27'),
-('dhaval@gmail.com', 3, 6, 9, '18', '2018-11-02 14:43:51', '2018-11-02 14:43:51'),
-('dhaval@gmail.com', 3, 6, 10, '32', '2018-11-02 14:43:51', '2018-11-02 14:43:51'),
-('dhaval@gmail.com', 3, 6, 11, '36', '2018-11-02 14:43:51', '2018-11-02 14:43:51'),
-('dhaval@gmail.com', 3, 6, 13, 'sfdsdf', '2018-11-02 14:43:51', '2018-11-02 14:43:51'),
-('dhaval@gmail.com', 3, 6, 14, '42', '2018-11-02 14:43:52', '2018-11-02 14:43:52'),
-('dhaval@gmail.com', 3, 6, 15, '48', '2018-11-02 14:43:52', '2018-11-02 14:43:52'),
-('dhaval@gmail.com', 3, 6, 16, '51', '2018-11-02 14:43:52', '2018-11-02 14:43:52'),
-('dhaval@gmail.com', 3, 6, 17, '0', '2018-11-02 14:43:52', '2018-11-02 14:43:52');
-
 -- --------------------------------------------------------
 
 --
@@ -375,10 +350,10 @@ CREATE TABLE `user_survey_link` (
 --
 
 INSERT INTO `user_survey_link` (`company_id`, `user_id`, `survey_id`, `status`, `created_at`, `updated_at`) VALUES
-(15, 'abc5@gmail.com', 3, 'open', '2018-10-27 07:58:45', '2018-10-27 07:58:45'),
-(15, 'abc@gmail.com', 1, 'open', '2018-11-02 14:41:04', '2018-11-02 14:41:04'),
-(15, 'dhaval@gmail.com', 3, 'open', '2018-10-11 08:29:07', '2018-10-11 10:21:53'),
-(15, 'gaurav@gmail.com', 3, 'open', '2018-10-18 13:20:03', '2018-10-18 13:20:03');
+(15, 'abc5@gmail.com', 6, 'open', '2018-10-27 07:58:45', '2018-11-05 11:31:49'),
+(15, 'abc@gmail.com', 6, 'open', '2018-11-02 14:41:04', '2018-11-05 11:31:57'),
+(15, 'dhaval@gmail.com', 6, 'open', '2018-10-11 08:29:07', '2018-11-05 11:32:05'),
+(15, 'gaurav@gmail.com', 6, 'open', '2018-10-18 13:20:03', '2018-11-05 11:32:10');
 
 --
 -- Indexes for dumped tables
@@ -394,7 +369,7 @@ ALTER TABLE `company`
 -- Indexes for table `company_survey`
 --
 ALTER TABLE `company_survey`
-  ADD PRIMARY KEY (`survey_id`);
+  ADD PRIMARY KEY (`survey_id`,`company_id`,`form_id`);
 
 --
 -- Indexes for table `forms`
@@ -453,19 +428,19 @@ ALTER TABLE `user_survey_link`
 -- AUTO_INCREMENT for table `company`
 --
 ALTER TABLE `company`
-  MODIFY `company_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `company_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `company_survey`
 --
 ALTER TABLE `company_survey`
-  MODIFY `survey_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `survey_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `forms`
 --
 ALTER TABLE `forms`
-  MODIFY `form_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `form_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `migrations`

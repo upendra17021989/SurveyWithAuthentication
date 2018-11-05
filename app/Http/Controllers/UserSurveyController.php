@@ -64,10 +64,9 @@ class UserSurveyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function getFormId($user_id)
+    public function getFormId($company_id)
     {
-         $formId = DB::table('company_survey')->join('user_survey_link', 
-            'company_survey.survey_id', '=', 'user_survey_link.survey_id')->where('user_survey_link.user_id','=',$user_id)->select('company_survey.survey_id','company_survey.form_id','company_survey.survey_name')->get();
+         $formId = DB::table('company_survey')->where('company_id', '=', $company_id)->select('company_survey.survey_id','company_survey.form_id','company_survey.survey_name')->get();
         return $formId;
     }
 

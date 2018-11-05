@@ -10,6 +10,7 @@ class SinglePageSurvey extends Component {
     super(props);
     this.state = {
                   user_id: props.location.state.user_id,
+                  company_id: props.location.state.company_id,
                   surveys: '',
                   counter: 0,
                   isCompleted: false,
@@ -22,15 +23,15 @@ class SinglePageSurvey extends Component {
 
 
     componentDidMount(){
-      this.getFormId(this.state.user_id);
+      this.getFormId(this.state.company_id);
     }
 
     componentWillMount(){
-      this.getFormId(this.state.user_id);
+      this.getFormId(this.state.company_id);
     }
 
-    getFormId($user_id) {
-      axios.get(MyGlobleSetting.url + '/api/getformid/' + $user_id)
+    getFormId($company_id) {
+      axios.get(MyGlobleSetting.url + '/api/getformid/' + $company_id)
        .then(response => {
         if (response.data.length > 0) {
             this.apiCall(response.data[0].form_id);

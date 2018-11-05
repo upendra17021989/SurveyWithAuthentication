@@ -48,7 +48,9 @@ class AddUserSurveyController extends Controller
      */
     public function getUsers($company_id)
     {
-         $userDetails = DB::table('users')->where('users.company_id','=',$company_id)->where('users.user_type','=','respondent')->select('users.email', 'users.name')->get();
+         $userDetails = DB::table('users')->join('user_survey_link', 
+            'users.email', '=', 'user_survey_link.user_id', 'left outer')->join('company_survey', 
+            'company_survey.survey_id', '=', 'user_survey_link.survey_id', 'left outer')->where('users.company_id','=',$company_id)->where('users.user_type','=','respondent')->select('users.email', 'users.name', 'user_survey_link.status', 'company_survey.survey_name')->get();
         return $userDetails;
     }
 

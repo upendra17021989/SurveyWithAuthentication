@@ -6,7 +6,8 @@ class UserSurveyHome extends Component {
   constructor(props){
     super(props);
      this.state = {
-                  user_id: props.location.state.user_id
+              user_id: props.location.state && props.location.state.user_id,
+              company_id: props.location.state && props.location.state.company_id
                 };
 
     this.handleClick = this.handleClick.bind(this);
@@ -15,7 +16,10 @@ class UserSurveyHome extends Component {
   handleClick(e) {
     this.props.history.push({
       pathname: '/single-page-survey',
-      state: {user_id: this.state.user_id }
+      state: {
+              user_id: this.state.user_id,
+              company_id: this.state.company_id 
+            }
     });
   }
 

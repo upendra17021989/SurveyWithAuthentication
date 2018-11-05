@@ -40,7 +40,7 @@ class LoginController extends Controller
 
     public function getUser($userId)
     {
-         $user = DB::table('users')->where('users.email','=', $userId)->select('users.name', 'users.user_type')->get();
+         $user = DB::table('users')->where('users.email','=', $userId)->select('users.company_id', 'users.name', 'users.user_type')->get();
         return $user;
     }
 }

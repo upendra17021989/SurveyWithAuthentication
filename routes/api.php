@@ -63,7 +63,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('getsurveys/{cid}', 'AddUserSurveyController@getSurvey'); 
     Route::post('addusertosurvey', 'AddUserSurveyController@create'); 
     
-    Route::get('getformid/{uid}', 'UserSurveyController@getFormId'); 
+    Route::get('getformid/{cid}', 'UserSurveyController@getFormId'); 
     
     Route::post('addusersurveydata', 'UserSurveyEndController@create'); 
 
