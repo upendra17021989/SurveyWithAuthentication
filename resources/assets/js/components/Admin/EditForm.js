@@ -38,9 +38,9 @@ class EditForm extends Component {
 
     onSubmit(e){
         e.preventDefault();
-        const {id, name, description} = this.state ;
+        const {form_id, name, description} = this.state ;
         axios.post(MyGlobleSetting.url + '/api/updateform', {
-            id,
+            form_id,
             name,
             description
           })
