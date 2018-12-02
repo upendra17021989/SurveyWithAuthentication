@@ -6,12 +6,12 @@ class Index extends Component {
 
   render() {
     return (
-       <div> 
-          <Nav />       
+       <div>
+          <Nav />
           <div className="container text-center  title">
-               <h1>Welcome to Survey Website</h1>
-        </div> 
-       </div>   
+               <h1>Welcome to Emp. Metrics</h1>
+        </div>
+       </div>
     )
   }
 
