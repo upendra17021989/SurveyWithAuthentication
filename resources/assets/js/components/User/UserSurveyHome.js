@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {Button} from 'primereact/button';
 import Nav from '../navbar';
+import axios from 'axios';
 
 class UserSurveyHome extends Component {
   constructor(props){
@@ -14,13 +15,31 @@ class UserSurveyHome extends Component {
   }
 
   handleClick(e) {
-    this.props.history.push({
-      pathname: '/single-page-survey',
-      state: {
-              user_id: this.state.user_id,
-              company_id: this.state.company_id 
-            }
-    });
+    axios.get('/api/getsurveystatus/'+this.state.user_id)
+      .then(response => {
+          if (response.data.length > 0) {
+              this.setState({err: false});
+              if (response.data[0].status == 'submitted') {
+                  this.props.history.push({
+                    pathname: '/already-complete',
+                    state: {
+                            user_id: this.state.user_id,
+                            company_id: this.state.company_id 
+                          }
+                  });
+              } else {
+                  this.props.history.push({
+                    pathname: '/single-page-survey',
+                    state: {
+                            user_id: this.state.user_id,
+                            company_id: this.state.company_id 
+                          }
+                  });
+              }
+          }
+      }).catch(error=> {
+          this.setState({err: true})
+      });
   }
 
   render() {

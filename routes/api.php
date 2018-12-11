@@ -20,9 +20,6 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('password/email','Auth\ForgotPasswordController@sendResetLinkEmail'); 
     Route::post('password/reset','Auth\ResetPasswordController@reset');
     Route::get('user/{id}','Auth\LoginController@getUser');
-
-
-
     
     Route::post('createcompany','CompanyController@create');
     Route::post('createform','FormController@create');
@@ -62,14 +59,16 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('getaddusersurvey/{cid}', 'AddUserSurveyController@getUsers'); 
     Route::get('getsurveys/{cid}', 'AddUserSurveyController@getSurvey'); 
     Route::post('addusertosurvey', 'AddUserSurveyController@create'); 
+
     
     Route::get('getformid/{cid}', 'UserSurveyController@getFormId'); 
     
     Route::post('addusersurveydata', 'UserSurveyEndController@create'); 
+    Route::get('getsurveystatus/{id}','UserSurveyEndController@getSurveyStatus');
 
     Route::get('/mail', 'UserSurveyController@sendMail');
 
-    Route::get('/', 'ExcelController@index')->name('index');
+    //Route::get('/', 'ExcelController@index')->name('index');
     Route::post('import', 'ExcelController@import')->name('import');
 });
   

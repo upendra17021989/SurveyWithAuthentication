@@ -4,6 +4,7 @@ import { Link } from 'react-router';
 import MyGlobleSetting from '../MyGlobleSetting';
 import Nav from '../navbar'
 import UserSurveyQuestion from './UserSurveyQuestion';
+import {Growl} from 'primereact/growl';
 
 class SinglePageSurvey extends Component {
   constructor(props) {
@@ -19,10 +20,13 @@ class SinglePageSurvey extends Component {
                   survey_id: ''
                 };
       this.onButtonCheck = this.onButtonCheck.bind(this);
+      this.showError = this.showError.bind(this);
+      this.clear = this.clear.bind(this);
   }
 
 
     componentDidMount(){
+      this.clear();
       this.getFormId(this.state.company_id);
     }
 
@@ -63,9 +67,22 @@ class SinglePageSurvey extends Component {
        
     }
 
+    showError() {
+        this.growl.show({sticky: true, severity: 'error', summary: 'Please select options for all the questions', detail: 'Validation failed'});
+    }
+
+     clear() {
+        this.growl.clear();
+    }
+
+
     onSubmit(e){
       e.preventDefault();
       let self = this;
+      if (this.state.surveys.length != this.state.answerSet.length) {
+        this.showError();
+        return;
+      }
       this.state.surveys.map(function(object, i){
         let question_id = object.question_id;
         let answer_id = 0;
@@ -76,23 +93,30 @@ class SinglePageSurvey extends Component {
             break;
           }
         }
+        object.answer_id = answer_id;
+      })
 
-        const {user_id, form_id, survey_id} = self.state;
+        const {user_id, form_id, survey_id, surveys} = self.state;
         axios.post('/api/addusersurveydata', {
             user_id,
             survey_id,
             form_id,
-            question_id,
-            answer_id
+            surveys
           })
           .then(response=> {
             self.setState({err: false});
-            self.props.history.push("/survey-complete") ;
+            self.props.history.push({
+                pathname: '/survey-complete',
+                state: {
+                        user_id: this.props.location.state.user_id,
+                        company_id: this.props.location.state.company_id 
+                      }
+            });
           })
           .catch(error=> {
             self.setState({err: true});
           });
-        })
+        
     }
 
     onButtonCheck(selected_option_id, question_id) {
@@ -128,6 +152,7 @@ class SinglePageSurvey extends Component {
     return (
       <div className="single-page-survey">
         <Nav link="Logout" />
+        <Growl ref={(el) => this.growl = el} />
           <form className="form-horizontal" role="form" method="POST" onSubmit= {this.onSubmit.bind(this)}>
             <h1 className="title">{this.state.survey_name}</h1>
             {this.tabRow()}

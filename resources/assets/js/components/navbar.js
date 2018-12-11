@@ -62,7 +62,8 @@ class Nav extends Component {
                 <a className="navbar-brand" href="#" onClick={this.handleClick.bind(this)}>Home</a>
               </div>
               <ul className="nav navbar-nav navbar-right">
-                 <a className="navbar-brand" href="#" onClick={this.logout.bind(this)}>{this.props.link}</a>  
+                <li><span>Hello {this.props.location.state && this.props.location.state.user_id},</span></li>
+                <li> <a className="navbar-brand" href="#" onClick={this.logout.bind(this)}>{this.props.link}</a> </li> 
               </ul>
           </div>
         </nav>
@@ -76,7 +77,6 @@ class Nav extends Component {
               </div>
               <ul className="nav navbar-nav navbar-right">
                 <li><Link to="/login">Login</Link></li>
-                <li><Link to="/register">Register</Link></li>
               </ul>
           </div>
         </nav>

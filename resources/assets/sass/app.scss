@@ -128,3 +128,21 @@
 		}
 	}
 }
+
+.navbar-nav {
+    display: flex;
+    flex-direction: row;
+}
+
+.nav li a {
+	padding-right: 10px;
+}
+
+.nav li span {
+	line-height: 50px;
+	padding-right: 15px;
+}
+
+.ui-growl {
+    width: 25em !important;
+}

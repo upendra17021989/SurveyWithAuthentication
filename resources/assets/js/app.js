@@ -33,6 +33,7 @@ import EditAdminSurvey from './components/Admin/EditAdminSurvey';
 import AddUserSurvey from './components/Admin/AddUserSurvey';
 
 import SurveyComplete from './components/User/SurveyComplete';
+import AlreadyComplete from './components/User/AlreadyComplete';
 
 
 ReactDOM.render(
@@ -67,6 +68,7 @@ ReactDOM.render(
 	    <Route path='/edit-admin-survey/:sid' component={EditAdminSurvey}/>
 
 	    <Route path='/survey-complete' component={SurveyComplete}/>
+	    <Route path='/already-complete' component={AlreadyComplete}/>
 
 	    <Route path='/add-user-survey/:cid/:sid' component={AddUserSurvey}/>
 

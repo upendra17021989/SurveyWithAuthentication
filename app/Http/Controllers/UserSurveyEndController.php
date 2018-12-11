@@ -27,19 +27,32 @@ class UserSurveyEndController extends Controller
      */
     public function create(Request $request)
     {
-        echo $request;
+        $surveys = $request['surveys'];
 
-        DB::table('user_survey')->insert(
-             array(
-                'user_id' => $request['user_id'], 
-                'survey_id' => $request['survey_id'],
-                'form_id' => $request['form_id'],
-                'question_id' => $request['question_id'],
-                'answer_id' => $request['answer_id'],
-            )
-        );
+
+        foreach ($surveys as $survey) {
+            DB::table('user_survey')->insert(
+                 array(
+                    'user_id' => $request['user_id'], 
+                    'survey_id' => $request['survey_id'],
+                    'form_id' => $request['form_id'],
+                    'question_id' => $survey['question_id'],
+                    'answer_id' => $survey['answer_id'],
+                )
+            );
+        }
+
+        DB::table('user_survey_link')->where('survey_id', $request['survey_id'])->where('user_id', $request['user_id'])->update([
+                'status' => 'submitted'
+            ]);
 
         return response()->json('Survey Created Successfully.');
+    }
+
+    public function getSurveyStatus($user_id)
+    {
+        $status = DB::table('user_survey_link')->where('user_id','=',$user_id)->select('status')->get();
+        return $status;
     }
 
     /**
