@@ -29,7 +29,6 @@ class AdminSurveyController extends Controller
     public function create(Request $request)
     {
         echo $request;
-
         DB::table('company_survey')->insert(
              array(
                 'company_id' => $request['company_id'], 
@@ -39,6 +38,14 @@ class AdminSurveyController extends Controller
                 'end_dt' => new DateTime($request['end_dt']) //DateTime::createFromFormat('d/m/Y', $request['end_dt'])
              )
         );
+
+        $companySurveyDetails = DB::table('company_survey')->select('survey_id')->where('company_id', '=', $request['company_id'] )->where('form_id','=', $request['form_id'])->get();
+
+        $companySurveyDetail = $companySurveyDetails->toArray();
+        
+        DB::table('user_survey_link')->where('company_id', '=', $request['company_id'])->where('survey_id', '=', 0)->update([
+            'survey_id' => $companySurveyDetail[0]->survey_id
+        ]);
 
         return response()->json('Survey Created Successfully.');
     }

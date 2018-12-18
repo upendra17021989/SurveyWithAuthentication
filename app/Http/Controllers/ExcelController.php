@@ -42,16 +42,23 @@ class ExcelController extends Controller
                         'password' => bcrypt('default'),
                         'company_id' => $request->company_id
                         ];
+
+                        $insert1[] = [
+                        'company_id' => $request->company_id,
+                        'user_id' => $value->email
+                        ];
                     }
  
                     if(!empty($insert)){
- 
-                        $insertData = DB::table('users')->insert($insert);
-                        if ($insertData) {
-                            return response()->json('Your Data has successfully imported');
-                        }else {                        
-                            return response()->json('Error inserting the data..');
-                            return back();
+                        DB::beginTransaction();
+                        try {
+                            DB::table('users')->insert($insert);
+                            DB::table('user_survey_link')->insert($insert1);
+                            DB::commit();
+                            return response()->json('Your Data has successfully imported');    
+                        } catch (Exception $e) {
+                            DB:: rollBack();
+                            return $e->getMessage();
                         }
                     }
                 }
