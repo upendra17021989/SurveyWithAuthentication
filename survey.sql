@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 11, 2018 at 01:39 PM
+-- Generation Time: Dec 26, 2018 at 03:04 PM
 -- Server version: 10.1.35-MariaDB
 -- PHP Version: 7.2.9
 
@@ -41,8 +41,7 @@ CREATE TABLE `company` (
 --
 
 INSERT INTO `company` (`company_id`, `company_name`, `address`, `created_at`, `updated_at`) VALUES
-(15, 'Jayesh Enterprises', 'Ahmedabad', '2018-09-27 07:14:22', '2018-09-27 11:48:52'),
-(16, 'Gaurav Pvt. ltd.', 'Ahmedabad', '2018-11-05 06:54:02', '2018-11-05 06:54:02');
+(17, 'Manasi pvt. ltd.', '...', '2018-12-26 13:57:43', '2018-12-26 13:57:43');
 
 -- --------------------------------------------------------
 
@@ -66,7 +65,7 @@ CREATE TABLE `company_survey` (
 --
 
 INSERT INTO `company_survey` (`survey_id`, `company_id`, `form_id`, `survey_name`, `start_dt`, `end_dt`, `created_at`, `updated_at`) VALUES
-(6, 15, 6, 'Survey 1', '2018-11-06', '2018-11-20', '2018-11-05 09:59:19', '2018-11-05 09:59:19');
+(29, 17, 8, 'Employee Satisfaction Survey', '2018-12-26', '2018-12-30', '2018-12-26 14:02:26', '2018-12-26 14:02:26');
 
 -- --------------------------------------------------------
 
@@ -87,8 +86,7 @@ CREATE TABLE `forms` (
 --
 
 INSERT INTO `forms` (`form_id`, `form_name`, `form_description`, `created_at`, `updated_at`) VALUES
-(6, 'Form1', 'regional', '2018-10-03 11:05:56', '2018-11-14 13:59:54'),
-(7, 'Form2', 'Employee', '2018-10-03 11:32:33', '2018-11-14 14:00:18');
+(8, 'Employee Satisfaction Survey', '...', '2018-12-26 13:59:10', '2018-12-26 13:59:10');
 
 -- --------------------------------------------------------
 
@@ -132,37 +130,16 @@ CREATE TABLE `options` (
 --
 
 INSERT INTO `options` (`form_id`, `question_id`, `option_id`, `option_description`, `created_at`, `updated_at`) VALUES
-(6, 9, 17, 'Superior', '2018-10-03 12:29:40', '2018-10-03 12:29:40'),
-(6, 9, 18, 'Very Satisfactory', '2018-10-03 12:29:50', '2018-10-03 12:29:50'),
-(6, 9, 19, 'About Average', '2018-10-03 12:30:33', '2018-10-03 12:30:33'),
-(6, 9, 20, 'Somewhat Unsatisfactory', '2018-10-03 12:30:39', '2018-10-03 12:30:39'),
-(6, 9, 21, 'Very Poor', '2018-10-03 12:30:46', '2018-10-03 12:30:46'),
-(6, 10, 31, 'option 1', '2018-10-04 13:08:47', '2018-10-04 13:08:47'),
-(6, 10, 32, 'option 2', '2018-10-04 13:08:47', '2018-10-04 13:08:47'),
-(6, 10, 33, 'option 3', '2018-10-04 13:08:48', '2018-10-04 13:08:48'),
-(6, 11, 35, 'option 1', '2018-10-10 04:22:00', '2018-10-10 04:22:00'),
-(6, 11, 36, 'option 23', '2018-10-10 04:22:00', '2018-10-10 04:22:41'),
-(6, 11, 37, 'option 3', '2018-10-10 04:22:00', '2018-10-10 04:22:00'),
-(6, 11, 39, 'option 4', '2018-10-10 04:22:32', '2018-10-10 04:22:32'),
-(6, 14, 40, 'Pizza', '2018-10-18 12:43:07', '2018-10-18 12:43:07'),
-(6, 14, 41, 'Pasta', '2018-10-18 12:43:07', '2018-10-18 12:43:07'),
-(6, 14, 42, 'Salad', '2018-10-18 12:43:07', '2018-10-18 12:43:07'),
-(6, 14, 43, 'Steak', '2018-10-18 12:43:08', '2018-10-18 12:43:08'),
-(6, 14, 44, 'Soup', '2018-10-18 12:43:08', '2018-10-18 12:43:08'),
-(6, 14, 45, 'Other', '2018-10-18 12:43:08', '2018-10-18 12:56:10'),
-(6, 15, 46, '$0-10k', '2018-10-18 12:57:58', '2018-10-18 12:57:58'),
-(6, 15, 47, '$10-35k', '2018-10-18 12:57:58', '2018-10-18 12:57:58'),
-(6, 15, 48, '$35-60k', '2018-10-18 12:57:58', '2018-10-18 12:57:58'),
-(6, 15, 49, '$60k+', '2018-10-18 12:57:59', '2018-10-18 12:57:59'),
-(6, 16, 50, 'Customer Service', '2018-10-22 13:46:32', '2018-10-22 13:46:32'),
-(6, 16, 51, 'Finance/Accounting', '2018-10-22 13:46:33', '2018-10-22 13:46:33'),
-(6, 16, 52, 'MIS  Sales/Marketing', '2018-10-22 13:46:33', '2018-10-22 13:46:33'),
-(6, 16, 53, 'Corporate Marketing', '2018-10-22 13:46:33', '2018-10-22 13:46:33'),
-(6, 16, 54, 'Human Resources', '2018-10-22 13:46:33', '2018-10-22 13:46:33'),
-(7, 18, 55, 'dasdas', '2018-11-02 14:36:04', '2018-11-02 14:36:04'),
-(7, 18, 56, 'dasd', '2018-11-02 14:36:04', '2018-11-02 14:36:04'),
-(7, 18, 57, 'dasd', '2018-11-02 14:36:04', '2018-11-02 14:36:04'),
-(7, 18, 58, 'adas', '2018-11-02 14:36:04', '2018-11-02 14:36:04');
+(8, 20, 59, 'Strongly Agree', '2018-12-26 14:00:41', '2018-12-26 14:00:41'),
+(8, 20, 60, 'Disagree', '2018-12-26 14:00:41', '2018-12-26 14:00:41'),
+(8, 20, 61, 'Agree', '2018-12-26 14:00:41', '2018-12-26 14:00:41'),
+(8, 20, 62, 'Neutral', '2018-12-26 14:00:42', '2018-12-26 14:00:42'),
+(8, 20, 63, 'Strongly Disagree', '2018-12-26 14:00:42', '2018-12-26 14:00:42'),
+(8, 21, 64, 'Strongly Agree', '2018-12-26 14:01:51', '2018-12-26 14:01:51'),
+(8, 21, 65, 'Agree', '2018-12-26 14:01:51', '2018-12-26 14:01:51'),
+(8, 21, 66, 'Neutral', '2018-12-26 14:01:51', '2018-12-26 14:01:51'),
+(8, 21, 67, 'Disagree', '2018-12-26 14:01:51', '2018-12-26 14:01:51'),
+(8, 21, 68, 'Strongly Disagree', '2018-12-26 14:01:52', '2018-12-26 14:01:52');
 
 -- --------------------------------------------------------
 
@@ -203,15 +180,8 @@ CREATE TABLE `questions` (
 --
 
 INSERT INTO `questions` (`form_id`, `question_id`, `question_description`, `question_type`, `created_at`, `updated_at`) VALUES
-(6, 9, 'In thinking about your most recent experience with [COMPANY], how was the quality of customer service you received?', 'MCQ', '2018-10-03 12:19:28', '2018-10-03 12:27:48'),
-(6, 10, 'The process for getting your concerns resolved was:', 'MCQ', '2018-10-03 12:38:55', '2018-10-04 14:00:32'),
-(6, 11, 'Now please think about the features and benefits of the [PRODUCT] itself. How satisfied are you with the [PRODUCT]:', 'MCQ', '2018-10-05 11:24:21', '2018-10-05 11:24:21'),
-(6, 13, 'Give your feedback.', 'OE', '2018-10-10 04:31:57', '2018-10-10 04:31:57'),
-(6, 14, 'What\'s your favorite food?', 'MCQ', '2018-10-18 12:42:11', '2018-10-18 12:42:11'),
-(6, 15, 'What\'s your household income?', 'MCQ', '2018-10-18 12:57:13', '2018-10-18 12:57:13'),
-(6, 16, 'Which of the following best describes the department you work in?', 'MCQ', '2018-10-22 13:45:26', '2018-10-22 13:45:26'),
-(7, 18, 'sdfsdf', 'MCQ', '2018-11-02 14:35:53', '2018-11-02 14:35:53'),
-(7, 19, 'sdfsd', 'MCQ', '2018-11-14 14:01:56', '2018-11-14 14:01:56');
+(8, 20, 'Diversity is a barrier to progression at my organisation', 'MCQ', '2018-12-26 13:59:41', '2018-12-26 13:59:41'),
+(8, 21, 'I feel that my work or studies contribute to the mission of the organisation', 'MCQ', '2018-12-26 14:01:12', '2018-12-26 14:01:12');
 
 -- --------------------------------------------------------
 
@@ -238,27 +208,6 @@ CREATE TABLE `survey_option` (
   `description` varchar(1000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `survey_option`
---
-
-INSERT INTO `survey_option` (`question_id`, `option_id`, `description`) VALUES
-(1, 1, 'Superior'),
-(1, 2, 'Very Satisfactory '),
-(1, 3, '  \r\nAbout Average'),
-(1, 4, 'Somewhat Unsatisfactory'),
-(1, 5, 'Very Poor'),
-(2, 1, 'Very Unsatisfactory '),
-(2, 2, 'Somewhat Unsatisfactory '),
-(2, 3, 'About Average '),
-(2, 4, 'Somewhat Satisfactory '),
-(2, 5, '  \r\nVery Satisfactory'),
-(3, 1, 'Very Unsatisfactory'),
-(3, 2, 'Somewhat Unsatisfactory'),
-(3, 3, 'About Average'),
-(3, 4, 'Somewhat Satisfactory'),
-(3, 5, ' \r\nVery Satisfactory');
-
 -- --------------------------------------------------------
 
 --
@@ -272,15 +221,6 @@ CREATE TABLE `survey_question` (
   `type` varchar(10) NOT NULL DEFAULT 'multiple'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `survey_question`
---
-
-INSERT INTO `survey_question` (`form_id`, `id`, `description`, `type`) VALUES
-(0, 1, '\r\n  \r\n \r\nIn thinking about your most recent experience with [COMPANY], how was the quality of customer service you received?', 'multiple'),
-(0, 2, 'The process for getting your concerns resolved was: ', 'multiple'),
-(0, 3, 'Now please think about the features and benefits of the [PRODUCT] itself. How satisfied are you with the [PRODUCT]:', 'multiple');
-
 -- --------------------------------------------------------
 
 --
@@ -293,6 +233,8 @@ CREATE TABLE `users` (
   `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `user_type` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'respondent',
   `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `department` varchar(300) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `level` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -303,16 +245,12 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `company_id`, `name`, `user_type`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(2, 15, 'Jayesh Ingle', 'respondent', 'abc@gmail.com', '$2y$10$1V4yOkrQbwAN2bUm6hAInOMYfTApHORNRW135ZE1ldtn9a7eYaUb.', NULL, '2018-09-22 06:12:56', '2018-09-22 06:12:56'),
-(3, 15, 'Dhaval Patel', 'respondent', 'dhaval@gmail.com', '$2y$10$GjhjabwUiIi.vbTCoX8ZXu2KaWk/LxSLWvoQHdxCrYxKGClMafE4S', NULL, '2018-10-01 06:10:06', '2018-10-01 06:10:06'),
-(4, NULL, 'Admin', 'admin', 'survey@gmail.com', '$2y$10$NsM4I1ELRg.qY7IdWV5sxOWETR9PCbH4K87f2fWXF2Lzd/.RflfF2', NULL, '2018-10-15 00:16:00', '2018-10-15 00:16:00'),
-(5, 15, 'Gaurav', 'respondent', 'gaurav@gmail.com', '$2y$10$1WM41vlsB8504jsEmRWm6ut6vTcpBRIXIzW0ZXC/25Xpp9yXzpFam', NULL, '2018-10-18 07:47:05', '2018-10-18 07:47:05'),
-(16, 15, 'ups1', 'respondent', 'abc1@gmail.com', '$2y$10$82nWwxu9JLEzQyOpGrSAn.CeqXfxu18KwMC1DRbqOmoBoMAasfmfi', NULL, NULL, NULL),
-(17, 15, 'ups2', 'respondent', 'abc2@gmail.com', '$2y$10$N3xWiBDF0JXFul0E6VPaqOtUjXxN1n0GdgJ1tLssq14w.HOZbnfVO', NULL, NULL, NULL),
-(18, 15, 'ups3', 'respondent', 'abc3@gmail.com', '$2y$10$by4K7jrzxAXWNltjVjctU.pww.8FVFw62J3KYzh9lWhqwcyKGvCGW', NULL, NULL, NULL),
-(19, 15, 'ups4', 'respondent', 'abc4@gmail.com', '$2y$10$Cr8Om3cpTToZe.GscVSxBuX1URubk7rjuACqKJ3nmJFt6S4OqhDce', NULL, NULL, NULL),
-(20, 15, 'ups5', 'respondent', 'abc5@gmail.com', '$2y$10$mnDO.BSw4AjxxiPLWgp56.myHnPoqThxWdiFlNJb6Qnclpjh.9GUq', NULL, NULL, NULL);
+INSERT INTO `users` (`id`, `company_id`, `name`, `user_type`, `email`, `department`, `level`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(4, NULL, 'Admin', 'admin', 'survey@gmail.com', 'Admin', 'A', '$2y$10$NsM4I1ELRg.qY7IdWV5sxOWETR9PCbH4K87f2fWXF2Lzd/.RflfF2', NULL, '2018-10-15 00:16:00', '2018-10-15 00:16:00'),
+(70, 17, 'Test1', 'respondent', 'manasi.rathod@gmail.com', 'Operations', 'a', '$2y$10$QchZEGrROMy81.CFVXmm8e5G.FMUHqr9w/sjEtUD16sDckxoMyDCq', NULL, NULL, NULL),
+(71, 17, 'Test2', 'respondent', 'rathod1304@gmail.com', 'Sales', 'b', '$2y$10$ThvUvj41OE0ic5ZWcr9SguSpeduyDhIGSHVKPBA4zuJRBtTNx4EW6', NULL, NULL, NULL),
+(72, 17, 'Test 3', 'respondent', 'mjr1304@gmail.com', 'Sales', 'a', '$2y$10$r1h09k1y7Zygn5LOqeVzxepD/ayQrnpP/0PfAlNzXC.UHn3zKgRjG', NULL, NULL, NULL),
+(73, 17, 'Test 4', 'respondent', 'info@manasirathod.com', 'Director', 'a', '$2y$10$hneXzCzFGJr2PjZuP9SHXut.36pp6jautxvdS9a0qmb8r9Pj3o9b2', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -335,20 +273,8 @@ CREATE TABLE `user_survey` (
 --
 
 INSERT INTO `user_survey` (`user_id`, `survey_id`, `form_id`, `question_id`, `answer_id`, `created_at`, `updated_at`) VALUES
-('abc1@gmail.com', 6, 6, 9, '18', '2018-12-11 12:38:05', '2018-12-11 12:38:05'),
-('abc1@gmail.com', 6, 6, 10, '32', '2018-12-11 12:38:05', '2018-12-11 12:38:05'),
-('abc1@gmail.com', 6, 6, 11, '36', '2018-12-11 12:38:05', '2018-12-11 12:38:05'),
-('abc1@gmail.com', 6, 6, 13, 'sdsa', '2018-12-11 12:38:05', '2018-12-11 12:38:05'),
-('abc1@gmail.com', 6, 6, 14, '41', '2018-12-11 12:38:05', '2018-12-11 12:38:05'),
-('abc1@gmail.com', 6, 6, 15, '47', '2018-12-11 12:38:05', '2018-12-11 12:38:05'),
-('abc1@gmail.com', 6, 6, 16, '51', '2018-12-11 12:38:05', '2018-12-11 12:38:05'),
-('dhaval@gmail.com', 6, 6, 9, '17', '2018-12-11 12:38:39', '2018-12-11 12:38:39'),
-('dhaval@gmail.com', 6, 6, 10, '32', '2018-12-11 12:38:39', '2018-12-11 12:38:39'),
-('dhaval@gmail.com', 6, 6, 11, '36', '2018-12-11 12:38:39', '2018-12-11 12:38:39'),
-('dhaval@gmail.com', 6, 6, 13, 'sdfs', '2018-12-11 12:38:39', '2018-12-11 12:38:39'),
-('dhaval@gmail.com', 6, 6, 14, '41', '2018-12-11 12:38:39', '2018-12-11 12:38:39'),
-('dhaval@gmail.com', 6, 6, 15, '47', '2018-12-11 12:38:40', '2018-12-11 12:38:40'),
-('dhaval@gmail.com', 6, 6, 16, '51', '2018-12-11 12:38:40', '2018-12-11 12:38:40');
+('mjr1304@gmail.com', 29, 8, 20, '59', '2018-12-26 14:03:39', '2018-12-26 14:03:39'),
+('mjr1304@gmail.com', 29, 8, 21, '65', '2018-12-26 14:03:39', '2018-12-26 14:03:39');
 
 -- --------------------------------------------------------
 
@@ -359,7 +285,7 @@ INSERT INTO `user_survey` (`user_id`, `survey_id`, `form_id`, `question_id`, `an
 CREATE TABLE `user_survey_link` (
   `company_id` int(11) NOT NULL,
   `user_id` varchar(200) NOT NULL,
-  `survey_id` int(11) NOT NULL,
+  `survey_id` int(11) NOT NULL DEFAULT '0',
   `status` varchar(200) NOT NULL DEFAULT 'open',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
@@ -370,10 +296,10 @@ CREATE TABLE `user_survey_link` (
 --
 
 INSERT INTO `user_survey_link` (`company_id`, `user_id`, `survey_id`, `status`, `created_at`, `updated_at`) VALUES
-(15, 'abc1@gmail.com', 6, 'submitted', '2018-10-27 07:58:45', '2018-12-11 12:38:05'),
-(15, 'abc@gmail.com', 6, 'open', '2018-11-02 14:41:04', '2018-11-05 11:31:57'),
-(15, 'dhaval@gmail.com', 6, 'submitted', '2018-10-11 08:29:07', '2018-12-11 12:38:40'),
-(15, 'gaurav@gmail.com', 6, 'open', '2018-10-18 13:20:03', '2018-11-05 11:32:10');
+(17, 'info@manasirathod.com', 29, 'open', '2018-12-26 13:58:00', '2018-12-26 14:02:27'),
+(17, 'manasi.rathod@gmail.com', 29, 'open', '2018-12-26 13:58:00', '2018-12-26 14:02:27'),
+(17, 'mjr1304@gmail.com', 29, 'submitted', '2018-12-26 13:58:00', '2018-12-26 14:03:39'),
+(17, 'rathod1304@gmail.com', 29, 'open', '2018-12-26 13:58:00', '2018-12-26 14:02:27');
 
 --
 -- Indexes for dumped tables
@@ -422,6 +348,18 @@ ALTER TABLE `questions`
   ADD UNIQUE KEY `question_id` (`question_id`);
 
 --
+-- Indexes for table `survey_option`
+--
+ALTER TABLE `survey_option`
+  ADD PRIMARY KEY (`question_id`,`option_id`);
+
+--
+-- Indexes for table `survey_question`
+--
+ALTER TABLE `survey_question`
+  ADD PRIMARY KEY (`form_id`,`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -448,19 +386,19 @@ ALTER TABLE `user_survey_link`
 -- AUTO_INCREMENT for table `company`
 --
 ALTER TABLE `company`
-  MODIFY `company_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `company_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `company_survey`
 --
 ALTER TABLE `company_survey`
-  MODIFY `survey_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `survey_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `forms`
 --
 ALTER TABLE `forms`
-  MODIFY `form_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `form_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -472,19 +410,19 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `options`
 --
 ALTER TABLE `options`
-  MODIFY `option_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+  MODIFY `option_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
 
 --
 -- AUTO_INCREMENT for table `questions`
 --
 ALTER TABLE `questions`
-  MODIFY `question_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `question_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -39,6 +39,8 @@ class ExcelController extends Controller
                         $insert[] = [
                         'name' => $value->name,
                         'email' => $value->email,
+                        'department' => $value->dep,
+                        'level' => $value->level,
                         'password' => bcrypt('default'),
                         'company_id' => $request->company_id
                         ];
