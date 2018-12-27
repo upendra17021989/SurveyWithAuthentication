@@ -29,12 +29,28 @@ class QuestionController extends Controller
         DB::table('questions')->insert(
              array(
                 'form_id' => $request['form_id'], 
-                'question_description' => $request['description'],
+                'question_description' => $request['questionDescription'],
                 'question_type' => $request['question_type']
              )
         );
 
-        return response()->json('Question Added Successfully.');
+        $questionId = DB::table('questions')->max('question_id');
+
+        echo response()->json($questionId);
+
+        $options = $request['options'];
+
+        foreach ($options as $option) {
+            $insert[] = [
+                'form_id' => $request['form_id'], 
+                'question_id' => $questionId, 
+                'option_description' => $option
+            ];
+        }
+
+        DB::table('options')->insert($insert);
+
+        return response()->json('Question and Options Added Successfully.');
     }
 
     /**

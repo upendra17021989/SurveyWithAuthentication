@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 26, 2018 at 03:04 PM
+-- Generation Time: Dec 27, 2018 at 03:36 PM
 -- Server version: 10.1.35-MariaDB
 -- PHP Version: 7.2.9
 
@@ -139,7 +139,17 @@ INSERT INTO `options` (`form_id`, `question_id`, `option_id`, `option_descriptio
 (8, 21, 65, 'Agree', '2018-12-26 14:01:51', '2018-12-26 14:01:51'),
 (8, 21, 66, 'Neutral', '2018-12-26 14:01:51', '2018-12-26 14:01:51'),
 (8, 21, 67, 'Disagree', '2018-12-26 14:01:51', '2018-12-26 14:01:51'),
-(8, 21, 68, 'Strongly Disagree', '2018-12-26 14:01:52', '2018-12-26 14:01:52');
+(8, 21, 68, 'Strongly Disagree', '2018-12-26 14:01:52', '2018-12-26 14:01:52'),
+(8, 45, 77, 'Strongly Agree', '2018-12-27 14:34:51', '2018-12-27 14:34:51'),
+(8, 45, 78, 'Agree', '2018-12-27 14:34:51', '2018-12-27 14:34:51'),
+(8, 45, 79, 'Neutral', '2018-12-27 14:34:51', '2018-12-27 14:34:51'),
+(8, 45, 80, 'Disagree', '2018-12-27 14:34:51', '2018-12-27 14:34:51'),
+(8, 45, 81, 'Strongly Disagree', '2018-12-27 14:34:51', '2018-12-27 14:34:51'),
+(8, 46, 82, 'Strongly Agree', '2018-12-27 14:35:52', '2018-12-27 14:35:52'),
+(8, 46, 83, 'Agree', '2018-12-27 14:35:52', '2018-12-27 14:35:52'),
+(8, 46, 84, 'Neutral', '2018-12-27 14:35:52', '2018-12-27 14:35:52'),
+(8, 46, 85, 'Disagree', '2018-12-27 14:35:52', '2018-12-27 14:35:52'),
+(8, 46, 86, 'Strongly Disagree', '2018-12-27 14:35:52', '2018-12-27 14:35:52');
 
 -- --------------------------------------------------------
 
@@ -181,45 +191,9 @@ CREATE TABLE `questions` (
 
 INSERT INTO `questions` (`form_id`, `question_id`, `question_description`, `question_type`, `created_at`, `updated_at`) VALUES
 (8, 20, 'Diversity is a barrier to progression at my organisation', 'MCQ', '2018-12-26 13:59:41', '2018-12-26 13:59:41'),
-(8, 21, 'I feel that my work or studies contribute to the mission of the organisation', 'MCQ', '2018-12-26 14:01:12', '2018-12-26 14:01:12');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `survey`
---
-
-CREATE TABLE `survey` (
-  `survey_id` int(5) NOT NULL,
-  `company_id` int(11) NOT NULL,
-  `survey_type` varchar(50) NOT NULL,
-  `description` varchar(500) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `survey_option`
---
-
-CREATE TABLE `survey_option` (
-  `question_id` int(11) NOT NULL,
-  `option_id` int(5) NOT NULL,
-  `description` varchar(1000) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `survey_question`
---
-
-CREATE TABLE `survey_question` (
-  `form_id` int(10) NOT NULL,
-  `id` int(5) NOT NULL,
-  `description` varchar(1000) NOT NULL,
-  `type` varchar(10) NOT NULL DEFAULT 'multiple'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+(8, 21, 'I feel that my work or studies contribute to the mission of the organisation', 'MCQ', '2018-12-26 14:01:12', '2018-12-26 14:01:12'),
+(8, 45, 'I feel connected to the vision, mission and values of the organisation', 'MCQ', '2018-12-27 14:34:51', '2018-12-27 14:34:51'),
+(8, 46, 'I have had opportunities at to develop professionally', 'MCQ', '2018-12-27 14:35:52', '2018-12-27 14:35:52');
 
 -- --------------------------------------------------------
 
@@ -348,18 +322,6 @@ ALTER TABLE `questions`
   ADD UNIQUE KEY `question_id` (`question_id`);
 
 --
--- Indexes for table `survey_option`
---
-ALTER TABLE `survey_option`
-  ADD PRIMARY KEY (`question_id`,`option_id`);
-
---
--- Indexes for table `survey_question`
---
-ALTER TABLE `survey_question`
-  ADD PRIMARY KEY (`form_id`,`id`);
-
---
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -410,13 +372,13 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `options`
 --
 ALTER TABLE `options`
-  MODIFY `option_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
+  MODIFY `option_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
 
 --
 -- AUTO_INCREMENT for table `questions`
 --
 ALTER TABLE `questions`
-  MODIFY `question_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `question_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT for table `users`

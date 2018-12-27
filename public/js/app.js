@@ -17707,6 +17707,8 @@ var CreateAdminOption = function (_Component) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_primereact_dropdown___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_primereact_dropdown__);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -17722,6 +17724,11 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
+var divStyle = {
+    display: 'inline-flex',
+    paddingTop: '10px'
+};
+
 var questionTypes = [{ label: 'Multiple Choice', value: 'MCQ' }, { label: 'Open Ended', value: 'OE' }];
 
 var CreateAdminQuestion = function (_Component) {
@@ -17735,8 +17742,9 @@ var CreateAdminQuestion = function (_Component) {
         _this.state = {
             company_id: props.match.params.cid,
             form_id: props.match.params.fid,
-            description: '',
-            question_type: 'MCQ'
+            questionDescription: '',
+            question_type: 'MCQ',
+            options: []
         };
         return _this;
     }
@@ -17749,13 +17757,16 @@ var CreateAdminQuestion = function (_Component) {
             e.preventDefault();
             var _state = this.state,
                 form_id = _state.form_id,
-                description = _state.description,
-                question_type = _state.question_type;
+                questionDescription = _state.questionDescription,
+                question_type = _state.question_type,
+                options = _state.options;
+
 
             __WEBPACK_IMPORTED_MODULE_3_axios___default.a.post('/api/createquestion', {
                 form_id: form_id,
-                description: description,
-                question_type: question_type
+                questionDescription: questionDescription,
+                question_type: question_type,
+                options: options
             }).then(function (response) {
                 _this2.setState({ err: false });
                 //this.props.history.push("create-question") ;
@@ -17774,9 +17785,54 @@ var CreateAdminQuestion = function (_Component) {
             this.setState(_defineProperty({}, name, value));
         }
     }, {
+        key: 'createUI',
+        value: function createUI() {
+            var _this3 = this;
+
+            return this.state.options.map(function (el, i) {
+                return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'div',
+                    { key: i, className: 'col-md-8', style: divStyle },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'label',
+                        { 'for': 'description', className: 'col-md-6 control-label' },
+                        'Options:'
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', className: 'col-md-8 form-control', value: el || '', onChange: _this3.handleChange.bind(_this3, i), required: true }),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'button', className: 'btn btn-primary', value: 'remove', onClick: _this3.removeClick.bind(_this3, i) })
+                );
+            });
+        }
+    }, {
+        key: 'handleChange',
+        value: function handleChange(i, event) {
+            var options = [].concat(_toConsumableArray(this.state.options));
+            options[i] = event.target.value;
+            this.setState({ options: options });
+        }
+    }, {
+        key: 'addClick',
+        value: function addClick() {
+            this.setState(function (prevState) {
+                return { options: [].concat(_toConsumableArray(prevState.options), ['']) };
+            });
+        }
+    }, {
+        key: 'removeClick',
+        value: function removeClick(i) {
+            var options = [].concat(_toConsumableArray(this.state.options));
+            options.splice(i, 1);
+            this.setState({ options: options });
+        }
+    }, {
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            this.addClick();
+        }
+    }, {
         key: 'render',
         value: function render() {
-            var _this3 = this;
+            var _this4 = this;
 
             var error = this.state.err;
             var msg = !error ? 'Created Successfully' : 'Oops! , Something went wrong.';
@@ -17821,33 +17877,42 @@ var CreateAdminQuestion = function (_Component) {
                                             'div',
                                             { className: 'form-group' },
                                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                                'label',
-                                                { 'for': 'description', className: 'col-md-4 control-label' },
-                                                'Description'
-                                            ),
-                                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                                 'div',
-                                                { className: 'col-md-6' },
-                                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_primereact_inputtextarea__["InputTextarea"], { rows: 5, cols: 50, value: this.state.description, onChange: function onChange(e) {
-                                                        return _this3.setState({ description: e.target.value });
-                                                    } })
+                                                { className: 'col-md-8' },
+                                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                                    'label',
+                                                    { 'for': 'description', className: 'col-md-4 control-label' },
+                                                    'Question:'
+                                                ),
+                                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                                    'div',
+                                                    { className: 'col-md-6' },
+                                                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_primereact_inputtextarea__["InputTextarea"], { rows: 5, cols: 70, value: this.state.questionDescription, onChange: function onChange(e) {
+                                                            return _this4.setState({ questionDescription: e.target.value });
+                                                        } })
+                                                )
                                             )
                                         ),
                                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                             'div',
                                             { className: 'form-group' },
                                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                                'label',
-                                                { 'for': 'company_type', className: 'col-md-4 control-label' },
-                                                'Type'
-                                            ),
-                                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                                 'div',
-                                                { className: 'col-md-6' },
+                                                { className: 'col-md-8' },
+                                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                                    'label',
+                                                    { 'for': 'company_type', className: 'col-md-4 control-label' },
+                                                    'Type:'
+                                                ),
                                                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5_primereact_dropdown__["Dropdown"], { value: this.state.question_type, options: questionTypes, onChange: function onChange(e) {
-                                                        _this3.setState({ question_type: e.value });
+                                                        _this4.setState({ question_type: e.value });
                                                     }, placeholder: 'Select a Type' })
                                             )
+                                        ),
+                                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                            'div',
+                                            { className: 'form-group' },
+                                            this.createUI()
                                         ),
                                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                             'div',
@@ -17856,9 +17921,26 @@ var CreateAdminQuestion = function (_Component) {
                                                 'div',
                                                 { className: 'col-md-6 col-md-offset-4' },
                                                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                                    'button',
-                                                    { type: 'submit', className: 'btn btn-primary' },
-                                                    'Create'
+                                                    'table',
+                                                    null,
+                                                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                                        'tr',
+                                                        null,
+                                                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                                            'td',
+                                                            { width: '200px' },
+                                                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { className: 'btn btn-primary', type: 'button', value: 'Add More Options', onClick: this.addClick.bind(this) })
+                                                        ),
+                                                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                                            'td',
+                                                            null,
+                                                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                                                'button',
+                                                                { type: 'submit', className: 'btn btn-primary' },
+                                                                'Create'
+                                                            )
+                                                        )
+                                                    )
                                                 )
                                             )
                                         )

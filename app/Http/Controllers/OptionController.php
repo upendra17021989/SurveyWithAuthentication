@@ -29,7 +29,6 @@ class OptionController extends Controller
              array(
                     'form_id' => $request['form_id'], 
                     'question_id' => $request['question_id'], 
-                    'option_id' => $request['option_id'], 
                     'option_description' => $request['description']
              )
         );
