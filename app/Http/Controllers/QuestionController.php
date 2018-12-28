@@ -36,19 +36,20 @@ class QuestionController extends Controller
 
         $questionId = DB::table('questions')->max('question_id');
 
-        echo response()->json($questionId);
+        if ($request['question_type'] == 'MCQ') {
 
-        $options = $request['options'];
+            $options = $request['options'];
 
-        foreach ($options as $option) {
-            $insert[] = [
-                'form_id' => $request['form_id'], 
-                'question_id' => $questionId, 
-                'option_description' => $option
-            ];
+            foreach ($options as $option) {
+                $insert[] = [
+                    'form_id' => $request['form_id'], 
+                    'question_id' => $questionId, 
+                    'option_description' => $option
+                ];
+            }
+
+            DB::table('options')->insert($insert);
         }
-
-        DB::table('options')->insert($insert);
 
         return response()->json('Question and Options Added Successfully.');
     }
