@@ -41,7 +41,7 @@ class DisplayCompany extends Component {
       let self = this;
       if (this.state.companies instanceof Array) {
           return this.state.companies.map(function(item, key){
-            return <CompanyRow obj={item} handleSubmit={self.handleSubmit} />;
+            return <CompanyRow obj={item} handleSubmit={self.handleSubmit} key={key} />;
           })
         }
     }
@@ -68,7 +68,8 @@ class DisplayCompany extends Component {
                 <div className="col-md-offset-2 col-md-8 col-md-offset-2">
                   {error != undefined && <div className={name} role="alert">{msg}</div>}
                 </div>
-                  <table className="table">
+                <div className="form-group table-responsive" style={{width: '100%'}}>
+                  <table className="table table-bordered">
                     <thead>
                       <tr>
                         <th>Company Name</th>
@@ -83,6 +84,7 @@ class DisplayCompany extends Component {
                       {this.tabRow()}
                    </tbody>
                   </table>
+                </div>
                   <Link to="/create-company">Add New Company</Link>
                 </div>
               </div>

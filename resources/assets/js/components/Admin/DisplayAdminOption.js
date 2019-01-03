@@ -70,7 +70,8 @@ class DisplayAdminOption extends Component {
                 <div className="col-md-offset-2 col-md-8 col-md-offset-2">
                   {error != undefined && <div className={name} role="alert">{msg}</div>}
                 </div>
-                  <table className="table">
+                <div className="form-group table-responsive" style={{width: '100%'}}>
+                  <table className="table table-bordered">
                     <thead>
                       <tr>
                         <th>Option</th>
@@ -83,12 +84,11 @@ class DisplayAdminOption extends Component {
                     <tbody>
                       {this.tabRow()}
                     </tbody>
-                    <tr>
-                      <td><Link className="" to={"/create-option/" + this.state.form_id + "/" + this.state.question_id }>Create Option</Link></td>
-                      <td><Link className="" to={"/admin-question/" + this.state.form_id}> View Questions</Link></td>
-                      <td><Link className="" to={"/form"}> View Forms </Link></td>
-                    </tr>
                   </table>
+                  </div>
+                  <Link style={{'margin-right' : '20px'}}  to={"/create-option/" + this.state.form_id + "/" + this.state.question_id }>Create Option</Link>
+                  <Link style={{'margin-right' : '20px'}}  to={"/admin-question/" + this.state.form_id}> View Questions</Link>
+                  <Link className="" to={"/form"}> View Forms </Link>
                 </div>
               </div>
             </div>

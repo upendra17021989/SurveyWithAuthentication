@@ -41,7 +41,7 @@ class DisplayForm extends Component {
       let self = this;
       if (this.state.forms instanceof Array) {
           return this.state.forms.map(function(item, key){
-            return <FormRow obj={item} handleSubmit={self.handleSubmit} />;
+            return <FormRow obj={item} handleSubmit={self.handleSubmit} key = {key} />;
           })
         }
     }
@@ -64,27 +64,29 @@ class DisplayForm extends Component {
             <div className="col-md-8 col-md-offset-2">
               <div className="panel panel-default">
                 <div className="panel-heading">Form List</div>
-                <div className="table-responsive panel-body">   
+                <div className="panel-body">   
                   <div className="col-md-offset-2 col-md-8 col-md-offset-2">
                     {error != undefined && <div className={name} role="alert">{msg}</div>}
                   </div>
-                  <table className="table">
-                    <thead>
-                      <tr>
-                        <th>Form Name</th>
-                        <th>Description</th>
-                        <th>Created Date</th>
-                        <th>Updated Date</th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {this.tabRow()}
-                   </tbody>
-                  </table>
-                  <Link to={"/create-form"}>Create Form</Link>
+                  <div className="form-group table-responsive" style={{width: '100%'}}>   
+                    <table className="table table-bordered">
+                      <thead>
+                        <tr>
+                          <th>Form Name</th>
+                          <th>Description</th>
+                          <th>Created Date</th>
+                          <th>Updated Date</th>
+                          <th></th>
+                          <th></th>
+                          <th></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {this.tabRow()}
+                     </tbody>
+                    </table>
+                  </div>
+                <Link to={"/create-form"}>Create Form</Link>
                 </div>
               </div>
             </div>

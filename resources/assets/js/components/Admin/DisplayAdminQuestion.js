@@ -42,7 +42,7 @@ class DisplayAdminQuestion extends Component {
       let self = this;
       if (this.state.questions instanceof Array) {
           return this.state.questions.map(function(item, key){
-            return <AdminQuestionRow obj={item} handleSubmit={self.handleSubmit} />;
+            return <AdminQuestionRow obj={item} handleSubmit={self.handleSubmit} key={key} />;
           })
         }
     }
@@ -65,11 +65,16 @@ class DisplayAdminQuestion extends Component {
             <div className="col-md-8 col-md-offset-2">
               <div className="panel panel-default">
                 <div className="panel-heading">Question List</div>
-                <div className="table-responsive panel-body">   
+                <div className="panel-body">   
                   <div className="col-md-offset-2 col-md-8 col-md-offset-2">
                     {error != undefined && <div className={name} role="alert">{msg}</div>}
                   </div>
-                    <table className="table">
+                  <div>
+                    <Link to={"/create-question/" + this.state.form_id} style={{"margin-right": '20px'}}>Create Question</Link>
+                    <Link to={"/form"}>View Forms</Link>
+                  </div>
+                  <div className="table-responsive" style={{"width": "100%"}}>   
+                    <table className="table table-bordered">
                       <thead>
                         <tr>
                           <th>Question</th>
@@ -79,19 +84,15 @@ class DisplayAdminQuestion extends Component {
                           <th></th>
                           <th></th>
                           <th></th>
-                          <th></th>
                         </tr>
                       </thead>
                       <tbody>
                         {this.tabRow()}
                      </tbody>
-                     <tr>
-                      <td><Link to={"/create-question/" + this.state.form_id}>Create Question</Link></td>
-                      <td></td>
-                      <td><Link to={"/form"}>View Forms</Link></td>
-                    </tr>
                     </table>
-                  
+                  </div>
+                  <Link to={"/create-question/" + this.state.form_id} style={{"margin-right": '20px'}}>Create Question</Link>
+                  <Link to={"/form"}>View Forms</Link>
                 </div>
               </div>
             </div>

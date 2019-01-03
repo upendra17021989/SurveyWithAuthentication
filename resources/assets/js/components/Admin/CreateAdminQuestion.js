@@ -25,7 +25,8 @@ class CreateAdminQuestion extends Component {
           form_id: props.match.params.fid,
           questionDescription : '',
           question_type: 'MCQ',
-          options: []
+          options: [],
+          showOption: true
         }
      }
 
@@ -41,10 +42,9 @@ class CreateAdminQuestion extends Component {
           })
           .then(response=> {
            this.setState({err: false});
-           //this.props.history.push("create-question") ;
           })
           .catch(error=> {
-            this.refs.description.value="";
+
             this.setState({err: true});
           });
      }
@@ -54,13 +54,33 @@ class CreateAdminQuestion extends Component {
         this.setState({[name]: value});
     }
 
+    onDropDownChange(value){
+      if (value == 'OE') {
+        this.setState({
+          question_type: value,
+          showOption: false
+        });
+      } else {
+        this.setState({
+          question_type: value,
+          showOption: true
+        });
+      }
+    }
+
     createUI(){
       return this.state.options.map((el, i) => 
-         <div key={i} className="col-md-8" style={divStyle}>
-            <label for="description" className="col-md-6 control-label">Options:</label>
-            <input type="text" className="col-md-8 form-control" value={el||''} onChange={this.handleChange.bind(this, i)} required />
+        <tr key = {i} >
+          <td>
+            <label className="control-label">Options:</label>
+          </td>
+          <td>
+            <input type="text" className="form-control" value={el||''} onChange={this.handleChange.bind(this, i)} required />
+          </td>
+          <td>
             <input type='button' className="btn btn-primary" value='remove' onClick={this.removeClick.bind(this, i)}/>
-        </div>          
+          </td>
+        </tr>
       )
     }
 
@@ -91,7 +111,7 @@ class CreateAdminQuestion extends Component {
         return (   
              <div>   
                 <Nav link="admin" />
-                <div className="container">
+                <div className="container create-admin-question">
                     <div className="row">
                         <div className="col-md-8 col-md-offset-2">
                             <div className="panel panel-default">
@@ -101,43 +121,38 @@ class CreateAdminQuestion extends Component {
                                         {error != undefined && <div className={name} role="alert">{msg}</div>}
                                     </div>   
                                     <form className="form-horizontal" role="form" method="POST" onSubmit= {this.onSubmit.bind(this)}>
-                                        <div className="form-group">
-                                          <div className="col-md-8">
-                                            <label for="description" className="col-md-4 control-label">Question:</label>
-
-                                            <div className="col-md-6">
-                                              <InputTextarea rows={5} cols={70} value={this.state.questionDescription} onChange={(e) => this.setState({questionDescription: e.target.value})} />
-                                            </div>
-                                          </div>
+                                      <div className="form-group table-responsive" style={{width: '100%'}}>
+                                        <table className="table">
+                                          <tbody>
+                                            <tr>
+                                              <td>    
+                                                <label>Question:</label>
+                                              </td>
+                                              <td>
+                                                <InputTextarea className="form-control" rows={5} cols={70} value={this.state.questionDescription} onChange={(e) => this.setState({questionDescription: e.target.value})} required />
+                                              </td>
+                                            </tr>
+                                            <tr>
+                                              <td>
+                                                <label>Type:</label>
+                                              </td>
+                                              <td>
+                                                <Dropdown value={this.state.question_type} options={questionTypes} onChange={(e) => {this.onDropDownChange(e.value)}} placeholder="Select a Type"/>
+                                              </td>
+                                            </tr>
+                                            {this.state.showOption && this.createUI()}
+                                            <tr>
+                                              <td></td>
+                                              <td>
+                                                {this.state.showOption &&  <input style={{"marginRight" : "20px" }} className="btn btn-primary" type='button' value='Add More Options' onClick={this.addClick.bind(this)}/> }
+                                                <button type="submit" className="btn btn-primary create-btn">
+                                                    Create
+                                                </button>
+                                              </td>
+                                            </tr>
+                                          </tbody>
+                                          </table>
                                         </div>
-
-                                        <div className="form-group">
-                                            <div className="col-md-8">
-                                              <label for="company_type" className="col-md-4 control-label">Type:</label>
-                                              <Dropdown value={this.state.question_type} options={questionTypes} onChange={(e) => {this.setState({question_type: e.value})}} placeholder="Select a Type"/>
-                                            </div>
-                                        </div>
-
-                                        <div className="form-group">
-                                          {this.createUI()}
-                                        </div>
-
-                                        <div className="form-group">
-                                              <div className="col-md-6 col-md-offset-4">
-                                                <table>
-                                                <tr>
-                                                <td width="200px">
-                                                <input className="btn btn-primary" type='button' value='Add More Options' onClick={this.addClick.bind(this)}/> 
-                                                </td>
-                                                <td>
-                                                  <button type="submit" className="btn btn-primary">
-                                                      Create
-                                                  </button>
-                                                </td>
-                                                </tr>
-                                                </table>
-                                              </div>
-                                          </div>
                                     </form>
                                     <Link to={"/admin-question/" + this.state.form_id}>View Questions</Link>
                                 </div>

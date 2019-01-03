@@ -104,6 +104,8 @@
 
 .add-user-survey {
 	.form-group {
+		margin-left: 0;
+		margin-right: 0;
 		.button-align {
 			margin: 0 auto;
 			display: table;
@@ -145,4 +147,18 @@
 
 .ui-growl {
     width: 25em !important;
+}
+
+.create-admin-question {
+	table {
+		tbody td {
+			padding: 10px;
+			border-top: none;
+		}
+	}
+
+	.create-btn {
+	    background-color: #17370df0;
+    	border-color: #17370df0;
+	}
 }

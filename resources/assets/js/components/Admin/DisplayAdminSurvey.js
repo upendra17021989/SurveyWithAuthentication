@@ -68,25 +68,25 @@ class DisplayAdminSurvey extends Component {
                 <div className="col-md-offset-2 col-md-8 col-md-offset-2">
                   {error != undefined && <div className={name} role="alert">{msg}</div>}
                 </div>
-                  <table className="table">
-                    <thead>
-                      <tr>
-                        <th>Survey Name</th>
-                        <th>Company Name</th>
-                        <th>Form Name</th>
-                        <th>Start Date</th>
-                        <th>End Date</th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {this.tabRow()}
-                   </tbody>
-                  </table>
+                <div className="form-group table-responsive" style={{width: '100%'}}>
+                    <table className="table table-bordered">
+                      <thead>
+                        <tr>
+                          <th>Survey Name</th>
+                          <th>Company Name</th>
+                          <th>Form Name</th>
+                          <th>Start Date</th>
+                          <th>End Date</th>
+                          <th></th>
+                          <th></th>
+                          <th></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {this.tabRow()}
+                     </tbody>
+                    </table>
+                  </div>
                   <Link to="/create-admin-survey">Create New Survey</Link>
                 </div>
               </div>

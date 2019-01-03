@@ -120,7 +120,7 @@ class AddUserSurvey extends Component {
       if (this.state.usersDetail instanceof Array) {
           return this.state.usersDetail.map(function(item, key){
             return (
-              <tr>
+              <tr key ={key}>
                 <td> {item.name} </td>
                 <td> {item.email} </td>
                 <td> {item.survey_name} </td>
@@ -163,33 +163,33 @@ class AddUserSurvey extends Component {
                                     </div>   
                                     <form className="form-horizontal" role="form" method="POST" onSubmit= {this.onSubmit.bind(this)}>
                                         <div className="form-group">
-                                            <label for="company" className="col-md-4 control-label">Select Company</label>
+                                            <label for="company" className="col-md-4 control-label">Select Company:</label>
 
                                             <div className="col-md-6">
-                                                <Dropdown style={{width: '50%'}} value={parseInt(this.state.company_id)} options={this.state.companySelectItems} onChange={(e) => {this.reloadUsers(e.value)}} placeholder="Select a Company"/>
+                                                <Dropdown style={{width: '80%'}} value={parseInt(this.state.company_id)} options={this.state.companySelectItems} onChange={(e) => {this.reloadUsers(e.value)}} placeholder="Select a Company"/>
                                             </div>
 
-                                            <label for="company" className="col-md-4 control-label">Select Survey</label>
+                                            <label for="company" style={{marginTop: '15px'}} className="col-md-4 control-label">Select Survey:</label>
 
                                             <div className="col-md-6">
-                                                <Dropdown style={{width: '50%'}} value={parseInt(this.state.survey_id)} options={this.state.surveySelectItems} onChange={(e) => {this.reloadUsers(e.value)}} placeholder="Select a Survey"/>
+                                                <Dropdown style={{width: '80%', marginTop: '20px'}} value={parseInt(this.state.survey_id)} options={this.state.surveySelectItems} onChange={(e) => {this.reloadUsers(e.value)}} placeholder="Select a Survey"/>
                                             </div>
                                         </div>
 
-                                        <div className="form-grou table-responsive">
-                                        <table className="table table-bordered">
-                                          <thead>
-                                            <tr>
-                                              <th> User Name </th>
-                                              <th> User Email </th>
-                                              <th> Survey Name </th>
-                                              <th>Status</th>
-                                            </tr>
-                                          </thead>
-                                          <tbody>
-                                            {this.tabRow()}
-                                          </tbody>
-                                        </table>
+                                        <div className="form-group table-responsive">
+                                          <table className="table table-bordered">
+                                            <thead>
+                                              <tr>
+                                                <th> User Name </th>
+                                                <th> User Email </th>
+                                                <th> Survey Name </th>
+                                                <th>Status</th>
+                                              </tr>
+                                            </thead>
+                                            <tbody>
+                                              {this.tabRow()}
+                                            </tbody>
+                                          </table>
                                         </div>
                                     </form>
                                     <Link to="/admin-survey">View Surveys</Link>
