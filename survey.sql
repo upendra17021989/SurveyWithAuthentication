@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 28, 2018 at 11:25 AM
+-- Generation Time: Jan 04, 2019 at 02:48 PM
 -- Server version: 10.1.35-MariaDB
 -- PHP Version: 7.2.9
 
@@ -224,7 +224,10 @@ INSERT INTO `options` (`form_id`, `question_id`, `option_id`, `option_descriptio
 (8, 64, 164, 'Agree', '2018-12-28 10:24:32', '2018-12-28 10:24:32'),
 (8, 64, 165, 'Neutral', '2018-12-28 10:24:32', '2018-12-28 10:24:32'),
 (8, 64, 166, 'Disagree', '2018-12-28 10:24:32', '2018-12-28 10:24:32'),
-(8, 64, 167, 'Strongly Disagree', '2018-12-28 10:24:32', '2018-12-28 10:24:32');
+(8, 64, 167, 'Strongly Disagree', '2018-12-28 10:24:32', '2018-12-28 10:24:32'),
+(8, 68, 168, 'dfsd', '2019-01-03 12:49:33', '2019-01-03 12:49:33'),
+(8, 68, 169, 'dfssd', '2019-01-03 12:49:33', '2019-01-03 12:49:33'),
+(8, 68, 170, 'dfsdfs', '2019-01-03 12:49:33', '2019-01-03 12:49:33');
 
 -- --------------------------------------------------------
 
@@ -269,7 +272,7 @@ INSERT INTO `questions` (`form_id`, `question_id`, `question_description`, `ques
 (8, 21, 'I feel that my work or studies contribute to the mission of the organisation', 'MCQ', '2018-12-26 14:01:12', '2018-12-26 14:01:12'),
 (8, 45, 'I feel connected to the vision, mission and values of the organisation', 'MCQ', '2018-12-27 14:34:51', '2018-12-27 14:34:51'),
 (8, 46, 'I have had opportunities at to develop professionally', 'MCQ', '2018-12-27 14:35:52', '2018-12-27 14:35:52'),
-(8, 50, 'I rarely think about looking for a job at another company', 'MCQ', '2018-12-28 10:22:51', '2018-12-28 10:22:51'),
+(8, 50, 'I rarely think about looking for a job at another company.', 'MCQ', '2018-12-28 10:22:51', '2019-01-03 12:50:55'),
 (8, 51, 'I see myself working for this company in the next 5 years time.', 'MCQ', '2018-12-28 10:23:02', '2018-12-28 10:23:02'),
 (8, 52, 'The company motivates me to go beyond what I would in a similar role elsewhere', 'MCQ', '2018-12-28 10:23:12', '2018-12-28 10:23:12'),
 (8, 53, 'The leaders in the company keep people informed about what is happening.', 'MCQ', '2018-12-28 10:23:23', '2018-12-28 10:23:23'),
@@ -335,14 +338,6 @@ CREATE TABLE `user_survey` (
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `user_survey`
---
-
-INSERT INTO `user_survey` (`user_id`, `survey_id`, `form_id`, `question_id`, `answer_id`, `created_at`, `updated_at`) VALUES
-('mjr1304@gmail.com', 29, 8, 20, '59', '2018-12-26 14:03:39', '2018-12-26 14:03:39'),
-('mjr1304@gmail.com', 29, 8, 21, '65', '2018-12-26 14:03:39', '2018-12-26 14:03:39');
-
 -- --------------------------------------------------------
 
 --
@@ -363,9 +358,9 @@ CREATE TABLE `user_survey_link` (
 --
 
 INSERT INTO `user_survey_link` (`company_id`, `user_id`, `survey_id`, `status`, `created_at`, `updated_at`) VALUES
-(17, 'info@manasirathod.com', 29, 'open', '2018-12-26 13:58:00', '2018-12-26 14:02:27'),
+(17, 'info@manasirathod.com', 29, 'open', '2018-12-26 13:58:00', '2019-01-04 13:45:10'),
 (17, 'manasi.rathod@gmail.com', 29, 'open', '2018-12-26 13:58:00', '2018-12-26 14:02:27'),
-(17, 'mjr1304@gmail.com', 29, 'submitted', '2018-12-26 13:58:00', '2018-12-26 14:03:39'),
+(17, 'mjr1304@gmail.com', 29, 'open', '2018-12-26 13:58:00', '2019-01-04 13:45:10'),
 (17, 'rathod1304@gmail.com', 29, 'open', '2018-12-26 13:58:00', '2018-12-26 14:02:27');
 
 --
@@ -465,7 +460,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `options`
 --
 ALTER TABLE `options`
-  MODIFY `option_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=168;
+  MODIFY `option_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=171;
 
 --
 -- AUTO_INCREMENT for table `questions`

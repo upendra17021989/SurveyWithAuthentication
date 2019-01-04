@@ -15,7 +15,24 @@ class QuestionController extends Controller
     public function index($id)
     {
         $questionDetails = DB::table('questions')->where('questions.form_id','=',$id)->select('questions.form_id', 'questions.question_id', 'questions.question_description', 'questions.question_type', 'questions.created_at', 'questions.updated_at')->get();
-        return $questionDetails;
+
+            foreach ($questionDetails as $key => $value) {
+                       
+
+                $optionDetails = DB::table('options')->where('options.form_id','=',$id)->where('options.question_id','=', $value->question_id)->select('options.form_id', 'options.question_id', 'options.option_id', 'options.option_description', 'options.created_at', 'options.updated_at')->get();
+
+                $insert[] = [
+                    'question_id' => $value->question_id,
+                    'question_description' => $value->question_description,
+                    'form_id' => $value->form_id,
+                    'question_type' => $value->question_type,
+                    'created_at' => $value->created_at,
+                    'updated_at' => $value->updated_at,
+                    'optionDetails' => $optionDetails
+                ];
+            }
+
+        return $insert;
     }
 
     /**

@@ -6,28 +6,9 @@ class UserSurveyOption extends Component {
   constructor(props){
     super(props);
     this.state = {
-                options: '',
-                form_id: props.obj.form_id,
-                question_id: props.obj.question_id,
-                answer_id: ''
-               };
-  }
-
-  componentDidMount(){
-      this.getOptions(this.state.form_id, this.state.question_id);
-  }
-
-  getOptions($form_id, $question_id) {
-    axios.get('/api/adminoption/'+ $form_id + '/' + $question_id)
-     .then(response => {
-      if (response.data.length > 0) {
-       this.setState({ options: response.data});
-      }
-
-     })
-     .catch(function (error) {
-       console.log(error);
-     })
+      options: props.obj,
+      answer_id: ''
+    };
   }
 
   onButtonCheck(e,question_id) {

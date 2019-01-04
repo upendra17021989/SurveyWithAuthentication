@@ -21420,33 +21420,13 @@ var UserSurveyOption = function (_Component) {
     var _this = _possibleConstructorReturn(this, (UserSurveyOption.__proto__ || Object.getPrototypeOf(UserSurveyOption)).call(this, props));
 
     _this.state = {
-      options: '',
-      form_id: props.obj.form_id,
-      question_id: props.obj.question_id,
+      options: props.obj,
       answer_id: ''
     };
     return _this;
   }
 
   _createClass(UserSurveyOption, [{
-    key: 'componentDidMount',
-    value: function componentDidMount() {
-      this.getOptions(this.state.form_id, this.state.question_id);
-    }
-  }, {
-    key: 'getOptions',
-    value: function getOptions($form_id, $question_id) {
-      var _this2 = this;
-
-      __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get('/api/adminoption/' + $form_id + '/' + $question_id).then(function (response) {
-        if (response.data.length > 0) {
-          _this2.setState({ options: response.data });
-        }
-      }).catch(function (error) {
-        console.log(error);
-      });
-    }
-  }, {
     key: 'onButtonCheck',
     value: function onButtonCheck(e, question_id) {
       this.setState({ answer_id: e.value });
@@ -21546,7 +21526,7 @@ var UserSurveyQuestion = function (_Component) {
           this.props.currentCount,
           '.) ',
           this.props.obj.question_description,
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__UserSurveyOption__["a" /* default */], { obj: this.props.obj, onButtonCheck: this.props.onButtonCheck })
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__UserSurveyOption__["a" /* default */], { obj: this.props.obj.optionDetails, onButtonCheck: this.props.onButtonCheck })
         );
       } else if (this.props.obj.question_type = 'OE') {
         return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(

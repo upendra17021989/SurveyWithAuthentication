@@ -21,7 +21,7 @@ class UserSurveyQuestion extends Component {
       return (
         <div className="survey-question">
             {this.props.currentCount}.) {this.props.obj.question_description}
-            <UserSurveyOption obj={this.props.obj} onButtonCheck={this.props.onButtonCheck}/>
+            <UserSurveyOption obj={this.props.obj.optionDetails} onButtonCheck={this.props.onButtonCheck}/>
   	    </div>
       )
     } else if (this.props.obj.question_type = 'OE') {
