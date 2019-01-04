@@ -1,7 +1,10 @@
-import React, { Component } from 'react'
-import Nav from './navbar'
-import { Link } from 'react-router-dom'
-import axios from 'axios'
+import React, { Component } from 'react';
+import Nav from './navbar';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
+import Cookies from 'universal-cookie';
+
+const cookies = new Cookies();
 
 
 class Login extends Component {
@@ -26,6 +29,7 @@ class Login extends Component {
                 .then(response => {
                     if (response.data.length > 0) {
                         this.setState({err: false});
+                        cookies.set('username', response.data[0].name);
                         if (response.data[0].user_type == 'admin') {
                             this.props.history.push("admin-home") ;    
                         } else {

@@ -1,7 +1,10 @@
-import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
-import axios from 'axios'
-import { withRouter } from 'react-router-dom'
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
+import { withRouter } from 'react-router-dom';
+import Cookies from 'universal-cookie';
+
+const cookies = new Cookies();
 
 
 class Nav extends Component {
@@ -14,6 +17,7 @@ class Nav extends Component {
        e.preventDefault();  
        axios.post('/api/logout')
           .then(response=> {
+            cookies.remove('username');
             this.props.history.push('/');
           })
           .catch(error=> {
@@ -33,6 +37,13 @@ class Nav extends Component {
     });
 
   }
+
+  componentDidMount(){
+    if (!cookies.get('username') && this.props.location.pathname !== '/login') {
+      this.props.history.push('/');
+    }
+  }
+
   render() {
 
     if (this.props.link == 'admin') {
