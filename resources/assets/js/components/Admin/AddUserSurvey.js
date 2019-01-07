@@ -125,6 +125,7 @@ class AddUserSurvey extends Component {
                 <td> {item.email} </td>
                 <td> {item.survey_name} </td>
                 <td> {item.status} </td>
+                <td></td>
               </tr>
               )
           })
@@ -184,6 +185,7 @@ class AddUserSurvey extends Component {
                                                 <th> User Email </th>
                                                 <th> Survey Name </th>
                                                 <th>Status</th>
+                                                <th> View Form</th>
                                               </tr>
                                             </thead>
                                             <tbody>

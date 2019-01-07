@@ -38,6 +38,8 @@ class UserSurveyEndController extends Controller
                     'form_id' => $request['form_id'],
                     'question_id' => $survey['question_id'],
                     'answer_id' => $survey['answer_id'],
+                    'question_description' => $survey['question_description'],
+                    'answer_description' => $survey['answer_description'],
                 )
             );
         }

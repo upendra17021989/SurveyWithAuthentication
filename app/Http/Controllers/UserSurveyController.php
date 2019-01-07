@@ -111,7 +111,7 @@ class UserSurveyController extends Controller
         Mail::send('mail', ['title' => $title, 'content' => $content], function ($message)
         {
 
-            $message->from('ups17021989@gmail.com', 'Christian Nwamba');
+            $message->from('support@empmetrics.com', 'Survey Support');
 
             $message->to('ups12384@gmail.com');
 

@@ -30,10 +30,6 @@ class SinglePageSurvey extends Component {
       this.getFormId(this.state.company_id);
     }
 
-    componentWillMount(){
-      this.getFormId(this.state.company_id);
-    }
-
     getFormId($company_id) {
       axios.get(MyGlobleSetting.url + '/api/getformid/' + $company_id)
        .then(response => {
@@ -84,16 +80,20 @@ class SinglePageSurvey extends Component {
         return;
       }
       this.state.surveys.map(function(object, i){
-        let question_id = object.question_id;
-        let answer_id = 0;
+        let question_id = object.question_id,
+            answer_id = 0,
+            answer_description = '';
+
         
         for (var j=0; j< self.state.answerSet.length; j++) {
           if (self.state.answerSet[j].question_id == question_id) {
             answer_id = self.state.answerSet[j].answer_id;
+            answer_description = self.state.answerSet[j].answer_description;
             break;
           }
         }
         object.answer_id = answer_id;
+        object.answer_description =answer_description;
       })
 
         const {user_id, form_id, survey_id, surveys} = self.state;
@@ -119,11 +119,12 @@ class SinglePageSurvey extends Component {
         
     }
 
-    onButtonCheck(selected_option_id, question_id) {
+    onButtonCheck(selected_option_id, question_id, description) {
       var flag = false;
       for (var j=0; j< this.state.answerSet.length ; j++) {
         if (this.state.answerSet[j].question_id == question_id) {
           this.state.answerSet[j].answer_id = selected_option_id;
+          this.state.answerSet[j].answer_description = description;
           flag = true;
           break;
         }
@@ -133,6 +134,7 @@ class SinglePageSurvey extends Component {
         let item = {}
         item["question_id"] = question_id;
         item["answer_id"] = selected_option_id;
+        item["answer_description"] = description;
         this.state.answerSet.push(item);
       }
     }

@@ -11,9 +11,9 @@ class UserSurveyOption extends Component {
     };
   }
 
-  onButtonCheck(e,question_id) {
+  onButtonCheck(e,question_id, description) {
     this.setState({answer_id: e.value});
-    this.props.onButtonCheck(e.value, question_id);
+    this.props.onButtonCheck(e.value, question_id, description);
   }
 
   tabRow() {
@@ -22,7 +22,7 @@ class UserSurveyOption extends Component {
         return this.state.options.map(function(item, key){
           return (
             <li className="survey-option">
-            <RadioButton value={item.option_id} name={"surveyOptions"+ item.question_id} onChange={(e) => self.onButtonCheck(e, item.question_id)} checked={self.state.answer_id === item.option_id} />
+            <RadioButton value={item.option_id} name={"surveyOptions"+ item.question_id} onChange={(e) => self.onButtonCheck(e, item.question_id, item.option_description)} checked={self.state.answer_id === item.option_id} />
           <label htmlFor="rb1" className="p-radiobutton-label">{item.option_description}</label>
           </li>
           )

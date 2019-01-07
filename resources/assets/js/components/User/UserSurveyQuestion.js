@@ -13,7 +13,7 @@ class UserSurveyQuestion extends Component {
 
   onButtonCheck(e, question_id) {
     this.setState({answer_id: e.target.value});
-    this.props.onButtonCheck(e.target.value, question_id);
+    this.props.onButtonCheck(e.target.value, question_id, e.target.value);
   }
 
   render() {

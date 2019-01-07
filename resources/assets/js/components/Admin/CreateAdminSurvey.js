@@ -26,10 +26,6 @@ class CreateAdminSurvey extends Component {
       this.getFormDropDown();
     }
 
-    componentWillMount(){
-      this.getFormDropDown();
-    }
-
     getCompanyDropDown() {
       axios.get('/api/companydropdownlist')
        .then(response => {
@@ -50,28 +46,23 @@ class CreateAdminSurvey extends Component {
        
     }
 
-    getFormDropDown(value) {
-      if (value) {
-        axios.get('/api/formdropdownlist')
-         .then(response => {
-          if (response.data.length > 0) {
-              let formSelectItems = [];
-              if (response.data instanceof Array) {
-                  response.data.map(function(item, key){
-                      formSelectItems.push({label: item.form_name, value: item.form_id});
-                  })
-              }
-                  this.setState({ formSelectItems: formSelectItems });
-          }
+    getFormDropDown() {
+      axios.get('/api/formdropdownlist')
+       .then(response => {
+        if (response.data.length > 0) {
+            let formSelectItems = [];
+            if (response.data instanceof Array) {
+                response.data.map(function(item, key){
+                    formSelectItems.push({label: item.form_name, value: item.form_id});
+                })
+            }
+                this.setState({ formSelectItems: formSelectItems });
+        }
 
-         })
-         .catch(function (error) {
-           console.log(error);
-         })
-
-         this.setState({company_id : value });
-       }
-       
+       })
+       .catch(function (error) {
+         console.log(error);
+       })
     }
 
     onSubmit(e){
@@ -117,23 +108,30 @@ class CreateAdminSurvey extends Component {
                                     </div>   
                                     <form className="form-horizontal" role="form" method="POST" onSubmit= {this.onSubmit.bind(this)}>
                                         <div className="form-group">
-                                            <label for="company" className="col-md-4 control-label">Select Company</label>
+                                            <label className="col-md-3 control-label">Select Company:</label>
 
                                             <div className="col-md-6">
-                                                <Dropdown style={{width: '100%'}} value={this.state.company_id} options={this.state.companySelectItems} onChange={(e) => {this.getFormDropDown(e.value)}} placeholder="Select a Company"/>
+                                                <Dropdown style={{width: '100%'}} value={this.state.company_id} options={this.state.companySelectItems} onChange={(e) => {this.setState({company_id: e.value})}} placeholder="Select a Company"/>
+                                            </div>
+                                            <div className="col-md-3">
+                                              <Link to='/create-company'>Add New Company</Link>
                                             </div>
                                         </div>
 
                                         <div className="form-group">
-                                            <label for="form" className="col-md-4 control-label">Select Form</label>
+                                            <label className="col-md-3 control-label">Select Form:</label>
 
                                             <div className="col-md-6">
                                                 <Dropdown style={{width: '100%'}} value={this.state.form_id} options={this.state.formSelectItems} onChange={(e) => {this.setState({form_id: e.value})}} placeholder="Select a Form"/>
                                             </div>
+
+                                            <div className="col-md-3">
+                                              <Link to='/create-form'>Add New Form</Link>
+                                            </div>
                                         </div>
 
                                         <div className="form-group">
-                                            <label for="name" className="col-md-4 control-label">Survey Name</label>
+                                            <label className="col-md-3 control-label">Survey Name:</label>
 
                                             <div className="col-md-6">
                                                 <input id="survey_name" type="text" className="form-control" ref="survey_name" name="survey_name" onChange={this.onChange.bind(this)} required />
@@ -141,7 +139,7 @@ class CreateAdminSurvey extends Component {
                                         </div>
 
                                         <div className="form-group">
-                                            <label for="start_dt" className="col-md-4 control-label">Start Date</label>
+                                            <label className="col-md-3 control-label">Start Date:</label>
 
                                             <div className="col-md-6">
                                                 <Calendar dateFormat="dd/mm/yy" value={this.state.start_dt} onChange={(e) => this.setState({start_dt: e.value})}></Calendar>
@@ -149,7 +147,7 @@ class CreateAdminSurvey extends Component {
                                         </div>
 
                                         <div className="form-group">
-                                            <label for="end_dt" className="col-md-4 control-label">End Date</label>
+                                            <label  className="col-md-3 control-label">End Date:</label>
 
                                             <div className="col-md-6">
                                                 <Calendar dateFormat="dd/mm/yy" value={this.state.end_dt} onChange={(e) => this.setState({end_dt: e.value})}></Calendar>
@@ -157,7 +155,7 @@ class CreateAdminSurvey extends Component {
                                         </div>
 
                                         <div className="form-group">
-                                            <div className="col-md-6 col-md-offset-4">
+                                            <div className="col-md-6 col-md-offset-3">
                                                 <button type="submit" className="btn btn-primary">
                                                     Create
                                                 </button>
