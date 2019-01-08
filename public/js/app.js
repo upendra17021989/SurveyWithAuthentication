@@ -15676,26 +15676,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_reset__ = __webpack_require__(198);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_User_UserSurveyHome__ = __webpack_require__(190);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_User_SinglePageSurvey__ = __webpack_require__(188);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_Admin_AdminHome__ = __webpack_require__(165);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__components_Admin_DisplayAdminSurvey__ = __webpack_require__(178);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__components_Admin_AdminUser__ = __webpack_require__(169);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__components_Admin_CreateCompany__ = __webpack_require__(174);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__components_Admin_CreateForm__ = __webpack_require__(175);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__components_Admin_CreateAdminQuestion__ = __webpack_require__(172);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__components_Admin_CreateAdminOption__ = __webpack_require__(171);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__components_Admin_CreateAdminSurvey__ = __webpack_require__(173);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__components_Admin_DisplayCompany__ = __webpack_require__(179);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__components_Admin_DisplayForm__ = __webpack_require__(180);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__components_Admin_DisplayAdminQuestion__ = __webpack_require__(177);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__components_Admin_DisplayAdminOption__ = __webpack_require__(176);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__components_Admin_EditCompany__ = __webpack_require__(184);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__components_Admin_EditForm__ = __webpack_require__(185);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__components_Admin_EditAdminQuestion__ = __webpack_require__(182);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__components_Admin_EditAdminOption__ = __webpack_require__(181);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__components_Admin_EditAdminSurvey__ = __webpack_require__(183);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__components_Admin_AddUserSurvey__ = __webpack_require__(164);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__components_User_SurveyComplete__ = __webpack_require__(189);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__components_User_AlreadyComplete__ = __webpack_require__(187);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_User_ViewUserSurveyData__ = __webpack_require__(369);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__components_Admin_AdminHome__ = __webpack_require__(165);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__components_Admin_DisplayAdminSurvey__ = __webpack_require__(178);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__components_Admin_AdminUser__ = __webpack_require__(169);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__components_Admin_CreateCompany__ = __webpack_require__(174);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__components_Admin_CreateForm__ = __webpack_require__(175);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__components_Admin_CreateAdminQuestion__ = __webpack_require__(172);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__components_Admin_CreateAdminOption__ = __webpack_require__(171);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__components_Admin_CreateAdminSurvey__ = __webpack_require__(173);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__components_Admin_DisplayCompany__ = __webpack_require__(179);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__components_Admin_DisplayForm__ = __webpack_require__(180);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__components_Admin_DisplayAdminQuestion__ = __webpack_require__(177);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__components_Admin_DisplayAdminOption__ = __webpack_require__(176);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__components_Admin_EditCompany__ = __webpack_require__(184);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__components_Admin_EditForm__ = __webpack_require__(185);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__components_Admin_EditAdminQuestion__ = __webpack_require__(182);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__components_Admin_EditAdminOption__ = __webpack_require__(181);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__components_Admin_EditAdminSurvey__ = __webpack_require__(183);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__components_Admin_AddUserSurvey__ = __webpack_require__(164);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__components_User_SurveyComplete__ = __webpack_require__(189);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__components_User_AlreadyComplete__ = __webpack_require__(187);
 
 
 
@@ -15706,6 +15707,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 //import DisplaySurvey from './components/User/DisplaySurvey';
+
 
 
 
@@ -15744,26 +15746,27 @@ __WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODU
 		__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["c" /* Route */], { path: '/register', component: __WEBPACK_IMPORTED_MODULE_5__components_register__["a" /* default */] }),
 		__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["c" /* Route */], { path: '/user-home', component: __WEBPACK_IMPORTED_MODULE_9__components_User_UserSurveyHome__["a" /* default */] }),
 		__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["c" /* Route */], { path: '/single-page-survey', component: __WEBPACK_IMPORTED_MODULE_10__components_User_SinglePageSurvey__["a" /* default */] }),
-		__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["c" /* Route */], { path: '/admin-home', component: __WEBPACK_IMPORTED_MODULE_11__components_Admin_AdminHome__["a" /* default */] }),
-		__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["c" /* Route */], { path: '/admin-survey', component: __WEBPACK_IMPORTED_MODULE_12__components_Admin_DisplayAdminSurvey__["a" /* default */] }),
-		__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["c" /* Route */], { path: '/admin-user', component: __WEBPACK_IMPORTED_MODULE_13__components_Admin_AdminUser__["a" /* default */] }),
-		__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["c" /* Route */], { path: '/create-company', component: __WEBPACK_IMPORTED_MODULE_14__components_Admin_CreateCompany__["a" /* default */] }),
-		__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["c" /* Route */], { path: '/create-form', component: __WEBPACK_IMPORTED_MODULE_15__components_Admin_CreateForm__["a" /* default */] }),
-		__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["c" /* Route */], { path: '/create-question/:fid', component: __WEBPACK_IMPORTED_MODULE_16__components_Admin_CreateAdminQuestion__["a" /* default */] }),
-		__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["c" /* Route */], { path: '/create-option/:fid/:qid', component: __WEBPACK_IMPORTED_MODULE_17__components_Admin_CreateAdminOption__["a" /* default */] }),
-		__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["c" /* Route */], { path: '/create-admin-survey', component: __WEBPACK_IMPORTED_MODULE_18__components_Admin_CreateAdminSurvey__["a" /* default */] }),
-		__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["c" /* Route */], { path: '/company', component: __WEBPACK_IMPORTED_MODULE_19__components_Admin_DisplayCompany__["a" /* default */] }),
-		__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["c" /* Route */], { path: '/form', component: __WEBPACK_IMPORTED_MODULE_20__components_Admin_DisplayForm__["a" /* default */] }),
-		__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["c" /* Route */], { path: '/admin-question/:fid', component: __WEBPACK_IMPORTED_MODULE_21__components_Admin_DisplayAdminQuestion__["a" /* default */] }),
-		__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["c" /* Route */], { path: '/admin-option/:fid/:qid', component: __WEBPACK_IMPORTED_MODULE_22__components_Admin_DisplayAdminOption__["a" /* default */] }),
-		__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["c" /* Route */], { path: '/edit-company/:id', component: __WEBPACK_IMPORTED_MODULE_23__components_Admin_EditCompany__["a" /* default */] }),
-		__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["c" /* Route */], { path: '/edit-form/:fid', component: __WEBPACK_IMPORTED_MODULE_24__components_Admin_EditForm__["a" /* default */] }),
-		__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["c" /* Route */], { path: '/edit-question/:fid/:qid', component: __WEBPACK_IMPORTED_MODULE_25__components_Admin_EditAdminQuestion__["a" /* default */] }),
-		__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["c" /* Route */], { path: '/edit-option/:fid/:qid/:oid', component: __WEBPACK_IMPORTED_MODULE_26__components_Admin_EditAdminOption__["a" /* default */] }),
-		__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["c" /* Route */], { path: '/edit-admin-survey/:sid', component: __WEBPACK_IMPORTED_MODULE_27__components_Admin_EditAdminSurvey__["a" /* default */] }),
-		__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["c" /* Route */], { path: '/survey-complete', component: __WEBPACK_IMPORTED_MODULE_29__components_User_SurveyComplete__["a" /* default */] }),
-		__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["c" /* Route */], { path: '/already-complete', component: __WEBPACK_IMPORTED_MODULE_30__components_User_AlreadyComplete__["a" /* default */] }),
-		__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["c" /* Route */], { path: '/add-user-survey/:cid/:sid', component: __WEBPACK_IMPORTED_MODULE_28__components_Admin_AddUserSurvey__["a" /* default */] }),
+		__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["c" /* Route */], { path: '/view-user-survey-data', component: __WEBPACK_IMPORTED_MODULE_11__components_User_ViewUserSurveyData__["a" /* default */] }),
+		__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["c" /* Route */], { path: '/admin-home', component: __WEBPACK_IMPORTED_MODULE_12__components_Admin_AdminHome__["a" /* default */] }),
+		__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["c" /* Route */], { path: '/admin-survey', component: __WEBPACK_IMPORTED_MODULE_13__components_Admin_DisplayAdminSurvey__["a" /* default */] }),
+		__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["c" /* Route */], { path: '/admin-user', component: __WEBPACK_IMPORTED_MODULE_14__components_Admin_AdminUser__["a" /* default */] }),
+		__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["c" /* Route */], { path: '/create-company', component: __WEBPACK_IMPORTED_MODULE_15__components_Admin_CreateCompany__["a" /* default */] }),
+		__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["c" /* Route */], { path: '/create-form', component: __WEBPACK_IMPORTED_MODULE_16__components_Admin_CreateForm__["a" /* default */] }),
+		__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["c" /* Route */], { path: '/create-question/:fid', component: __WEBPACK_IMPORTED_MODULE_17__components_Admin_CreateAdminQuestion__["a" /* default */] }),
+		__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["c" /* Route */], { path: '/create-option/:fid/:qid', component: __WEBPACK_IMPORTED_MODULE_18__components_Admin_CreateAdminOption__["a" /* default */] }),
+		__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["c" /* Route */], { path: '/create-admin-survey', component: __WEBPACK_IMPORTED_MODULE_19__components_Admin_CreateAdminSurvey__["a" /* default */] }),
+		__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["c" /* Route */], { path: '/company', component: __WEBPACK_IMPORTED_MODULE_20__components_Admin_DisplayCompany__["a" /* default */] }),
+		__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["c" /* Route */], { path: '/form', component: __WEBPACK_IMPORTED_MODULE_21__components_Admin_DisplayForm__["a" /* default */] }),
+		__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["c" /* Route */], { path: '/admin-question/:fid', component: __WEBPACK_IMPORTED_MODULE_22__components_Admin_DisplayAdminQuestion__["a" /* default */] }),
+		__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["c" /* Route */], { path: '/admin-option/:fid/:qid', component: __WEBPACK_IMPORTED_MODULE_23__components_Admin_DisplayAdminOption__["a" /* default */] }),
+		__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["c" /* Route */], { path: '/edit-company/:id', component: __WEBPACK_IMPORTED_MODULE_24__components_Admin_EditCompany__["a" /* default */] }),
+		__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["c" /* Route */], { path: '/edit-form/:fid', component: __WEBPACK_IMPORTED_MODULE_25__components_Admin_EditForm__["a" /* default */] }),
+		__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["c" /* Route */], { path: '/edit-question/:fid/:qid', component: __WEBPACK_IMPORTED_MODULE_26__components_Admin_EditAdminQuestion__["a" /* default */] }),
+		__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["c" /* Route */], { path: '/edit-option/:fid/:qid/:oid', component: __WEBPACK_IMPORTED_MODULE_27__components_Admin_EditAdminOption__["a" /* default */] }),
+		__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["c" /* Route */], { path: '/edit-admin-survey/:sid', component: __WEBPACK_IMPORTED_MODULE_28__components_Admin_EditAdminSurvey__["a" /* default */] }),
+		__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["c" /* Route */], { path: '/survey-complete', component: __WEBPACK_IMPORTED_MODULE_30__components_User_SurveyComplete__["a" /* default */] }),
+		__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["c" /* Route */], { path: '/already-complete', component: __WEBPACK_IMPORTED_MODULE_31__components_User_AlreadyComplete__["a" /* default */] }),
+		__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["c" /* Route */], { path: '/add-user-survey/:cid/:sid', component: __WEBPACK_IMPORTED_MODULE_29__components_Admin_AddUserSurvey__["a" /* default */] }),
 		__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["c" /* Route */], { path: '/forgotpassword', component: __WEBPACK_IMPORTED_MODULE_7__components_forgot__["a" /* default */] }),
 		__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["c" /* Route */], { path: '/password/reset/:token', component: __WEBPACK_IMPORTED_MODULE_8__components_reset__["a" /* default */] })
 	)
@@ -16808,7 +16811,15 @@ var AddUserSurvey = function (_Component) {
                             item.status,
                             ' '
                         ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('td', null)
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'td',
+                            null,
+                            item.status == 'submitted' && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                __WEBPACK_IMPORTED_MODULE_1_react_router_dom__["d" /* Link */],
+                                { to: { pathname: '/view-user-survey-data/', state: { email: item.email } } },
+                                'View Data'
+                            )
+                        )
                     );
                 });
             }
@@ -42610,6 +42621,137 @@ function valueEqual(a, b) {
 __webpack_require__(145);
 module.exports = __webpack_require__(146);
 
+
+/***/ }),
+/* 363 */,
+/* 364 */,
+/* 365 */,
+/* 366 */,
+/* 367 */,
+/* 368 */,
+/* 369 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__navbar__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_axios__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__MyGlobleSetting__ = __webpack_require__(10);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+
+
+
+var ViewUserSurveyData = function (_Component) {
+  _inherits(ViewUserSurveyData, _Component);
+
+  function ViewUserSurveyData(props) {
+    _classCallCheck(this, ViewUserSurveyData);
+
+    var _this = _possibleConstructorReturn(this, (ViewUserSurveyData.__proto__ || Object.getPrototypeOf(ViewUserSurveyData)).call(this, props));
+
+    _this.state = {
+      email: props && props.location && props.location.state && props.location.state.email,
+      submissionDetails: []
+    };
+    return _this;
+  }
+
+  _createClass(ViewUserSurveyData, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      this.getUsersDetails(this.state.email);
+    }
+  }, {
+    key: 'getUsersDetails',
+    value: function getUsersDetails($email) {
+      var _this2 = this;
+
+      __WEBPACK_IMPORTED_MODULE_2_axios___default.a.get(__WEBPACK_IMPORTED_MODULE_3__MyGlobleSetting__["a" /* default */].url + '/api/getusersurveydata/' + $email).then(function (response) {
+        if (response.data.length > 0) {
+          console.log('check', response.data);
+          _this2.setState({ submissionDetails: response.data });
+        } else {
+          _this2.setState({ submissionDetails: [] });
+        }
+      }).catch(function (error) {
+        console.log(error);
+      });
+    }
+  }, {
+    key: 'tabRow',
+    value: function tabRow() {
+      var self = this;
+      if (this.state.submissionDetails instanceof Array) {
+        return this.state.submissionDetails.map(function (item, key) {
+          return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'tr',
+            { key: key },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'td',
+              null,
+              ' ',
+              item.question_description,
+              ' '
+            ),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'td',
+              null,
+              ' ',
+              item.answer_description,
+              ' '
+            )
+          );
+        });
+      }
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        'table',
+        null,
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'thead',
+          null,
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'tr',
+            null,
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'th',
+              null,
+              ' Question '
+            ),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'th',
+              null,
+              ' Answer '
+            )
+          )
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'tbody',
+          null,
+          this.tabRow()
+        )
+      );
+    }
+  }]);
+
+  return ViewUserSurveyData;
+}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
+
+/* harmony default export */ __webpack_exports__["a"] = (ViewUserSurveyData);
 
 /***/ })
 /******/ ]);

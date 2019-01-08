@@ -125,7 +125,7 @@ class AddUserSurvey extends Component {
                 <td> {item.email} </td>
                 <td> {item.survey_name} </td>
                 <td> {item.status} </td>
-                <td></td>
+                <td>{( item.status == 'submitted') &&  <Link to={{ pathname:'/view-user-survey-data/', state:{email: item.email} }} >View Data</Link>}</td>
               </tr>
               )
           })

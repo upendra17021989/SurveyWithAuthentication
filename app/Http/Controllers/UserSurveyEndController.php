@@ -13,11 +13,10 @@ class UserSurveyEndController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function viewUserData($email)
     {
-         /*$userSurveyDetails = DB::table('questions')->join('options', 
-            'questions.question_id', '=', 'options.question_id')->select('questions.question_id as question_id', 'questions.question_description as question_description','options.option_id', 'options.option_description as option_description')->get();
-        return $userSurveyDetails;*/
+        $userSurveyDetails = DB::table('user_survey')->select('question_description', 'answer_description')->where('user_id','=', $email)->get();
+        return $userSurveyDetails;
     }
 
     /**

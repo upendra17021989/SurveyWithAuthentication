@@ -10,6 +10,7 @@ import Reset from './components/reset';
 //import DisplaySurvey from './components/User/DisplaySurvey';
 import UserSurveyHome from './components/User/UserSurveyHome';
 import SinglePageSurvey from './components/User/SinglePageSurvey';
+import ViewUserSurveyData from './components/User/ViewUserSurveyData';
 import AdminHome from './components/Admin/AdminHome';
 import DisplayAdminSurvey from './components/Admin/DisplayAdminSurvey';
 import AdminUser from './components/Admin/AdminUser';
@@ -45,6 +46,7 @@ ReactDOM.render(
 
 	    <Route path='/user-home' component={UserSurveyHome}/>
 		<Route path='/single-page-survey' component={SinglePageSurvey}/>
+		<Route path='/view-user-survey-data' component={ViewUserSurveyData}/>
 
 	    <Route path='/admin-home' component={AdminHome}/>
 	    <Route path='/admin-survey' component={DisplayAdminSurvey}/>

@@ -32,6 +32,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('adminquestion/{id}','QuestionController@index');
     Route::get('adminoption/{fid}/{qid}','OptionController@index');
     Route::get('adminsurvey','AdminSurveyController@index');
+    Route::get('getusersurveydata/{uid}','UserSurveyEndController@viewUserData');
+    
 
     Route::get('showcompany/{id}','CompanyController@show');  
     Route::get('showform/{fid}','FormController@show');
