@@ -48,17 +48,33 @@ class ViewUserSurveyData extends Component {
 
   render() {
      return (
-      <table>
-        <thead>
-          <tr>
-            <th> Question </th>
-            <th> Answer </th>
-          </tr>
-        </thead>
-        <tbody>
-          {this.tabRow()}
-        </tbody>
-      </table>
+      <div className="view-user-survey-data ">
+       <Nav link="admin" />
+        <div className="container">
+          <div className="row">
+              <div className="col-md-8 col-md-offset-2">
+                  <div className="panel panel-default">
+                      <div className="panel-heading"><b>User Survey Detail of {this.state.email}</b></div>
+                      <div className="panel-body">
+                        <div className="form-group table-responsive">
+                          <table className="table table-bordered">
+                            <thead>
+                              <tr>
+                                <th> Question </th>
+                                <th> Answer </th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {this.tabRow()}
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
     )
   }
 }

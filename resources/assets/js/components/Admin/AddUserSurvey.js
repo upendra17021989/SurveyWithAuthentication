@@ -20,8 +20,8 @@ class AddUserSurvey extends Component {
           linkedSurvey: [],
           linkedUser: []
         }
-
         this.handleChange = this.handleChange.bind(this);
+        this.exportAll = this.exportAll.bind(this);
      }
 
     componentDidMount(){
@@ -115,6 +115,49 @@ class AddUserSurvey extends Component {
         this.setState({[name]: value});
      }
 
+      exportAll() {
+        const {company_id, survey_id} = this.state ;
+        console.log('check:',document.querySelector('meta[name="csrf-token"]').getAttribute('content'));
+        axios.defaults.headers.common = {
+            'X-Requested-With': 'XMLHttpRequest',
+            'X-CSRF-TOKEN' : document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+        };
+
+         axios.post(MyGlobleSetting.url + '/api/exportall', {
+              company_id,
+              survey_id
+            })
+            .then(response=> {
+              var a = document.createElement("a");
+                a.href = response.data.file; 
+                a.download = response.data.name;
+                document.body.appendChild(a);
+                a.click();
+                a.remove();
+            })
+            .catch(error=> {
+              this.setState({err: true});
+            });
+      }
+
+      export(e) {
+        let email = e.currentTarget.getAttribute('data');
+         axios.post(MyGlobleSetting.url + '/api/export', {
+              email
+            })
+            .then(response=> {
+              var a = document.createElement("a");
+                a.href = response.data.file; 
+                a.download = response.data.name;
+                document.body.appendChild(a);
+                a.click();
+                a.remove();
+            })
+            .catch(error=> {
+              this.setState({err: true});
+            });
+      }
+
     tabRow() {
       let self = this;
       if (this.state.usersDetail instanceof Array) {
@@ -126,9 +169,10 @@ class AddUserSurvey extends Component {
                 <td> {item.survey_name} </td>
                 <td> {item.status} </td>
                 <td>{( item.status == 'submitted') &&  <Link to={{ pathname:'/view-user-survey-data/', state:{email: item.email} }} >View Data</Link>}</td>
+                <td>{( item.status == 'submitted') ?  <button type="button" onClick= {this.export} data = {item.email} >export</button> : ''} </td>
               </tr>
               )
-          })
+          }, this)
       }
     }
 
@@ -164,16 +208,20 @@ class AddUserSurvey extends Component {
                                     </div>   
                                     <form className="form-horizontal" role="form" method="POST" onSubmit= {this.onSubmit.bind(this)}>
                                         <div className="form-group">
-                                            <label for="company" className="col-md-4 control-label">Select Company:</label>
+                                            <label className="col-md-4 control-label">Select Company:</label>
 
                                             <div className="col-md-6">
                                                 <Dropdown style={{width: '80%'}} value={parseInt(this.state.company_id)} options={this.state.companySelectItems} onChange={(e) => {this.reloadUsers(e.value)}} placeholder="Select a Company"/>
                                             </div>
 
-                                            <label for="company" style={{marginTop: '15px'}} className="col-md-4 control-label">Select Survey:</label>
+                                            <label style={{marginTop: '15px'}} className="col-md-4 control-label">Select Survey:</label>
 
                                             <div className="col-md-6">
                                                 <Dropdown style={{width: '80%', marginTop: '20px'}} value={parseInt(this.state.survey_id)} options={this.state.surveySelectItems} onChange={(e) => {this.reloadUsers(e.value)}} placeholder="Select a Survey"/>
+                                            </div>
+
+                                            <div className="col-md-10">
+                                                <button type="button" id = "export-all" onClick= {this.exportAll} >Export All</button>
                                             </div>
                                         </div>
 
@@ -186,6 +234,7 @@ class AddUserSurvey extends Component {
                                                 <th> Survey Name </th>
                                                 <th>Status</th>
                                                 <th> View Form</th>
+                                                <th> Export</th>
                                               </tr>
                                             </thead>
                                             <tbody>

@@ -57,14 +57,19 @@ class AdminUser extends Component {
       axios.post('api/import', data,
        config)
         .then(response=> {
-         this.setState({err: false});
-         this.props.history.push("admin-user") ;
-        })
-        .catch(error=> {
-          this.refs.companyName.value="";
-          this.refs.file.value="";
-          this.setState({err: true});
-        });
+          if (response.data[0].status == 'error') {
+            this.setState({err: true, erroMessage: response.data[0].message}); 
+          } else {
+            this.setState({err: false}); 
+          }
+           
+           this.props.history.push("admin-user") ;
+          })
+          .catch(error=> {
+            this.refs.companyName.value="";
+            this.refs.file.value="";
+            this.setState({err: true});
+          });
      }
 
      onChange(e){
@@ -78,12 +83,12 @@ class AdminUser extends Component {
 
     render() {
         let error = this.state.err ;
-        let msg = (!error) ? 'Created Successfully' : 'Oops! , Something went wrong.' ;
+        let msg = (!error) ? 'Created Successfully' : this.state.erroMessage || 'Oops! , Something went wrong.' ;
         let name = (!error) ? 'alert alert-success' : 'alert alert-danger' ;
         return (   
              <div>   
                 <Nav link="admin" />
-                <div className="container">
+                <div className="container admin-user">
                     <div className="row">
                         <div className="col-md-8 col-md-offset-2">
                             <div className="panel panel-default">
@@ -97,7 +102,7 @@ class AdminUser extends Component {
                                             <label for="name" className="col-md-4 control-label">Company Name</label>
 
                                             <div className="col-md-6">
-                                                <Dropdown style={{width: '100%'}} value={this.state.company_id} options={this.state.companySelectItems} onChange={(e) => {this.setState({company_id: e.value})}} placeholder="Select a Company"/>
+                                                <Dropdown style={{width: '100%'}} value={this.state.company_id} options={this.state.companySelectItems} onChange={(e) => {this.setState({company_id: e.value})}} placeholder="Select a Company" required/>
                                             </div>
                                         </div>
 
@@ -105,7 +110,7 @@ class AdminUser extends Component {
                                             <label for="filename" className="col-md-4 control-label">Select File:</label>
 
                                             <div className="col-md-6">
-                                                <input id="file" type="file" className="form-control" ref="file" name="file" onChange={this.onChange.bind(this)} required />
+                                                <input id="file" type="file" ref="file" name="file" onChange={this.onChange.bind(this)} required />
                                             </div>
                                         </div>
 

@@ -116,6 +116,11 @@
 			}
 		}
 	}
+
+	#export-all {
+		float: right;
+    	margin-top: 20px;
+	}
 }
 
 .survey-complete {
@@ -160,5 +165,11 @@
 	.create-btn {
 	    background-color: #17370df0;
     	border-color: #17370df0;
+	}
+}
+
+.admin-user {
+	#file {
+		margin-top: 6px;
 	}
 }

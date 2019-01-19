@@ -72,6 +72,8 @@ Route::group(['middleware' => ['web']], function () {
 
     //Route::get('/', 'ExcelController@index')->name('index');
     Route::post('import', 'ExcelController@import')->name('import');
+    Route::post('export', 'ExcelController@export')->name('export');
+    Route::post('exportall', 'ExcelController@exportall')->name('exportall');
 });
   
 

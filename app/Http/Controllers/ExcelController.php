@@ -68,8 +68,72 @@ class ExcelController extends Controller
                 return back();
  
             }else {
-                return response()->json('File is a '.$extension.' file.!! Please upload a valid xls/csv file..!!');
+                $errorMessage[] = [
+                    'status' => 'error',
+                    'message' => 'File is a '.$extension.' file.!! Please upload a valid xls file..!!'
+                ];
+
+                return response()->json($errorMessage);
             }
         }
+    }
+
+    public function export(Request $request)  {
+        $userSurveyDetails = DB::table('user_survey')->select('user_id', 'question_description', 'answer_description')->where('user_id','=', $request['email'])->get()->toArray();
+
+        $user_survey_array[] = array('Email', 'Question', 'Answer');
+
+        foreach($userSurveyDetails as $userSurvey) {
+            $user_survey_array[] = array(
+                'Email'  => $userSurvey->user_id,
+                'Question'  => $userSurvey->question_description,
+                'Answer'   => $userSurvey->answer_description
+            );
+        }
+
+        $myFile = Excel::create('User Data '.$request['email'], function($excel) use ($user_survey_array) {
+            $excel->setTitle('User Data');
+            $excel->sheet('User Data', function($sheet) use ($user_survey_array){
+            $sheet->fromArray($user_survey_array, null, 'A1', false, false);
+            });
+        });
+
+        $myFile = $myFile->string('xlsx');
+
+        $response =  array(
+           'name' => "user_specific_survey_details_".date("Y-m-d",time()), //no extention needed
+           'file' => "data:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;base64,".base64_encode($myFile) //mime type of used format
+        );
+        return response()->json($response);
+    }
+
+     public function exportall(Request $request)  {
+        $userSurveyDetails = DB::table('user_survey')->select('survey_id', 'user_id', 'question_description', 'answer_description')->where('survey_id','=', $request['survey_id'])->get()->toArray();
+
+        $user_survey_array[] = array('Survey Name', 'Email', 'Question', 'Answer');
+
+        foreach($userSurveyDetails as $userSurvey) {
+            $user_survey_array[] = array(
+                'Survey Name'  => $userSurvey->survey_id,
+                'Email'  => $userSurvey->user_id,
+                'Question'  => $userSurvey->question_description,
+                'Answer'   => $userSurvey->answer_description
+            );
+        }
+
+        $myFile = Excel::create('User Data '.$request['email'], function($excel) use ($user_survey_array) {
+            $excel->setTitle('User Data');
+            $excel->sheet('User Data', function($sheet) use ($user_survey_array){
+            $sheet->fromArray($user_survey_array, null, 'A1', false, false);
+            });
+        });
+
+        $myFile = $myFile->string('xlsx');
+
+        $response =  array(
+           'name' => "survey_details_".date("Y-m-d h-m-s",time()), //no extention needed
+           'file' => "data:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;base64,".base64_encode($myFile) //mime type of used format
+        );
+        return response()->json($response);
     }
 }
