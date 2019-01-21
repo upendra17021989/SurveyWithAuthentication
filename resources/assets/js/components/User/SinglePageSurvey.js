@@ -96,10 +96,11 @@ class SinglePageSurvey extends Component {
         object.answer_description =answer_description;
       })
 
-        const {user_id, form_id, survey_id, surveys} = self.state;
+        const {user_id, form_id, survey_id, surveys, survey_name} = self.state;
         axios.post('/api/addusersurveydata', {
             user_id,
             survey_id,
+            survey_name,
             form_id,
             surveys
           })

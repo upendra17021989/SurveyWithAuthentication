@@ -21476,11 +21476,13 @@ var SinglePageSurvey = function (_Component) {
           user_id = _self$state.user_id,
           form_id = _self$state.form_id,
           survey_id = _self$state.survey_id,
-          surveys = _self$state.surveys;
+          surveys = _self$state.surveys,
+          survey_name = _self$state.survey_name;
 
       __WEBPACK_IMPORTED_MODULE_1_axios___default.a.post('/api/addusersurveydata', {
         user_id: user_id,
         survey_id: survey_id,
+        survey_name: survey_name,
         form_id: form_id,
         surveys: surveys
       }).then(function (response) {
@@ -21768,12 +21770,12 @@ var UserSurveyOption = function (_Component) {
           return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'li',
             { className: 'survey-option' },
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_primereact_radiobutton__["RadioButton"], { value: item.option_id, name: "surveyOptions" + item.question_id, onChange: function onChange(e) {
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_primereact_radiobutton__["RadioButton"], { inputId: "rb" + item.option_id, value: item.option_id, name: "surveyOptions" + item.question_id, onChange: function onChange(e) {
                 return self.onButtonCheck(e, item.question_id, item.option_description);
               }, checked: self.state.answer_id === item.option_id }),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               'label',
-              { htmlFor: 'rb1', className: 'p-radiobutton-label' },
+              { htmlFor: "rb" + item.option_id, className: 'p-radiobutton-label' },
               item.option_description
             )
           );

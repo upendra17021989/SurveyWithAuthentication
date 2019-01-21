@@ -108,13 +108,14 @@ class ExcelController extends Controller
     }
 
      public function exportall(Request $request)  {
-        $userSurveyDetails = DB::table('user_survey')->select('survey_id', 'user_id', 'question_description', 'answer_description')->where('survey_id','=', $request['survey_id'])->get()->toArray();
+        $userSurveyDetails = DB::table('user_survey')->join('users','email', '=', 'user_id')->join('company', 'company.company_id', '=', 'users.company_id')->select('company_name', 'survey_name', 'user_id', 'question_description', 'answer_description')->where('survey_id','=', $request['survey_id'])->get()->toArray();
 
-        $user_survey_array[] = array('Survey Name', 'Email', 'Question', 'Answer');
+        $user_survey_array[] = array('Company Name', 'Survey Name', 'Email', 'Question', 'Answer');
 
         foreach($userSurveyDetails as $userSurvey) {
             $user_survey_array[] = array(
-                'Survey Name'  => $userSurvey->survey_id,
+                'Company Name' => $userSurvey->company_name,
+                'Survey Name'  => $userSurvey->survey_name,
                 'Email'  => $userSurvey->user_id,
                 'Question'  => $userSurvey->question_description,
                 'Answer'   => $userSurvey->answer_description

@@ -34,6 +34,7 @@ class UserSurveyEndController extends Controller
                  array(
                     'user_id' => $request['user_id'], 
                     'survey_id' => $request['survey_id'],
+                    'survey_name' => $request['survey_name'],
                     'form_id' => $request['form_id'],
                     'question_id' => $survey['question_id'],
                     'answer_id' => $survey['answer_id'],

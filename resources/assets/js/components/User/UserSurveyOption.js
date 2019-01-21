@@ -22,8 +22,8 @@ class UserSurveyOption extends Component {
         return this.state.options.map(function(item, key){
           return (
             <li className="survey-option">
-            <RadioButton value={item.option_id} name={"surveyOptions"+ item.question_id} onChange={(e) => self.onButtonCheck(e, item.question_id, item.option_description)} checked={self.state.answer_id === item.option_id} />
-          <label htmlFor="rb1" className="p-radiobutton-label">{item.option_description}</label>
+            <RadioButton inputId={"rb" + item.option_id} value={item.option_id} name={"surveyOptions"+ item.question_id} onChange={(e) => self.onButtonCheck(e, item.question_id, item.option_description)} checked={self.state.answer_id === item.option_id} />
+            <label htmlFor={"rb" + item.option_id} className="p-radiobutton-label">{item.option_description}</label>
           </li>
           )
         })
