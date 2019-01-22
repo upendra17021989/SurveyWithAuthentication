@@ -103,21 +103,4 @@ class UserSurveyController extends Controller
     {
         DB::table('company_survey')->where('survey_id', $survey_id)->delete();
     }
-
-    public function sendMail() {
-        $title = 'testing';
-        $content = 'hi how are you';
-
-        Mail::send('mail', ['title' => $title, 'content' => $content], function ($message)
-        {
-
-            $message->from('support@empmetrics.com', 'Survey Support');
-
-            $message->to('ups12384@gmail.com');
-
-        });
-
-
-        return response()->json(['message' => 'Request completed']);
-    }
 }

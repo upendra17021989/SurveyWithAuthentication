@@ -48,7 +48,11 @@ class UserSurveyEndController extends Controller
                 'status' => 'submitted'
             ]);
 
-        return response()->json('Survey Created Successfully.');
+        return response()->json('Survey Submitted Successfully.');
+
+        return redirect()->action(
+            'EmailController@sendMail', ['email' => $request['user_id']]
+        );
     }
 
     public function getSurveyStatus($user_id)

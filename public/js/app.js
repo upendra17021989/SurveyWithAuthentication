@@ -16675,6 +16675,7 @@ var AddUserSurvey = function (_Component) {
         };
         _this.handleChange = _this.handleChange.bind(_this);
         _this.exportAll = _this.exportAll.bind(_this);
+        _this.emailAll = _this.emailAll.bind(_this);
         return _this;
     }
 
@@ -16775,13 +16776,31 @@ var AddUserSurvey = function (_Component) {
             this.setState(_defineProperty({}, name, value));
         }
     }, {
-        key: 'exportAll',
-        value: function exportAll() {
+        key: 'emailAll',
+        value: function emailAll() {
             var _this6 = this;
 
             var _state = this.state,
                 company_id = _state.company_id,
                 survey_id = _state.survey_id;
+
+            __WEBPACK_IMPORTED_MODULE_3_axios___default.a.post(__WEBPACK_IMPORTED_MODULE_4__MyGlobleSetting__["a" /* default */].url + '/api/mailall', {
+                company_id: company_id,
+                survey_id: survey_id
+            }).then(function (response) {
+                console.log('response', response);
+            }).catch(function (error) {
+                _this6.setState({ err: true });
+            });
+        }
+    }, {
+        key: 'exportAll',
+        value: function exportAll() {
+            var _this7 = this;
+
+            var _state2 = this.state,
+                company_id = _state2.company_id,
+                survey_id = _state2.survey_id;
 
             console.log('check:', document.querySelector('meta[name="csrf-token"]').getAttribute('content'));
             __WEBPACK_IMPORTED_MODULE_3_axios___default.a.defaults.headers.common = {
@@ -16800,13 +16819,13 @@ var AddUserSurvey = function (_Component) {
                 a.click();
                 a.remove();
             }).catch(function (error) {
-                _this6.setState({ err: true });
+                _this7.setState({ err: true });
             });
         }
     }, {
         key: 'export',
         value: function _export(e) {
-            var _this7 = this;
+            var _this8 = this;
 
             var email = e.currentTarget.getAttribute('data');
             __WEBPACK_IMPORTED_MODULE_3_axios___default.a.post(__WEBPACK_IMPORTED_MODULE_4__MyGlobleSetting__["a" /* default */].url + '/api/export', {
@@ -16819,7 +16838,7 @@ var AddUserSurvey = function (_Component) {
                 a.click();
                 a.remove();
             }).catch(function (error) {
-                _this7.setState({ err: true });
+                _this8.setState({ err: true });
             });
         }
     }, {
@@ -16901,7 +16920,7 @@ var AddUserSurvey = function (_Component) {
     }, {
         key: 'render',
         value: function render() {
-            var _this8 = this;
+            var _this9 = this;
 
             var error = this.state.err;
             var msg = !error ? 'Updated Successfully' : 'Oops! , Something went wrong.';
@@ -16954,7 +16973,7 @@ var AddUserSurvey = function (_Component) {
                                                 'div',
                                                 { className: 'col-md-6' },
                                                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5_primereact_dropdown__["Dropdown"], { style: { width: '80%' }, value: parseInt(this.state.company_id), options: this.state.companySelectItems, onChange: function onChange(e) {
-                                                        _this8.reloadUsers(e.value);
+                                                        _this9.reloadUsers(e.value);
                                                     }, placeholder: 'Select a Company' })
                                             ),
                                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -16966,12 +16985,17 @@ var AddUserSurvey = function (_Component) {
                                                 'div',
                                                 { className: 'col-md-6' },
                                                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5_primereact_dropdown__["Dropdown"], { style: { width: '80%', marginTop: '20px' }, value: parseInt(this.state.survey_id), options: this.state.surveySelectItems, onChange: function onChange(e) {
-                                                        _this8.reloadUsers(e.value);
+                                                        _this9.reloadUsers(e.value);
                                                     }, placeholder: 'Select a Survey' })
                                             ),
                                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                                 'div',
                                                 { className: 'col-md-10' },
+                                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                                    'button',
+                                                    { type: 'button', id: 'email-all', onClick: this.emailAll },
+                                                    ' Send Email'
+                                                ),
                                                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                                     'button',
                                                     { type: 'button', id: 'export-all', onClick: this.exportAll },

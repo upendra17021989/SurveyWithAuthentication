@@ -22,6 +22,7 @@ class AddUserSurvey extends Component {
         }
         this.handleChange = this.handleChange.bind(this);
         this.exportAll = this.exportAll.bind(this);
+        this.emailAll = this.emailAll.bind(this);
      }
 
     componentDidMount(){
@@ -115,6 +116,20 @@ class AddUserSurvey extends Component {
         this.setState({[name]: value});
      }
 
+      emailAll() {
+        const {company_id, survey_id} = this.state ;
+         axios.post(MyGlobleSetting.url + '/api/mailall', {
+              company_id,
+              survey_id
+            })
+            .then(response=> {
+              console.log('response',response);
+            })
+            .catch(error=> {
+              this.setState({err: true});
+            });
+      }
+
       exportAll() {
         const {company_id, survey_id} = this.state ;
         console.log('check:',document.querySelector('meta[name="csrf-token"]').getAttribute('content'));
@@ -139,6 +154,8 @@ class AddUserSurvey extends Component {
               this.setState({err: true});
             });
       }
+
+
 
       export(e) {
         let email = e.currentTarget.getAttribute('data');
@@ -221,6 +238,7 @@ class AddUserSurvey extends Component {
                                             </div>
 
                                             <div className="col-md-10">
+                                                <button type="button" id="email-all" onClick= {this.emailAll}> Send Email</button>
                                                 <button type="button" id = "export-all" onClick= {this.exportAll} >Export All</button>
                                             </div>
                                         </div>

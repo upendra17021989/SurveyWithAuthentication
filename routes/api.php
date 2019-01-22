@@ -68,7 +68,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('addusersurveydata', 'UserSurveyEndController@create'); 
     Route::get('getsurveystatus/{id}','UserSurveyEndController@getSurveyStatus');
 
-    Route::get('/mail', 'UserSurveyController@sendMail');
+    Route::post('/mailall', 'EmailController@sendMailAll');
+    Route::get('/mail', 'EmailController@sendMail');
 
     //Route::get('/', 'ExcelController@index')->name('index');
     Route::post('import', 'ExcelController@import')->name('import');
