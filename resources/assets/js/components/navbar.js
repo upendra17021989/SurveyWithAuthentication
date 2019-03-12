@@ -39,7 +39,7 @@ class Nav extends Component {
   }
 
   componentDidMount(){
-    if (!cookies.get('username') && this.props.location.pathname !== '/login') {
+    if (!cookies.get('username') && ['/login', '/products','/letsstart'].indexOf(this.props.location.pathname) == -1 ) {
       this.props.history.push('/');
     }
   }
@@ -84,9 +84,12 @@ class Nav extends Component {
         <nav className="navbar navbar-default">
           <div className="container-fluid">
               <div className="navbar-header">
-                <a className="navbar-brand" href="#" onClick ={this.handleClick.bind(this)}>Home</a>
               </div>
               <ul className="nav navbar-nav navbar-right">
+                <li><Link to="/">Home</Link></li>
+                <li><Link to="/products">Products</Link></li>
+                <li><Link to="/">Why Survey</Link></li>
+                <li><Link to="/letsstart">Let's Start</Link></li>
                 <li><Link to="/login">Login</Link></li>
               </ul>
           </div>

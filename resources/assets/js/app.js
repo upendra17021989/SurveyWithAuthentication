@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import {  BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import Index from './components/index';
 import Login from './components/login';
+import Products from './components/products';
+import LetsStart from './components/letsstart';
 import Register from './components/register';
 import Home from './components/home';
 import Forgot from './components/forgot';
@@ -42,6 +44,8 @@ ReactDOM.render(
 	    <Switch>
 	    <Route exact path='/' component={Index}/>
 	    <Route path='/login' component={Login}/>
+	    <Route path='/products' component={Products}/>
+	    <Route path='/letsstart' component={LetsStart}/>
 	    <Route path='/register' component={Register}/>
 
 	    <Route path='/user-home' component={UserSurveyHome}/>
