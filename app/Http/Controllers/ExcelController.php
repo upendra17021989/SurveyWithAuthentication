@@ -81,14 +81,36 @@ class ExcelController extends Controller
     public function export(Request $request)  {
         $userSurveyDetails = DB::table('user_survey')->select('user_id', 'question_description', 'answer_description')->where('user_id','=', $request['email'])->get()->toArray();
 
-        $user_survey_array[] = array('Email', 'Question', 'Answer');
+        $users = DB::table('user_survey')->select('user_id')->where('user_id','=', $request['email'])->distinct()->get()->toArray();
 
-        foreach($userSurveyDetails as $userSurvey) {
-            $user_survey_array[] = array(
-                'Email'  => $userSurvey->user_id,
-                'Question'  => $userSurvey->question_description,
-                'Answer'   => $userSurvey->answer_description
+        $user_survey_arr = array('Email');
+
+        for ($x=1; $x <= count($userSurveyDetails); $x++) {
+            array_push($user_survey_arr, "Question".$x);
+            array_push($user_survey_arr, "Answer".$x);
+        }
+
+        $user_survey_array[] = $user_survey_arr;
+
+        foreach($users as $user) {
+
+            $user_survey_arr1 = array(
+                'Email'  => $user->user_id
             );
+        
+            $x=1;
+        
+            foreach($userSurveyDetails as $userSurvey) {
+                if ($user->user_id == $userSurvey->user_id) {
+                    $user_survey_arr1['Question'.$x] = $userSurvey->question_description;
+                    $user_survey_arr1['Answer'.$x] = $userSurvey->answer_description;
+                    $x++;
+                }
+            }
+            
+            if ($x > 1) {
+                $user_survey_array[] = $user_survey_arr1;
+            }
         }
 
         $myFile = Excel::create('User Data '.$request['email'], function($excel) use ($user_survey_array) {
@@ -110,16 +132,36 @@ class ExcelController extends Controller
      public function exportall(Request $request)  {
         $userSurveyDetails = DB::table('user_survey')->join('users','email', '=', 'user_id')->join('company', 'company.company_id', '=', 'users.company_id')->select('company_name', 'survey_name', 'user_id', 'question_description', 'answer_description')->where('survey_id','=', $request['survey_id'])->get()->toArray();
 
-        $user_survey_array[] = array('Company Name', 'Survey Name', 'Email', 'Question', 'Answer');
+        $users = DB::table('user_survey')->join('users','email', '=', 'user_id')->join('company', 'company.company_id', '=', 'users.company_id')->select('company_name', 'survey_name', 'user_id')->where('survey_id','=', $request['survey_id'])->distinct()->get()->toArray();
 
-        foreach($userSurveyDetails as $userSurvey) {
-            $user_survey_array[] = array(
-                'Company Name' => $userSurvey->company_name,
-                'Survey Name'  => $userSurvey->survey_name,
-                'Email'  => $userSurvey->user_id,
-                'Question'  => $userSurvey->question_description,
-                'Answer'   => $userSurvey->answer_description
+        $user_survey_arr = array('Company Name', 'Survey Name', 'Email');
+
+        for ($x=1; $x <= count($userSurveyDetails)/count($users); $x++) {
+            array_push($user_survey_arr, "Question".$x);
+            array_push($user_survey_arr, "Answer".$x);
+        }
+
+        $user_survey_array[] = $user_survey_arr;
+
+        foreach($users as $user) {
+
+            $user_survey_arr1 = array(
+                'Company Name' => $user->company_name,
+                'Survey Name'  => $user->survey_name,
+                'Email'  => $user->user_id
             );
+        
+            $x=1;
+        
+            foreach($userSurveyDetails as $userSurvey) {
+                if ($user->user_id == $userSurvey->user_id) {
+                    $user_survey_arr1['Question'.$x] = $userSurvey->question_description;
+                    $user_survey_arr1['Answer'.$x] = $userSurvey->answer_description;
+                    $x++;
+                }
+            }
+
+            $user_survey_array[] = $user_survey_arr1;
         }
 
         $myFile = Excel::create('User Data '.$request['email'], function($excel) use ($user_survey_array) {
