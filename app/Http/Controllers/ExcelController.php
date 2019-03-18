@@ -85,9 +85,8 @@ class ExcelController extends Controller
 
         $user_survey_arr = array('Email');
 
-        for ($x=1; $x <= count($userSurveyDetails); $x++) {
-            array_push($user_survey_arr, "Question".$x);
-            array_push($user_survey_arr, "Answer".$x);
+        for ($x=0; $x < count($userSurveyDetails); $x++) {
+            array_push($user_survey_arr, $userSurveyDetails[$x]->question_description);
         }
 
         $user_survey_array[] = $user_survey_arr;
@@ -102,8 +101,7 @@ class ExcelController extends Controller
         
             foreach($userSurveyDetails as $userSurvey) {
                 if ($user->user_id == $userSurvey->user_id) {
-                    $user_survey_arr1['Question'.$x] = $userSurvey->question_description;
-                    $user_survey_arr1['Answer'.$x] = $userSurvey->answer_description;
+                    $user_survey_arr1[$x] = $userSurvey->answer_description;
                     $x++;
                 }
             }
@@ -136,9 +134,8 @@ class ExcelController extends Controller
 
         $user_survey_arr = array('Company Name', 'Survey Name', 'Email');
 
-        for ($x=1; $x <= count($userSurveyDetails)/count($users); $x++) {
-            array_push($user_survey_arr, "Question".$x);
-            array_push($user_survey_arr, "Answer".$x);
+        for ($x=0; $x < count($userSurveyDetails)/count($users); $x++) {
+            array_push($user_survey_arr, $userSurveyDetails[$x]->question_description);
         }
 
         $user_survey_array[] = $user_survey_arr;
@@ -151,12 +148,11 @@ class ExcelController extends Controller
                 'Email'  => $user->user_id
             );
         
-            $x=1;
+            $x=3;
         
             foreach($userSurveyDetails as $userSurvey) {
                 if ($user->user_id == $userSurvey->user_id) {
-                    $user_survey_arr1['Question'.$x] = $userSurvey->question_description;
-                    $user_survey_arr1['Answer'.$x] = $userSurvey->answer_description;
+                    $user_survey_arr1[$x] = $userSurvey->answer_description;
                     $x++;
                 }
             }
