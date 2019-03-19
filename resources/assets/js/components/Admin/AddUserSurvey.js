@@ -5,9 +5,8 @@ import axios from 'axios';
 import MyGlobleSetting from '../MyGlobleSetting';
 import {Dropdown} from 'primereact/dropdown';
 import {Calendar} from 'primereact/calendar';
-import 'primereact/resources/themes/omega/theme.css';
-import 'primereact/resources/primereact.min.css';
-import 'primeicons/primeicons.css';
+import {OverlayPanel} from 'primereact/overlaypanel';
+import {Button} from 'primereact/button';
 
 class AddUserSurvey extends Component {
 
@@ -185,12 +184,49 @@ class AddUserSurvey extends Component {
                 <td> {item.email} </td>
                 <td> {item.survey_name} </td>
                 <td> {item.status} </td>
-                <td>{( item.status == 'submitted') &&  <Link to={{ pathname:'/view-user-survey-data/', state:{email: item.email} }} >View Data</Link>}</td>
-                <td>{( item.status == 'submitted') ?  <button type="button" onClick= {this.export} data = {item.email} >export</button> : ''} </td>
+                <td>{( item.status == 'submitted') &&  <Button type="button" className="ui-button-secondary" label="View Data" onClick={(e) => this.getModalUsersDetails(e, item.email)} />}</td>
+                <td>{( item.status == 'submitted') &&  <Button type="button" className="ui-button-success" label="export" onClick= {this.export} data = {item.email} />} </td>
               </tr>
               )
           }, this)
       }
+    }
+
+    modalTabRow() {
+      let self = this;
+      if (this.state.submissionDetails instanceof Array) {
+        return this.state.submissionDetails.map(function(item, key){
+          return (
+            <tr key={key}>
+              <td> {item.question_description} </td>
+              <td> {item.answer_description} </td>
+            </tr>
+          )
+        })
+      }
+    }
+
+    getModalUsersDetails(e, $email) {
+      axios.get(MyGlobleSetting.url + '/api/getusersurveydata/'+ $email)
+       .then(response => {
+        if (response.data.length > 0) {
+         this.setState(
+                    {
+                      submissionDetails: response.data,
+                      modalEmail : $email
+                    }
+          );
+
+         this.op.show(e);
+
+        } else {
+          this.setState({submissionDetails: [],
+                        modalEmail: ''})
+        }
+       })
+       .catch(function (error) {
+         console.log(error);
+       })
     }
 
     handleChange(i, value, user_id) {
@@ -213,9 +249,24 @@ class AddUserSurvey extends Component {
         let name = (!error) ? 'alert alert-success' : 'alert alert-danger' ;
         return (   
              <div className="add-user-survey">   
+
                 <Nav link="admin" />
                 <div className="container">
-                    <div className="row">
+                      <OverlayPanel ref={(el) => this.op = el} showCloseIcon={true} dismissable={true}>
+                        <table className="table table-bordered">
+                            <caption><b>User Survey Detail of {this.state.modalEmail}</b></caption>
+                            <thead>
+                              <tr>
+                                <th> Question </th>
+                                <th> Answer </th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {this.modalTabRow()}
+                            </tbody>
+                        </table>
+                      </OverlayPanel>
+                      <div className="row">
                         <div className="col-md-8 col-md-offset-2">
                             <div className="panel panel-default">
                                 <div className="panel-heading">Update Form</div>
@@ -237,7 +288,7 @@ class AddUserSurvey extends Component {
                                                 <Dropdown style={{width: '80%', marginTop: '20px'}} value={parseInt(this.state.survey_id)} options={this.state.surveySelectItems} onChange={(e) => {this.reloadUsers(e.value)}} placeholder="Select a Survey"/>
                                             </div>
 
-                                            <div className="col-md-10">
+                                            <div className="col-md-10 functional-cta">
                                                 <button type="button" id="email-all" onClick= {this.emailAll}> Send Email</button>
                                                 <button type="button" id = "export-all" onClick= {this.exportAll} >Export All</button>
                                             </div>
