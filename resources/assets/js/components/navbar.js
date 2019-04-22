@@ -48,6 +48,7 @@ class Nav extends Component {
 
     if (this.props.link == 'admin') {
       return (
+  
         <nav className="navbar navbar-default">
           <div className="container-fluid">
               <div className="navbar-header">
@@ -70,7 +71,7 @@ class Nav extends Component {
         <nav className="navbar navbar-default">
           <div className="container-fluid">
               <div className="navbar-header">
-                <a className="navbar-brand" href="#" onClick={this.handleClick.bind(this)}>Home</a>
+                <a className="navbar-brand" href="#" onClick={this.handleClick.bind(this)}><img className="logo" src="/images/logo.png" alt="EMP. Metrics" /></a>
               </div>
               <ul className="nav navbar-nav navbar-right">
                 <li><span>Hello {this.props.location.state && this.props.location.state.user_id},</span></li>
@@ -83,10 +84,9 @@ class Nav extends Component {
     return (
         <nav className="navbar navbar-default">
           <div className="container-fluid">
-              <div className="navbar-header">
+              <div className="navbar-header"><Link to="/"><img className="logo" src="/images/logo.png" alt="EMP. Metrics" /></Link>
               </div>
               <ul className="nav navbar-nav navbar-right">
-                <li><Link to="/">Home</Link></li>
                 <li><Link to="/products">Products</Link></li>
                 <li><Link to="/">Why Survey</Link></li>
                 <li><Link to="/letsstart">Let's Start</Link></li>
