@@ -1,103 +1,70 @@
-import React, { Component } from 'react'
-import Nav from './navbar'
+import React, { Component } from 'react';
+import Nav from './navbar';
+import {Accordion, AccordionTab} from 'primereact/accordion';
 
 
 class Products extends Component {
+
+  constructor(props){
+    super(props);
+    this.state = {
+      activeIndex : ''
+    }
+  }
 
   render() {
     return (
        <div className="products">
           <Nav />
           <h3 className="text-center">Products</h3>
-          
-          <div className="panel-group" id="desc_accordion">
-            <div className="panel panel-default">
-              <div className="brown panel-heading collapsed" data-toggle="collapse" data-target="#product-detail-care" aria-expanded="true">
-                Engagement Survey</div>
 
-              <div id="product-detail-care" className="panel-collapse collapse in">
-                <div className="panel-body">
-                  <ul>
-                    <li> Engagement Survey </li>
-                    <li> Exit Management survey </li>
-                    <li> Training and Assessment Survey </li>
-                    <li> Onboarding surveys. </li>
-                    <li> Employee Experience Survey </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            <div className="panel panel-default">
-              <div className="brown panel-heading collapsed" data-toggle="collapse" data-target="#product-detail-care" aria-expanded="true">
-                Exit Management survey</div>
-
-              <div id="product-detail-care" className="panel-collapse collapse">
-                <div className="panel-body">
-                  <ul>
-                    <li> Engagement Survey </li>
-                    <li> Exit Management survey </li>
-                    <li> Training and Assessment Survey </li>
-                    <li> Onboarding surveys. </li>
-                    <li> Employee Experience Survey </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            <div className="panel panel-default">
-              <div className="brown panel-heading collapsed" data-toggle="collapse" data-target="#product-detail-care" aria-expanded="true">
-                Training and Assessment Survey</div>
-
-              <div id="product-detail-care" className="panel-collapse collapse">
-                <div className="panel-body">
-                  <ul>
-                    <li> Engagement Survey </li>
-                    <li> Exit Management survey </li>
-                    <li> Training and Assessment Survey </li>
-                    <li> Onboarding surveys. </li>
-                    <li> Employee Experience Survey </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            <div className="panel panel-default">
-              <div className="brown panel-heading collapsed" data-toggle="collapse" data-target="#product-detail-care" aria-expanded="true">
-                Onboarding surveys</div>
-
-              <div id="product-detail-care" className="panel-collapse collapse">
-                <div className="panel-body">
-                  <ul>
-                    <li> Engagement Survey </li>
-                    <li> Exit Management survey </li>
-                    <li> Training and Assessment Survey </li>
-                    <li> Onboarding surveys. </li>
-                    <li> Employee Experience Survey </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            <div className="panel panel-default">
-              <div className="brown panel-heading collapsed" data-toggle="collapse" data-target="#product-detail-care" aria-expanded="true">
-                Employee Experience Survey</div>
-
-              <div id="product-detail-care" className="panel-collapse collapse">
-                <div className="panel-body">
-                  <ul>
-                    <li> Engagement Survey </li>
-                    <li> Exit Management survey </li>
-                    <li> Training and Assessment Survey </li>
-                    <li> Onboarding surveys. </li>
-                    <li> Employee Experience Survey </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-          </div>
-
+          <Accordion activeIndex={this.state.activeIndex} onTabChange={(e) => this.setState({activeIndex: e.index})}>
+            <AccordionTab header="Engagement Survey">
+              <ul>
+                <li> Engagement Survey </li>
+                <li> Exit Management survey </li>
+                <li> Training and Assessment Survey </li>
+                <li> Onboarding surveys. </li>
+                <li> Employee Experience Survey </li>
+              </ul>
+            </AccordionTab>
+            <AccordionTab header="Exit Management Survey">
+                <ul>
+                  <li> Engagement Survey </li>
+                  <li> Exit Management survey </li>
+                  <li> Training and Assessment Survey </li>
+                  <li> Onboarding surveys. </li>
+                  <li> Employee Experience Survey </li>
+                </ul>
+            </AccordionTab>
+            <AccordionTab header="Training and Assessment Survey">
+              <ul>
+                <li> Engagement Survey </li>
+                <li> Exit Management survey </li>
+                <li> Training and Assessment Survey </li>
+                <li> Onboarding surveys. </li>
+                <li> Employee Experience Survey </li>
+              </ul>
+            </AccordionTab>
+            <AccordionTab header="Onboarding Survey">
+              <ul>
+                <li> Engagement Survey </li>
+                <li> Exit Management survey </li>
+                <li> Training and Assessment Survey </li>
+                <li> Onboarding surveys. </li>
+                <li> Employee Experience Survey </li>
+              </ul>
+            </AccordionTab>
+            <AccordionTab header="Employee Experience Survey">
+              <ul>
+                <li> Engagement Survey </li>
+                <li> Exit Management survey </li>
+                <li> Training and Assessment Survey </li>
+                <li> Onboarding surveys. </li>
+                <li> Employee Experience Survey </li>
+              </ul>
+            </AccordionTab>
+          </Accordion>
        </div>
     )
   }
