@@ -4,6 +4,7 @@ import axios from 'axios';
 import { withRouter } from 'react-router-dom';
 import Cookies from 'universal-cookie';
 
+
 const cookies = new Cookies();
 
 
@@ -38,11 +39,23 @@ class Nav extends Component {
 
   }
 
+  toggleNav(){
+    var menu = document.getElementsByClassName("navbar-nav");
+    console.log(menu);
+    if(menu.style.display === "none"){
+      menu.style.display = "block";
+    } else {
+      menu.style.display = "none"
+    }
+  }
+
   componentDidMount(){
     if (!cookies.get('username') && ['/login', '/products','/letsstart'].indexOf(this.props.location.pathname) == -1 ) {
       this.props.history.push('/');
     }
   }
+  
+  
 
   render() {
 
@@ -53,6 +66,9 @@ class Nav extends Component {
           <div className="container-fluid">
               <div className="navbar-header">
                 <Link className="navbar-brand" to="/admin-home">Admin Home</Link>
+                <button className="navbar-toggler" type="button" onClick={this.toggleNav}>
+                  <span className="navbar-toggler-icon"></span>
+                </button>
               </div>
               <ul className="nav navbar-nav navbar-right">
                 <li><Link to="/admin-user">Users</Link></li>
@@ -72,6 +88,9 @@ class Nav extends Component {
           <div className="container-fluid">
               <div className="navbar-header">
                 <a className="navbar-brand" href="#" onClick={this.handleClick.bind(this)}><img className="logo" src="/images/logo.png" alt="EMP. Metrics" /></a>
+                <button className="navbar-toggler" type="button" onClick={this.toggleNav} >
+                  <span className="navbar-toggler-icon"></span>
+                </button>
               </div>
               <ul className="nav navbar-nav navbar-right">
                 <li><span>Hello {this.props.location.state && this.props.location.state.user_id},</span></li>
@@ -85,6 +104,9 @@ class Nav extends Component {
         <nav className="navbar navbar-default">
           <div className="container-fluid">
               <div className="navbar-header"><Link to="/"><img className="logo" src="/images/logo.png" alt="EMP. Metrics" /></Link>
+              <button className="navbar-toggler" type="button" onClick={this.toggleNav}>
+                  <span className="navbar-toggler-icon"></span>
+                </button>
               </div>
               <ul className="nav navbar-nav navbar-right">
                 <li><Link to="/products">Products</Link></li>
